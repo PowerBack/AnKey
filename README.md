@@ -8,4 +8,4 @@ A app to manage passwords. one-key and only-key.
 
 # 流程图
 
-![branchs](https://raw.githubusercontent.com/PowerBack/AnKey/art/flow.png)
+![branchs](https://raw.githubusercontent.com/PowerBack/AnKey/master/Art/flow.png)
