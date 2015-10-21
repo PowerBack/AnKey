@@ -3,6 +3,7 @@
     package="net.qiujuer.powerback.ankey.resource">
 
     <application
+        android:name="net.qiujuer.powerback.ankey.SuperApplication"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true">
