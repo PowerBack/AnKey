@@ -9,6 +9,11 @@
         android:supportsRtl="true">
         <activity
             android:name="net.qiujuer.powerback.ankey.ui.SuperActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base" />
+        <activity
+            android:name="net.qiujuer.powerback.ankey.ui.SuperBackActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Base" />
     </application>
 
