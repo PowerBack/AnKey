@@ -1,13 +1,34 @@
 <resources>
 
+    <style name="AppTheme.AppCompat" parent="Theme.AppCompat.Light.DarkActionBar"/>
+
     <!-- Base application theme. -->
-    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme.Base" parent="AppTheme.AppCompat">
+        <item name="actionBarSize">@dimen/actionBarSize</item>
+
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
+
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:textColorTertiary">@color/textColorTertiary</item>
+
+        <item name="actionBarTheme">@style/AppTheme.Base.ThemeOverlay.ActionBar</item>
+    </style>
+
+    <style name="AppTheme.Base.ThemeOverlay.ActionBar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>
+        <item name="android:textColorPrimaryInverse">@color/abc_primary_text_material_light</item>
+        <item name="android:textColorPrimaryDisableOnly">@color/abc_primary_text_disable_only_material_dark</item>
+        <item name="android:textColorSecondary">@color/abc_secondary_text_material_dark</item>
+        <item name="android:textColorSecondaryInverse">@color/abc_secondary_text_material_light</item>
+        <item name="android:textColorTertiary">@color/abc_secondary_text_material_dark</item>
+        <item name="android:textColorTertiaryInverse">@color/abc_secondary_text_material_light</item>
+        <item name="android:textColorHint">@color/hint_foreground_material_dark</item>
+        <item name="android:textColorHintInverse">@color/hint_foreground_material_light</item>
+        <item name="android:textColorHighlight">@color/highlighted_text_material_dark</item>
+        <item name="android:textColorLink">@color/link_text_material_dark</item>
     </style>
 
 </resources>

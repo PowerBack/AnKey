@@ -28,11 +28,11 @@ public class SuperActivity extends AppCompatActivity {
         tintManager.setTintColor(getResources().getColor(R.color.colorPrimaryDark));
         // set a custom navigation bar resource
         tintManager.setNavigationBarTintResource(R.color.colorPrimaryDark);
+        tintManager.setStatusBarTintColor(getResources().getColor(R.color.colorPrimaryDark));
     }
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         getLayoutInflater().inflate(layoutResID, (ViewGroup) findViewById(R.id.lay_super_root));
     }
-
 }

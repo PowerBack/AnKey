@@ -4,7 +4,7 @@
     android:id="@+id/lay_super_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="80dp"
+    android:layout_marginTop="@dimen/activity_base_top_space"
     tools:context="net.qiujuer.powerback.ankey.ui.SuperActivity">
 
 </RelativeLayout>
