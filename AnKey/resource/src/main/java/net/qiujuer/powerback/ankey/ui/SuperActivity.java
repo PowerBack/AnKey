@@ -121,26 +121,30 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
 
     @Override
     public void setTitle(CharSequence title) {
-        if (mToolbar == null)
-            super.setTitle(title);
-        else {
-            SpannableStringBuilder sBuilder;
-            CharSequence sequence = mToolbar.getTitle();
-            if (sequence != null && sequence instanceof SpannableStringBuilder) {
-                sBuilder = (SpannableStringBuilder) sequence;
-                sBuilder.clearSpans();
-                sBuilder.clear();
-            } else {
-                sBuilder = new SpannableStringBuilder();
-            }
-
-            sBuilder.append(title);
-            // Create the Typeface you want to apply to certain text
-            Typeface typeface = TypefaceUtils.load(getAssets(), getTitleFont());
-            CalligraphyTypefaceSpan typefaceSpan = new CalligraphyTypefaceSpan(typeface);
-            sBuilder.setSpan(typefaceSpan, 0, sBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            mToolbar.setTitle(sBuilder);
+        // Get title
+        CharSequence sequence = null;
+        if (mToolbar != null)
+            sequence = mToolbar.getTitle();
+        // Format title
+        SpannableStringBuilder sBuilder;
+        if (sequence != null && sequence instanceof SpannableStringBuilder) {
+            sBuilder = (SpannableStringBuilder) sequence;
+            sBuilder.clearSpans();
+            sBuilder.clear();
+        } else {
+            sBuilder = new SpannableStringBuilder();
         }
+
+        // Add title
+        sBuilder.append(title);
+        // Create the Typeface you want to apply to certain text
+        Typeface typeface = TypefaceUtils.load(getAssets(), getTitleFont());
+        CalligraphyTypefaceSpan typefaceSpan = new CalligraphyTypefaceSpan(typeface);
+        sBuilder.setSpan(typefaceSpan, 0, sBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // Set title
+        super.setTitle(sBuilder);
+        if (mToolbar != null)
+            mToolbar.setTitle(sBuilder);
     }
 
     @Override
