@@ -12,5 +12,8 @@ public class CreateActivity extends SuperBackActivity {
         setContentView(R.layout.activity_create);
 
         setTitle("Create");
+
+        setStatusBarColorRes(R.color.cyan_700);
+        setTitleBackgroundColorRes(R.color.cyan_500);
     }
 }

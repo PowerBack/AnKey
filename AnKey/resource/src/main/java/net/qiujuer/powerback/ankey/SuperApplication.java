@@ -26,11 +26,11 @@ public class SuperApplication extends android.app.Application {
         );
     }
 
-    public void addActivity(Activity activity) {
+    public void add(Activity activity) {
         mActivities.add(activity);
     }
 
-    public void removeActivity(Activity activity) {
+    public void remove(Activity activity) {
         mActivities.remove(activity);
     }
 
@@ -39,5 +39,15 @@ public class SuperApplication extends android.app.Application {
             if (!activity.isFinishing())
                 activity.finish();
         }
+    }
+
+    public static void addActivity(Activity activity) {
+        SuperApplication application = (SuperApplication) activity.getApplication();
+        application.add(activity);
+    }
+
+    public static void removeActivity(Activity activity) {
+        SuperApplication application = (SuperApplication) activity.getApplication();
+        application.remove(activity);
     }
 }
