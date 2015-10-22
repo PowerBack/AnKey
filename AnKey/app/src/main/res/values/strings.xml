@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AnKey</string>
+    <string name="activity_title_main">AnKey</string>
+    <string name="activity_title_create">Create</string>
 </resources>
