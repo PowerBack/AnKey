@@ -1,7 +1,8 @@
-package net.qiujuer.powerback.ankey;
+package net.qiujuer.powerback.ankey.ui.activity;
 
 import android.os.Bundle;
 
+import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.presenter.CreatePresenter;
 import net.qiujuer.powerback.ankey.presenter.view.CreateView;
 import net.qiujuer.powerback.ankey.ui.SuperBackActivity;

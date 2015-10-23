@@ -1,9 +1,10 @@
-package net.qiujuer.powerback.ankey;
+package net.qiujuer.powerback.ankey.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.ui.SuperActivity;
 
 public class MainActivity extends SuperActivity {

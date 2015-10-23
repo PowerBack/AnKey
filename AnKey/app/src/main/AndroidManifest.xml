@@ -3,14 +3,14 @@
     package="net.qiujuer.powerback.ankey">
 
     <application
-        android:name=".SuperApplication"
+        android:name=".AnKeyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:label="@string/activity_title_main"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -20,9 +20,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CreateActivity"
+            android:name=".ui.activity.CreateActivity"
             android:label="@string/activity_title_create"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.activity.KeyActivity"></activity>
     </application>
 
 </manifest>
