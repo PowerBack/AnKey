@@ -7,7 +7,7 @@ import android.net.NetworkInfo;
 
 import com.android.volley.RequestQueue;
 
-import net.qiujuer.powerback.ankey.model.Model;
+import net.qiujuer.powerback.ankey.model.AppModel;
 import net.qiujuer.powerback.ankey.model.xml.SettingModel;
 
 /**
@@ -19,15 +19,15 @@ public class AppPresenter {
 
 
     public static void setApplication(Application application) {
-        Model.setApplication(application);
+        AppModel.setApplication(application);
     }
 
     public static void dispose() {
-        Model.dispose();
+        AppModel.dispose();
     }
 
     public static RequestQueue getRequestQueue() {
-        return Model.getRequestQueue();
+        return AppModel.getRequestQueue();
     }
 
     public static boolean isLogin() {
@@ -40,7 +40,7 @@ public class AppPresenter {
     }
 
     public static boolean isHaveNetwork() {
-        final Context context = Model.getApplication();
+        final Context context = AppModel.getApplication();
         if (context == null)
             return false;
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

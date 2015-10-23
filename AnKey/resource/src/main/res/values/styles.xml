@@ -25,21 +25,20 @@
         <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
         <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
 
-        <item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>
-        <item name="android:textColorPrimaryInverse">@color/abc_primary_text_material_light</item>
-        <item name="android:textColorPrimaryDisableOnly">
-            @color/abc_primary_text_disable_only_material_dark
-        </item>
-        <item name="android:textColorSecondary">@color/abc_secondary_text_material_dark</item>
-        <item name="android:textColorSecondaryInverse">@color/abc_secondary_text_material_light
-        </item>
-        <item name="android:textColorTertiary">@color/abc_secondary_text_material_dark</item>
-        <item name="android:textColorTertiaryInverse">@color/abc_secondary_text_material_light
-        </item>
-        <item name="android:textColorHint">@color/hint_foreground_material_dark</item>
-        <item name="android:textColorHintInverse">@color/hint_foreground_material_light</item>
-        <item name="android:textColorHighlight">@color/highlighted_text_material_dark</item>
-        <item name="android:textColorLink">@color/link_text_material_dark</item>
+        <!--<item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>-->
+        <!--<item name="android:textColorPrimaryInverse">@color/abc_primary_text_material_light</item>-->
+        <!--<item name="android:textColorPrimaryDisableOnly">-->
+            <!--@color/abc_primary_text_disable_only_material_dark-->
+        <!--</item>-->
+        <!--<item name="android:textColorSecondary">@color/abc_secondary_text_material_dark</item>-->
+        <!--<item name="android:textColorSecondaryInverse">@color/abc_secondary_text_material_light-->
+        <!--</item>-->
+        <!--<item name="android:textColorTertiary">@color/abc_secondary_text_material_dark</item>-->
+        <!--<item name="android:textColorTertiaryInverse">@color/abc_secondary_text_material_light-->
+        <!--</item>-->
+        <!--<item name="android:textColorHint">@color/hint_foreground_material_dark</item>-->
+        <!--<item name="android:textColorHintInverse">@color/hint_foreground_material_light</item>-->
+        <!--<item name="android:textColorHighlight">@color/highlighted_text_material_dark</item>-->
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/toolBar_height</item>
         <item name="android:height">@dimen/toolBar_height</item>
@@ -51,7 +50,7 @@
         </item>
         <item name="android:minHeight">@dimen/toolBar_height</item>
         <item name="collapseIcon">?attr/homeAsUpIndicator</item>
-        <item name="collapseContentDescription">@string/abc_toolbar_collapse_description</item>
+        <!--<item name="collapseContentDescription">@string/abc_toolbar_collapse_description</item>-->
         <item name="contentInsetStart">16dp</item>
     </style>
 

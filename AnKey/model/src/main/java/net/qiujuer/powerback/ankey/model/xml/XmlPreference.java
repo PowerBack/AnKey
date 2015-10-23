@@ -3,7 +3,7 @@ package net.qiujuer.powerback.ankey.model.xml;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import net.qiujuer.powerback.ankey.model.Model;
+import net.qiujuer.powerback.ankey.model.AppModel;
 
 /**
  * Created by qiujuer
@@ -16,7 +16,7 @@ public abstract class XmlPreference {
     }
 
     protected SharedPreferences getSharedPreferences() {
-        Context context = Model.getApplication();
+        Context context = AppModel.getApplication();
         return context.getSharedPreferences(getPreferenceName(), Context.MODE_PRIVATE);
     }
 

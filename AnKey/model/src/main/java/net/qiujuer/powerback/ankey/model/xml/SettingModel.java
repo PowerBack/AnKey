@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
-import net.qiujuer.powerback.ankey.model.Model;
+import net.qiujuer.powerback.ankey.model.AppModel;
 
 /**
  * Created by qiujuer
@@ -65,8 +65,8 @@ public class SettingModel extends XmlPreference {
 
     public static PackageInfo getPackageInfo() {
         try {
-            PackageManager manager = Model.getApplication().getPackageManager();
-            return manager.getPackageInfo(Model.getApplication().getPackageName(), 0);
+            PackageManager manager = AppModel.getApplication().getPackageManager();
+            return manager.getPackageInfo(AppModel.getApplication().getPackageName(), 0);
         } catch (Exception e) {
             return null;
         }

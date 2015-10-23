@@ -2,7 +2,7 @@ package net.qiujuer.powerback.ankey.model.xml;
 
 import android.content.SharedPreferences;
 
-import net.qiujuer.powerback.ankey.model.Model;
+import net.qiujuer.powerback.ankey.model.AppModel;
 
 import java.util.UUID;
 
@@ -11,7 +11,7 @@ import java.util.UUID;
  * on 15/10/19.
  */
 public class UserModel extends XmlPreference {
-    private UUID id = Model.EMPTY_ID;
+    private UUID id = AppModel.EMPTY_ID;
     private String name;
     private String taken;
     private String key;

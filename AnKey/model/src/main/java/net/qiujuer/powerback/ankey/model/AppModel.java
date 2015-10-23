@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
  * Created by qiujuer
  * on 15/10/19.
  */
-public class Model {
+public class AppModel {
     public final static UUID EMPTY_ID = new UUID(0, 0);
     public static boolean DEBUG = false;
 
@@ -43,7 +43,7 @@ public class Model {
         // Network
         stopRequestQueue();
 
-        // Model
+        // DataBase
         ActiveAndroid.dispose();
         APPLICATION = null;
     }
@@ -76,7 +76,7 @@ public class Model {
     public static ExecutorService getThreadPool() {
         // Check and init executor
         if (EXECUTORSERVICE == null) {
-            synchronized (Model.class) {
+            synchronized (AppModel.class) {
                 if (EXECUTORSERVICE == null) {
                     // Init threads executor
                     int size = Runtime.getRuntime().availableProcessors();
