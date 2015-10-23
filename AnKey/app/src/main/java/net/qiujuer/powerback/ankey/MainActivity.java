@@ -20,7 +20,20 @@ public class MainActivity extends SuperActivity {
         });
     }
 
+    @Override
     protected String getTitleFont() {
         return "fonts/Lobster.otf";
+    }
+
+    @Override
+    protected void initToolBar() {
+        super.initToolBar();
+        mToolbar.setNavigationIcon(R.mipmap.ic_launcher);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 }

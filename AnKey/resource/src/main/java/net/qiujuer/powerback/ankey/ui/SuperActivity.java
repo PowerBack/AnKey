@@ -54,7 +54,7 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
         // Create SystemBarTintManager
         SystemBarTintManager tintManager = new SystemBarTintManager(this);
         tintManager.setStatusBarTintEnabled(true);
-        tintManager.setStatusBarTintResource(R.color.dark_darker);
+        tintManager.setStatusBarTintResource(R.color.dark_dark);
         mBarTintManager = tintManager;
     }
 
