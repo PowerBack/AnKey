@@ -12,6 +12,14 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:label="@string/activity_title_main"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.CreateActivity"
+            android:label="@string/activity_title_create"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.LaunchActivity"
+            android:label="@string/activity_title_launch"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,10 +28,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.CreateActivity"
-            android:label="@string/activity_title_create"
+            android:name=".ui.activity.KeyCreateActivity"
+            android:label="@string/activity_title_key_create"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.KeyActivity"></activity>
+        <activity
+            android:name=".ui.activity.KeyEditActivity"
+            android:label="@string/activity_title_key_edit"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

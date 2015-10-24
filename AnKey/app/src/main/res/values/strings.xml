@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">AnKey</string>
-    <string name="activity_title_main">AnKey</string>
+    <string name="activity_title_main">@string/app_name</string>
     <string name="activity_title_create">Create</string>
+    <string name="activity_title_launch">@string/app_name</string>
+    <string name="activity_title_key_create">CreateKey</string>
+    <string name="activity_title_key_edit">EditKey</string>
+
+    <string name="action_key_add">Add</string>
+
+    <string name="label_key_enter">Enter key</string>
+    <string name="label_key_confirm">Confirm key</string>
+    <string name="label_key_old">Enter old key</string>
+    <string name="label_key_new">Enter new key</string>
+
+    <string name="btn_key_verify_submit">Go</string>
+
 </resources>

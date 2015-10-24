@@ -90,7 +90,7 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
             if (mToolbar.getId() == View.NO_ID)
                 mToolbar.setId(R.id.toolbar);
 
-            setSupportActionBar(mToolbar);
+            //setSupportActionBar(mToolbar);
             mToolbar.setOnMenuItemClickListener(this);
             onInflateMenu(mToolbar);
             setTitle(getTitle());

@@ -1,5 +1,7 @@
 package net.qiujuer.powerback.ankey.presenter;
 
+import android.text.TextUtils;
+
 import net.qiujuer.powerback.ankey.presenter.view.KeyVerifyView;
 
 /**
@@ -11,5 +13,11 @@ public class KeyVerifyPresenter {
 
     public KeyVerifyPresenter(KeyVerifyView view) {
         mView = view;
+    }
+
+    public void verify() {
+        if (!TextUtils.isEmpty(mView.getKey())) {
+            mView.setVerifyStatus(0);
+        }
     }
 }

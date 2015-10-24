@@ -2,6 +2,7 @@ package net.qiujuer.powerback.ankey.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import net.qiujuer.powerback.ankey.R;
@@ -37,4 +38,10 @@ public class MainActivity extends SuperActivity {
             }
         });
     }
+
+    @Override
+    protected void onInflateMenu(Toolbar toolbar) {
+
+    }
+
 }
