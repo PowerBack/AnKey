@@ -20,15 +20,15 @@ public class InfoModel extends Model {
     @Column(name = "UserId")
     private UUID UserId;
     @Column(name = "Site")
-    public UUID Site;
+    public SiteModel Site;
     @Column(name = "UserName")
-    private UUID UserName;
+    private FieldModel UserName;
     @Column(name = "Email")
-    private UUID Email;
+    private FieldModel Email;
     @Column(name = "QQ")
-    private UUID QQ;
+    private FieldModel QQ;
     @Column(name = "Call")
-    private UUID Call;
+    private FieldModel Call;
     @Column(name = "Password")
     private String Password;
     @Column(name = "Remark")
@@ -39,11 +39,9 @@ public class InfoModel extends Model {
     private String CreateDate;
     @Column(name = "UpdateDate")
     private String UpdateDate;
+    @Column(name = "Encryption")
+    private int Encryption;
 
-
-    InfoModel() {
-        super();
-    }
 
     public UUID getInfoId() {
         return InfoId;
@@ -61,43 +59,43 @@ public class InfoModel extends Model {
         UserId = userId;
     }
 
-    public UUID getSite() {
+    public SiteModel getSite() {
         return Site;
     }
 
-    public void setSite(UUID site) {
+    public void setSite(SiteModel site) {
         Site = site;
     }
 
-    public UUID getUserName() {
+    public FieldModel getUserName() {
         return UserName;
     }
 
-    public void setUserName(UUID userName) {
+    public void setUserName(FieldModel userName) {
         UserName = userName;
     }
 
-    public UUID getEmail() {
+    public FieldModel getEmail() {
         return Email;
     }
 
-    public void setEmail(UUID email) {
+    public void setEmail(FieldModel email) {
         Email = email;
     }
 
-    public UUID getQQ() {
+    public FieldModel getQQ() {
         return QQ;
     }
 
-    public void setQQ(UUID QQ) {
+    public void setQQ(FieldModel QQ) {
         this.QQ = QQ;
     }
 
-    public UUID getCall() {
+    public FieldModel getCall() {
         return Call;
     }
 
-    public void setCall(UUID call) {
+    public void setCall(FieldModel call) {
         Call = call;
     }
 
@@ -141,6 +139,18 @@ public class InfoModel extends Model {
         UpdateDate = updateDate;
     }
 
+    public int getEncryption() {
+        return Encryption;
+    }
+
+    public void setEncryption(int encryption) {
+        Encryption = encryption;
+    }
+
+    InfoModel() {
+        super();
+    }
+
     public static InfoModel getInfoModel(UUID uuid) {
         return new Select()
                 .from(InfoModel.class)
@@ -155,7 +165,7 @@ public class InfoModel extends Model {
                 .executeSingle();
     }
 
-    public static List<InfoModel> getAll(){
+    public List<InfoModel> getAll(){
         return new Select()
                 .from(InfoModel.class)
                 .execute();

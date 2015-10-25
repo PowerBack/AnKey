@@ -16,8 +16,8 @@ import java.util.UUID;
 public class FieldModel extends Model {
     @Column(name = "FiledId")
     private UUID FieldId;
-    @Column(name = "Info")
-    public InfoModel UserId;
+    @Column(name = "UserId")
+    public UUID UserId;
     @Column(name = "Text")
     private String Text;
     @Column(name = "MD5")
@@ -28,6 +28,8 @@ public class FieldModel extends Model {
     private String CreateDate;
     @Column(name = "UpdateDate")
     private String UpdateDate;
+    @Column(name = "Encryption")
+    private int Encryption;
 
     public UUID getFieldId() {
         return FieldId;
@@ -37,11 +39,11 @@ public class FieldModel extends Model {
         FieldId = fieldId;
     }
 
-    public InfoModel getUserId() {
+    public UUID getUserId() {
         return UserId;
     }
 
-    public void setUserId(InfoModel userId) {
+    public void setUserId(UUID userId) {
         UserId = userId;
     }
 
@@ -83,6 +85,14 @@ public class FieldModel extends Model {
 
     public void setUpdateDate(String updateDate) {
         UpdateDate = updateDate;
+    }
+
+    public int getEncryption() {
+        return Encryption;
+    }
+
+    public void setEncryption(int encryption) {
+        Encryption = encryption;
     }
 
     public static FieldModel getFieldModel(UUID uuid) {
