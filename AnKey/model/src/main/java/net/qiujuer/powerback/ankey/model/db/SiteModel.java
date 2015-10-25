@@ -23,7 +23,7 @@ public class SiteModel extends Model{
     @Column(name = "Url")
     private String Url;
     @Column(name="Icon")
-    private SiteModel siteModel;
+    private IconModel Icon;
     @Column(name = "CreateDate")
     private String CreateDate;
     @Column(name = "UpdateDate")
@@ -61,13 +61,12 @@ public class SiteModel extends Model{
         Url = url;
     }
 
-
-    public SiteModel getSiteModel() {
-        return siteModel;
+    public IconModel getIcon() {
+        return Icon;
     }
 
-    public void setSiteModel(SiteModel siteModel) {
-        this.siteModel = siteModel;
+    public void setIcon(IconModel icon) {
+        Icon = icon;
     }
 
     public String getCreateDate() {
@@ -105,4 +104,5 @@ public class SiteModel extends Model{
                 .from(SiteModel.class)
                 .execute();
     }
+
 }
