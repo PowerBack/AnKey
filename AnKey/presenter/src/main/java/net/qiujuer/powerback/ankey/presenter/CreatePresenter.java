@@ -6,7 +6,6 @@ import net.qiujuer.powerback.ankey.presenter.view.CreateView;
 
 /**
  * Created by qiujuer
- * on 15/10/22.
  */
 public class CreatePresenter {
     private CreateView mView;

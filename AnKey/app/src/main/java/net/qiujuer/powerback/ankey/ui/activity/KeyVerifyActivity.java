@@ -40,7 +40,7 @@ public class KeyVerifyActivity extends SuperActivity implements KeyVerifyView, V
 
     @Override
     protected void onInflateMenu(Toolbar toolbar) {
-        toolbar.inflateMenu(R.menu.menu_launch);
+        toolbar.inflateMenu(R.menu.menu_key_verify);
     }
 
     @Override

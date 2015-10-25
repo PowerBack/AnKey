@@ -2,9 +2,17 @@ package net.qiujuer.powerback.ankey.presenter.view;
 
 /**
  * Created by qiujuer
- * on 15/10/22.
  */
 public interface KeyCreateView {
-    String getHead();
-    String getPassword();
+    int STATUS_KEY_NULL = -1;
+    int STATUS_KEY_CONFIRM_NULL = -2;
+    int STATUS_KEY_NOT_EQUAL_CONFIRM= -3;
+
+    String getKey();
+
+    String getKeyConfirm();
+
+    void setError(int status);
+
+    void setOk();
 }

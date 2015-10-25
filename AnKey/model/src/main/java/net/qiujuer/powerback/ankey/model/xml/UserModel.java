@@ -8,7 +8,6 @@ import java.util.UUID;
 
 /**
  * Created by qiujuer
- * on 15/10/19.
  */
 public class UserModel extends XmlPreference {
     private UUID id = AppModel.EMPTY_ID;
@@ -16,10 +15,9 @@ public class UserModel extends XmlPreference {
     private String taken;
     private String key;
 
-
     @Override
     protected void refresh(SharedPreferences sp) {
-        id = UUID.fromString(sp.getString("id", id.toString()));
+        id = UUID.fromString(sp.getString("id", AppModel.EMPTY_ID.toString()));
         name = sp.getString("name", name);
         taken = sp.getString("taken", taken);
         key = sp.getString("key", key);

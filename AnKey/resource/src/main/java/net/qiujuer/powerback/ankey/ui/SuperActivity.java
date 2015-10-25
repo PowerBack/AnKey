@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
@@ -187,5 +188,13 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
 
     protected void onInflateMenu(Toolbar toolbar) {
 
+    }
+
+    public void showToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showToast(int strRes) {
+        Toast.makeText(this, strRes, Toast.LENGTH_SHORT).show();
     }
 }
