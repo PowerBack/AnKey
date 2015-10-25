@@ -10,6 +10,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -156,7 +157,14 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
                 for (int i = 0; i < count; i++) {
                     View view = mRoot.getChildAt(i);
                     if (view != mToolbar) {
-                        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(view.getLayoutParams());
+                        RelativeLayout.LayoutParams lp = null;
+                        ViewGroup.LayoutParams params = view.getLayoutParams();
+                        if (params instanceof RelativeLayout.LayoutParams) {
+                            lp = (RelativeLayout.LayoutParams) params;
+                        } else {
+                            lp = new RelativeLayout.LayoutParams(params);
+                        }
+
                         lp.addRule(RelativeLayout.BELOW, mToolbar.getId());
                         view.setLayoutParams(lp);
                         return;
