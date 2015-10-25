@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">AnKey</string>
-    <string name="activity_title_main">@string/app_name</string>
+
     <string name="activity_title_create">Create</string>
-    <string name="activity_title_launch">@string/app_name</string>
+    <string name="activity_title_edit">Edit</string>
+    <string name="activity_title_detail">Detail</string>
+    <string name="activity_title_key_verify">@string/app_name</string>
     <string name="activity_title_key_create">CreateKey</string>
     <string name="activity_title_key_edit">EditKey</string>
 

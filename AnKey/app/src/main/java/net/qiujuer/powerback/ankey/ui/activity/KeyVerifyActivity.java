@@ -12,14 +12,14 @@ import net.qiujuer.powerback.ankey.presenter.KeyVerifyPresenter;
 import net.qiujuer.powerback.ankey.presenter.view.KeyVerifyView;
 import net.qiujuer.powerback.ankey.ui.SuperActivity;
 
-public class LaunchActivity extends SuperActivity implements KeyVerifyView, View.OnClickListener {
+public class KeyVerifyActivity extends SuperActivity implements KeyVerifyView, View.OnClickListener {
     private KeyVerifyPresenter mPresenter;
     private EditText mKey;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launch);
+        setContentView(R.layout.activity_key_verify);
 
         mPresenter = new KeyVerifyPresenter(this);
 
@@ -53,6 +53,7 @@ public class LaunchActivity extends SuperActivity implements KeyVerifyView, View
         if (status == 0) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 
