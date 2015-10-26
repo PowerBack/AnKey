@@ -30,4 +30,25 @@ public class CreateActivity extends SuperBackActivity implements CreateView {
     public String getPassword() {
         return null;
     }
+
+    @Override
+    public String getSite() {
+        return null;
+    }
+
+    @Override
+    public String getEmail() {
+        return null;
+    }
+
+    @Override
+    public String getQQ() {
+        return null;
+    }
+
+    @Override
+    public String getCall() {
+        return null;
+    }
+
 }

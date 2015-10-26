@@ -6,5 +6,14 @@ package net.qiujuer.powerback.ankey.presenter.view;
  */
 public interface CreateView {
     String getHead();
+
     String getPassword();
+
+    String getSite();
+
+    String getEmail();
+
+    String getQQ();
+
+    String getCall();
 }
