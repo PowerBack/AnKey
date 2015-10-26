@@ -17,5 +17,15 @@
     <string name="label_null_data">Not have data</string>
 
     <string name="btn_key_verify_submit">Go</string>
+    <string name="appTourSkipButton">跳过</string>
+    <string name="appTourDoneButton">完成</string>
+    <string name="introduce_skip">跳过</string>
+    <string name="introduce_done">开始体验</string>
+    <string name="introduce_friendly_title">友好</string>
+    <string name="introduce_friendly_content">整体设计按照MaterialDesigner的设计哲学，绚丽而又不失易用</string>
+    <string name="introduce_simple_title">简单</string>
+    <string name="introduce_safe_title">安全</string>
+    <string name="introduce_safe_content">应用中的重要数据，都会经过加密才会进行传输处理</string>
+    <string name="introduce_simple_content">所有的重要操作都被设计在最显著的地方，每一个按钮都出现在它该出现的地方</string>
 
 </resources>

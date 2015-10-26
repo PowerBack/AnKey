@@ -13,7 +13,14 @@ public class SplashPresenter {
         mSplashView = splashView;
     }
 
+    /**
+     * load view finished
+     */
     public void timeOut(){
-        mSplashView.gotoKeyVerifyView();
+        if(AppPresenter.isFirstUse()){
+            mSplashView.showIntroduceView();
+        }else{
+            mSplashView.gotoKeyVerifyView();
+        }
     }
 }

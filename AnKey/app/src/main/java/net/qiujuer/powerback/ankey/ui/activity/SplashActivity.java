@@ -1,43 +1,46 @@
 package net.qiujuer.powerback.ankey.ui.activity;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.presenter.SplashPresenter;
 import net.qiujuer.powerback.ankey.presenter.view.SplashView;
 import net.qiujuer.powerback.ankey.ui.SuperActivity;
-
-import uk.co.chrisjenx.calligraphy.CalligraphyTypefaceSpan;
-import uk.co.chrisjenx.calligraphy.TypefaceUtils;
+import net.qiujuer.powerback.ankey.ui.fragment.IntroduceFragment;
+import net.qiujuer.powerback.ankey.ui.fragment.MaterialSlide;
+import net.qiujuer.powerback.ankey.util.FormatUtil;
 
 /**
+ * splash view and introduce view
  * Created by GuDong on 10/25/15 14:23.
- * Contact with 1252768410@qq.com.
  */
 public class SplashActivity extends SuperActivity implements SplashView {
     private static final int KEY_DELAY_TIME = 2000;
     private SplashPresenter mSplashPresenter;
+
+    private IntroduceFragment mIntroduceFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // make view full screen
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_splash);
 
         mSplashPresenter = new SplashPresenter(this);
 
+        initView();
+    }
+
+    private void initView() {
         // instance view and use font for text
         TextView tvAppName = (TextView) findViewById(R.id.tv_brand_name);
-        tvAppName.setText(getTextWithFont(getString(R.string.app_name), "fonts/Lobster.otf"));
-
+        tvAppName.setText(FormatUtil.getTextWithFont(this, getString(R.string.app_name), "fonts/Lobster.otf"));
         // after delay time and entry main view
         tvAppName.postDelayed(new Runnable() {
             @Override
@@ -45,6 +48,63 @@ public class SplashActivity extends SuperActivity implements SplashView {
                 mSplashPresenter.timeOut();
             }
         }, KEY_DELAY_TIME);
+    }
+
+    @Override
+    public void showIntroduceView() {
+        mIntroduceFragment = new IntroduceFragment();
+
+        // add list fragment list to introduce view
+        addSlideListToIntroduceView(mIntroduceFragment);
+
+        // add IntroduceFragment to main layout with anim
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out);
+        transaction.replace(R.id.fl_container, mIntroduceFragment, "introduce");
+        transaction.commit();
+
+        // set up IntroduceFragment
+        findViewById(R.id.tv_brand_name).post(new Runnable() {
+            @Override
+            public void run() {
+                setUpIntroduceView(mIntroduceFragment);
+            }
+        });
+    }
+
+    private void addSlideListToIntroduceView(IntroduceFragment introduceFragment) {
+        // will be added fragment which used to show our app
+        MaterialSlide slideOne = MaterialSlide.newInstance(R.drawable.introduc_friend,getString(R.string.introduce_friendly_title),getString(R.string.introduce_friendly_content), R.color.snow_light,R.color.snow_primary);
+        MaterialSlide slideTwo = MaterialSlide.newInstance(R.drawable.introduc_simple,getString(R.string.introduce_simple_title),getString(R.string.introduce_simple_content),R.color.snow_light,R.color.snow_primary);
+        MaterialSlide slideThree = MaterialSlide.newInstance(R.drawable.introduc_safe, getString(R.string.introduce_safe_title), getString(R.string.introduce_safe_content), R.color.snow_light, R.color.snow_primary);
+
+        //fragment background color
+        int colorOne = getResources().getColor(R.color.deep_purple_500);
+        int colorTwo = getResources().getColor(R.color.indigo_500);
+        int colorThree = getResources().getColor(R.color.dark_primary);
+
+        //Add slides
+        introduceFragment.addSlideWithColor(slideOne, colorOne);
+        introduceFragment.addSlideWithColor(slideTwo, colorTwo);
+        introduceFragment.addSlideWithColor(slideThree, colorThree);
+    }
+
+    private void setUpIntroduceView(IntroduceFragment introduceFragment){
+
+        introduceFragment.setSkipText(getString(R.string.introduce_skip));
+        introduceFragment.setDoneText(getString(R.string.introduce_done));
+
+        introduceFragment.setIntroduceAction(new IntroduceFragment.IIntroduceAction() {
+            @Override
+            public void onSkipPressed() {
+                gotoKeyVerifyView();
+            }
+
+            @Override
+            public void onDonePressed() {
+                gotoKeyVerifyView();
+            }
+        });
     }
 
     @Override
@@ -58,25 +118,4 @@ public class SplashActivity extends SuperActivity implements SplashView {
         startActivity(intent);
         finish();
     }
-
-    /**
-     * use font to title
-     * @param title
-     * @param fontPath the path of font which is in assert directory
-     * @return a fontable title text
-     */
-    protected SpannableStringBuilder getTextWithFont(String title, String fontPath){
-        // init builder
-        SpannableStringBuilder sBuilder = new SpannableStringBuilder();
-        // Add title
-        sBuilder.append(title);
-
-        // Create the Typeface you want to apply to certain text
-        Typeface typeface = TypefaceUtils.load(getAssets(), fontPath);
-        CalligraphyTypefaceSpan typefaceSpan = new CalligraphyTypefaceSpan(typeface);
-        sBuilder.setSpan(typefaceSpan, 0, sBuilder.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        return sBuilder;
-    }
-
 }
