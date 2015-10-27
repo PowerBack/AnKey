@@ -1,4 +1,4 @@
-package net.qiujuer.powerback.ankey.tool;
+package net.qiujuer.powerback.ankey.tool.key;
 
 /**
  * Created by qiujuer
