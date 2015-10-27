@@ -2,6 +2,7 @@ package net.qiujuer.powerback.ankey.presenter;
 
 import android.text.TextUtils;
 
+import net.qiujuer.powerback.ankey.model.xml.UserModel;
 import net.qiujuer.powerback.ankey.presenter.view.KeyVerifyView;
 
 /**
@@ -17,7 +18,15 @@ public class KeyVerifyPresenter {
 
     public void verify() {
         if (!TextUtils.isEmpty(mView.getKey())) {
-            mView.setVerifyStatus(0);
+            mView.verifyOk();
+        } else {
+            mView.verifyError();
         }
+    }
+
+    public void checkKeyStatus() {
+        UserModel model = new UserModel();
+        if (TextUtils.isEmpty(model.getKey()) || TextUtils.isEmpty(model.getSalt()))
+            mView.needCreate();
     }
 }

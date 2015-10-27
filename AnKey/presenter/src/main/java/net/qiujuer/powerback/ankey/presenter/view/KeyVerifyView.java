@@ -7,5 +7,10 @@ package net.qiujuer.powerback.ankey.presenter.view;
 public interface KeyVerifyView {
     String getKey();
 
-    void setVerifyStatus(int status);
+    void verifyOk();
+
+    void verifyError();
+
+    void needCreate();
+
 }

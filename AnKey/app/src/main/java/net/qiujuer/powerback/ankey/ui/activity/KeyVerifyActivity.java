@@ -49,12 +49,23 @@ public class KeyVerifyActivity extends SuperActivity implements KeyVerifyView, V
     }
 
     @Override
-    public void setVerifyStatus(int status) {
-        if (status == 0) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
+    public void verifyOk() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void verifyError() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void needCreate() {
+        Intent intent = new Intent(this, KeyCreateActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -71,5 +82,11 @@ public class KeyVerifyActivity extends SuperActivity implements KeyVerifyView, V
 
         }
         return super.onMenuItemClick(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.checkKeyStatus();
     }
 }

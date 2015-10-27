@@ -14,6 +14,7 @@ public class UserModel extends XmlPreference {
     private String name;
     private String taken;
     private String key;
+    private String salt;
 
     @Override
     protected void refresh(SharedPreferences sp) {
@@ -21,6 +22,7 @@ public class UserModel extends XmlPreference {
         name = sp.getString("name", name);
         taken = sp.getString("taken", taken);
         key = sp.getString("key", key);
+        salt = sp.getString("salt", salt);
     }
 
     @Override
@@ -37,6 +39,7 @@ public class UserModel extends XmlPreference {
         editor.putString("name", name);
         editor.putString("taken", taken);
         editor.putString("key", key);
+        editor.putString("salt", salt);
 
         editor.apply();
     }
@@ -71,5 +74,13 @@ public class UserModel extends XmlPreference {
 
     public String getTaken() {
         return taken;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public String getSalt() {
+        return salt;
     }
 }
