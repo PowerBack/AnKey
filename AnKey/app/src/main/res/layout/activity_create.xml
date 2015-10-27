@@ -4,28 +4,10 @@
     tools:context=".CreateActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/lay_username_line"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_username" />
-
-        <net.qiujuer.genius.ui.widget.EditText
-            android:id="@+id/edit_key"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/label_username_enter"
-            android:textColor="@color/white_alpha_224"
-            android:textCursorDrawable="@null" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:layout_below="@id/toolbar">
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,103 +18,109 @@
             android:id="@+id/edit_username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/label_username_enter"
             android:textColor="@color/white_alpha_224"
             android:textCursorDrawable="@null" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/lay_password_line"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:layout_below="@id/lay_username_line">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_username" />
+            android:text="@string/txt_password" />
 
         <net.qiujuer.genius.ui.widget.EditText
             android:id="@+id/edit_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/label_username_enter"
             android:textColor="@color/white_alpha_224"
             android:textCursorDrawable="@null" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/lay_site_line"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:layout_below="@id/lay_password_line">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_username" />
+            android:text="@string/txt_site" />
 
         <net.qiujuer.genius.ui.widget.EditText
             android:id="@+id/edit_site"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/label_username_enter"
             android:textColor="@color/white_alpha_224"
             android:textCursorDrawable="@null" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/lay_email_line"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:layout_below="@id/lay_site_line">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_username" />
+            android:text="@string/txt_email" />
 
         <net.qiujuer.genius.ui.widget.EditText
             android:id="@+id/edit_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/label_username_enter"
             android:textColor="@color/white_alpha_224"
             android:textCursorDrawable="@null" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/lay_qq_line"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:layout_below="@id/lay_email_line">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_username" />
+            android:text="@string/txt_qq" />
 
         <net.qiujuer.genius.ui.widget.EditText
-            android:id="@+id/edit_QQ"
+            android:id="@+id/edit_qq"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/label_username_enter"
             android:textColor="@color/white_alpha_224"
             android:textCursorDrawable="@null" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/lay_call_line"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:layout_below="@id/lay_qq_line">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txt_username" />
+            android:text="@string/txt_call" />
 
         <net.qiujuer.genius.ui.widget.EditText
             android:id="@+id/edit_call"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/label_username_enter"
             android:textColor="@color/white_alpha_224"
             android:textCursorDrawable="@null" />
     </LinearLayout>
+
+    <Button
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/btn_save" />
 </merge>
