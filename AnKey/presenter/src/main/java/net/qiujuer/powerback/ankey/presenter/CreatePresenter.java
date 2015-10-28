@@ -15,7 +15,7 @@ public class CreatePresenter {
     }
 
     private boolean checkValue() {
-        return mView != null && !(TextUtils.isEmpty(mView.getPassword()) || TextUtils.isEmpty(mView.getHead()));
+        return mView != null && !(TextUtils.isEmpty(mView.getPassword()) || TextUtils.isEmpty(mView.getDescription()));
     }
 
     public boolean submit() {

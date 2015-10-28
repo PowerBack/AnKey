@@ -5,7 +5,10 @@ package net.qiujuer.powerback.ankey.presenter.view;
  * on 15/10/22.
  */
 public interface CreateView {
-    String getHead();
+
+    String getDescription();
+
+    String getUsername();
 
     String getPassword();
 

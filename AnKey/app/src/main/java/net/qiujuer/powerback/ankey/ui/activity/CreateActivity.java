@@ -2,6 +2,7 @@ package net.qiujuer.powerback.ankey.ui.activity;
 
 import android.os.Bundle;
 
+import net.qiujuer.genius.ui.widget.EditText;
 import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.presenter.CreatePresenter;
 import net.qiujuer.powerback.ankey.presenter.view.CreateView;
@@ -15,40 +16,51 @@ public class CreateActivity extends SuperBackActivity implements CreateView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
-        setStatusBarColorRes(R.color.cyan_700);
-        setTitleBackgroundColorRes(R.color.cyan_500);
+        setStatusBarColorRes(R.color.colorAccent);
+        setTitleBackgroundColorRes(R.color.colorAccent);
 
         mPresenter = new CreatePresenter(this);
     }
 
     @Override
-    public String getHead() {
-        return null;
+    public String getDescription() {
+        return getDate(R.id.edit_description);
+    }
+
+    @Override
+    public String getUsername() {
+        return getDate(R.id.edit_username);
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return getDate(R.id.edit_password);
     }
 
     @Override
     public String getSite() {
-        return null;
+        return getDate(R.id.edit_site);
     }
 
     @Override
     public String getEmail() {
-        return null;
+        return getDate(R.id.edit_email);
     }
 
     @Override
     public String getQQ() {
-        return null;
+        return getDate(R.id.edit_qq);
     }
 
     @Override
     public String getCall() {
-        return null;
+        return getDate(R.id.edit_call);
     }
 
+    private String getDate(int id) {
+        String date = ((EditText) findViewById(id)).getText().toString();
+        if (date.equals("")) {
+            return "no";
+        } else return date;
+    }
 }
