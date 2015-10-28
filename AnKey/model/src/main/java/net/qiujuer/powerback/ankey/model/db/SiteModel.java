@@ -13,82 +13,92 @@ import java.util.UUID;
  * on 15/10/24.
  */
 @Table(name = "Site")
-public class SiteModel extends Model{
+public class SiteModel extends Model {
     @Column(name = "SiteId")
-    private String SiteId;
+    private String siteId;
+
     @Column(name = "Name")
-    private String Name;
+    private String name;
+
     @Column(name = "MD5")
-    private String MD5;
+    private String md5;
+
     @Column(name = "Url")
-    private String Url;
-    @Column(name="Icon")
-    private IconModel Icon;
+    private String url;
+
+    @Column(name = "Icon")
+    private IconModel icon;
+
     @Column(name = "CreateDate")
-    private String CreateDate;
+    private String createDate;
+
     @Column(name = "UpdateDate")
-    private String UpdateDate;
+    private String updateDate;
 
-    public String getSiteId() {
-        return SiteId;
-    }
-
-    public void setSiteId(String siteId) {
-        SiteId = siteId;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public String getMD5() {
-        return MD5;
-    }
-
-    public void setMD5(String MD5) {
-        this.MD5 = MD5;
-    }
-
-    public String getUrl() {
-        return Url;
-    }
-
-    public void setUrl(String url) {
-        Url = url;
-    }
-
-    public IconModel getIcon() {
-        return Icon;
-    }
-
-    public void setIcon(IconModel icon) {
-        Icon = icon;
-    }
-
-    public String getCreateDate() {
-        return CreateDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        CreateDate = createDate;
-    }
-
-    public String getUpdateDate() {
-        return UpdateDate;
+    public SiteModel() {
+        super();
     }
 
     public void setUpdateDate(String updateDate) {
-        UpdateDate = updateDate;
+        this.updateDate = updateDate;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public void setIcon(IconModel icon) {
+        this.icon = icon;
+    }
+
+    public void setMd5(String md5) {
+        this.md5 = md5;
+    }
+
+    public void setSiteId(String siteId) {
+        this.siteId = siteId;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getMd5() {
+        return md5;
+    }
+
+    public IconModel getIcon() {
+        return icon;
+    }
+
+    public String getSiteId() {
+        return siteId;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     public static SiteModel getSiteModel(UUID uuid) {
         return new Select()
                 .from(SiteModel.class)
-                .where("SiteId = ?",uuid.toString())
+                .where("SiteId = ?", uuid.toString())
                 .executeSingle();
     }
 
@@ -99,7 +109,7 @@ public class SiteModel extends Model{
                 .executeSingle();
     }
 
-    public static List<SiteModel> getAll(){
+    public static List<SiteModel> getAll() {
         return new Select()
                 .from(SiteModel.class)
                 .execute();

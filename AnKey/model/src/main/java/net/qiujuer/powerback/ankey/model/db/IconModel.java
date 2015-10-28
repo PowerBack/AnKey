@@ -15,70 +15,79 @@ import java.util.UUID;
 @Table(name = "Icon")
 public class IconModel extends Model {
     @Column(name = "IconId")
-    private UUID IconId;
+    private UUID iconId;
+
     @Column(name = "Name")
-    private String Name;
+    private String name;
+
     @Column(name = "MD5")
-    private String MD5;
+    private String md5;
+
     @Column(name = "Src")
-    private String Src;
+    private String src;
+
     @Column(name = "CreateDate")
-    private String CreateDate;
+    private String createDate;
+
     @Column(name = "UpdateDate")
-    private String UpdateDate;
+    private String updateDate;
 
-    public UUID getIconId() {
-        return IconId;
+    public IconModel() {
+        super();
     }
 
-    public void setIconId(UUID iconId) {
-        IconId = iconId;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public String getMD5() {
-        return MD5;
-    }
-
-    public void setMD5(String MD5) {
-        this.MD5 = MD5;
-    }
-
-    public String getSrc() {
-        return Src;
-    }
-
-    public void setSrc(String src) {
-        Src = src;
-    }
-
-    public String getCreateDate() {
-        return CreateDate;
+    public void setMd5(String md5) {
+        this.md5 = md5;
     }
 
     public void setCreateDate(String createDate) {
-        CreateDate = createDate;
+        this.createDate = createDate;
     }
 
-    public String getUpdateDate() {
-        return UpdateDate;
+    public void setIconId(UUID iconId) {
+        this.iconId = iconId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSrc(String src) {
+        this.src = src;
     }
 
     public void setUpdateDate(String updateDate) {
-        UpdateDate = updateDate;
+        this.updateDate = updateDate;
+    }
+
+    public String getMd5() {
+        return md5;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSrc() {
+        return src;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public UUID getIconId() {
+        return iconId;
     }
 
     public static IconModel getIconModel(UUID uuid) {
         return new Select()
                 .from(IconModel.class)
-                .where("IconId = ?",uuid.toString())
+                .where("IconId = ?", uuid.toString())
                 .executeSingle();
     }
 
@@ -89,7 +98,7 @@ public class IconModel extends Model {
                 .executeSingle();
     }
 
-    public static List<IconModel> getAll(){
+    public static List<IconModel> getAll() {
         return new Select()
                 .from(IconModel.class)
                 .execute();

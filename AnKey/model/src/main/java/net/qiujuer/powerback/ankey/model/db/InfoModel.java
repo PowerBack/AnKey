@@ -16,145 +16,167 @@ import java.util.UUID;
 public class InfoModel extends Model {
 
     @Column(name = "InfoId")
-    private UUID InfoId;
+    private UUID infoId;
+
     @Column(name = "UserId")
-    private UUID UserId;
+    private UUID userId;
+
+    @Column(name = "Description")
+    private String description;
+
     @Column(name = "Site")
-    public SiteModel Site;
+    public SiteModel site;
+
     @Column(name = "UserName")
-    private FieldModel UserName;
+    private FieldModel userName;
+
     @Column(name = "Email")
-    private FieldModel Email;
+    private FieldModel email;
+
     @Column(name = "QQ")
-    private FieldModel QQ;
+    private FieldModel qq;
+
     @Column(name = "Call")
-    private FieldModel Call;
+    private FieldModel call;
+
     @Column(name = "Password")
-    private String Password;
+    private String password;
+
     @Column(name = "Remark")
-    private String Remark;
+    private String remark;
+
     @Column(name = "Tag")
-    private String Tag;
+    private String tag;
+
     @Column(name = "CreateDate")
-    private String CreateDate;
+    private String createDate;
+
     @Column(name = "UpdateDate")
-    private String UpdateDate;
+    private String updateDate;
+
     @Column(name = "Encryption")
-    private int Encryption;
-
-
-    public UUID getInfoId() {
-        return InfoId;
-    }
-
-    public void setInfoId(UUID infoId) {
-        InfoId = infoId;
-    }
-
-    public UUID getUserId() {
-        return UserId;
-    }
-
-    public void setUserId(UUID userId) {
-        UserId = userId;
-    }
-
-    public SiteModel getSite() {
-        return Site;
-    }
-
-    public void setSite(SiteModel site) {
-        Site = site;
-    }
-
-    public FieldModel getUserName() {
-        return UserName;
-    }
-
-    public void setUserName(FieldModel userName) {
-        UserName = userName;
-    }
-
-    public FieldModel getEmail() {
-        return Email;
-    }
-
-    public void setEmail(FieldModel email) {
-        Email = email;
-    }
-
-    public FieldModel getQQ() {
-        return QQ;
-    }
-
-    public void setQQ(FieldModel QQ) {
-        this.QQ = QQ;
-    }
-
-    public FieldModel getCall() {
-        return Call;
-    }
-
-    public void setCall(FieldModel call) {
-        Call = call;
-    }
-
-    public String getPassword() {
-        return Password;
-    }
-
-    public void setPassword(String password) {
-        Password = password;
-    }
-
-    public String getRemark() {
-        return Remark;
-    }
-
-    public void setRemark(String remark) {
-        Remark = remark;
-    }
-
-    public String getTag() {
-        return Tag;
-    }
-
-    public void setTag(String tag) {
-        Tag = tag;
-    }
-
-    public String getCreateDate() {
-        return CreateDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        CreateDate = createDate;
-    }
-
-    public String getUpdateDate() {
-        return UpdateDate;
-    }
-
-    public void setUpdateDate(String updateDate) {
-        UpdateDate = updateDate;
-    }
-
-    public int getEncryption() {
-        return Encryption;
-    }
-
-    public void setEncryption(int encryption) {
-        Encryption = encryption;
-    }
+    private int encryption;
 
     InfoModel() {
         super();
     }
 
+    public void setCall(FieldModel call) {
+        this.call = call;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setEmail(FieldModel email) {
+        this.email = email;
+    }
+
+    public void setEncryption(int encryption) {
+        this.encryption = encryption;
+    }
+
+    public void setInfoId(UUID infoId) {
+        this.infoId = infoId;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setQQ(FieldModel qq) {
+        this.qq = qq;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setSite(SiteModel site) {
+        this.site = site;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+
+    public void setUserName(FieldModel userName) {
+        this.userName = userName;
+    }
+
+    public FieldModel getCall() {
+        return call;
+    }
+
+    public FieldModel getEmail() {
+        return email;
+    }
+
+    public FieldModel getQQ() {
+        return qq;
+    }
+
+    public FieldModel getUserName() {
+        return userName;
+    }
+
+    public int getEncryption() {
+        return encryption;
+    }
+
+    public SiteModel getSite() {
+        return site;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public UUID getInfoId() {
+        return infoId;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
     public static InfoModel getInfoModel(UUID uuid) {
         return new Select()
                 .from(InfoModel.class)
-                .where("InfoId = ?",uuid.toString())
+                .where("InfoId = ?", uuid.toString())
                 .executeSingle();
     }
 
@@ -165,7 +187,7 @@ public class InfoModel extends Model {
                 .executeSingle();
     }
 
-    public List<InfoModel> getAll(){
+    public List<InfoModel> getAll() {
         return new Select()
                 .from(InfoModel.class)
                 .execute();

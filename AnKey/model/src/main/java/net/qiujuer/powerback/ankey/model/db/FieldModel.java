@@ -14,91 +14,102 @@ import java.util.UUID;
  */
 @Table(name = "Field")
 public class FieldModel extends Model {
-    @Column(name = "FiledId")
-    private UUID FieldId;
+    @Column(name = "FieldId")
+    private UUID fieldId;
+
     @Column(name = "UserId")
-    public UUID UserId;
+    public UUID userId;
+
     @Column(name = "Text")
-    private String Text;
+    private String text;
+
     @Column(name = "MD5")
-    private String MD5;
+    private String md5;
+
     @Column(name = "Tag")
-    private String Tag;
+    private String tag;
+
     @Column(name = "CreateDate")
-    private String CreateDate;
+    private String createDate;
+
     @Column(name = "UpdateDate")
-    private String UpdateDate;
+    private String updateDate;
+
     @Column(name = "Encryption")
-    private int Encryption;
+    private int encryption;
 
-    public UUID getFieldId() {
-        return FieldId;
-    }
-
-    public void setFieldId(UUID fieldId) {
-        FieldId = fieldId;
-    }
-
-    public UUID getUserId() {
-        return UserId;
+    public FieldModel() {
+        super();
     }
 
     public void setUserId(UUID userId) {
-        UserId = userId;
-    }
-
-    public String getText() {
-        return Text;
-    }
-
-    public void setText(String text) {
-        Text = text;
-    }
-
-    public String getMD5() {
-        return MD5;
-    }
-
-    public void setMD5(String MD5) {
-        this.MD5 = MD5;
-    }
-
-    public String getTag() {
-        return Tag;
-    }
-
-    public void setTag(String tag) {
-        Tag = tag;
-    }
-
-    public String getCreateDate() {
-        return CreateDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        CreateDate = createDate;
-    }
-
-    public String getUpdateDate() {
-        return UpdateDate;
+        this.userId = userId;
     }
 
     public void setUpdateDate(String updateDate) {
-        UpdateDate = updateDate;
+        this.updateDate = updateDate;
     }
 
-    public int getEncryption() {
-        return Encryption;
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
     }
 
     public void setEncryption(int encryption) {
-        Encryption = encryption;
+        this.encryption = encryption;
+    }
+
+    public void setFieldId(UUID fieldId) {
+        this.fieldId = fieldId;
+    }
+
+    public void setMd5(String md5) {
+        this.md5 = md5;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public int getEncryption() {
+        return encryption;
+    }
+
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public String getMd5() {
+        return md5;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public UUID getFieldId() {
+        return fieldId;
     }
 
     public static FieldModel getFieldModel(UUID uuid) {
         return new Select()
                 .from(FieldModel.class)
-                .where("FiledId = ?",uuid.toString())
+                .where("FiledId = ?", uuid.toString())
                 .executeSingle();
     }
 
@@ -109,7 +120,7 @@ public class FieldModel extends Model {
                 .executeSingle();
     }
 
-    public static List<FieldModel> getAll(){
+    public static List<FieldModel> getAll() {
         return new Select()
                 .from(FieldModel.class)
                 .execute();
