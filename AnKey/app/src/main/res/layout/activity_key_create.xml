@@ -16,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/label_key_enter"
+        android:inputType="textPassword"
         android:textCursorDrawable="@null" />
 
     <net.qiujuer.genius.ui.widget.EditText
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/edit_key"
         android:hint="@string/label_key_confirm"
+        android:inputType="textPassword"
         android:textCursorDrawable="@null" />
 
     <net.qiujuer.genius.ui.widget.Button

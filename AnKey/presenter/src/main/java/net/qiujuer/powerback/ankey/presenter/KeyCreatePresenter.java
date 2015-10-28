@@ -21,24 +21,30 @@ public class KeyCreatePresenter {
     public void submit() {
         if (check()) {
             String key = mView.getKeyConfirm();
+            String salt = UUID.randomUUID().toString();
+            String keyHash = HashKit.getMD5String(HashKit.getMD5String(key));
             UserModel model = new UserModel();
-            model.setKey(HashKit.getMD5String(key));
-            model.setSalt(UUID.randomUUID().toString());
+            model.setSalt(salt);
+            model.setKey(keyHash);
             model.save();
-
             mView.setOk();
         }
     }
 
     private boolean check() {
-        if (TextUtils.isEmpty(mView.getKey())) {
+        String key = mView.getKey();
+        String confirm = mView.getKeyConfirm();
+        if (TextUtils.isEmpty(key)) {
             mView.setError(KeyCreateView.STATUS_KEY_NULL);
             return false;
-        } else if (TextUtils.isEmpty(mView.getKeyConfirm())) {
+        } else if (TextUtils.isEmpty(confirm)) {
             mView.setError(KeyCreateView.STATUS_KEY_CONFIRM_NULL);
             return false;
-        } else if (!mView.getKeyConfirm().equals(mView.getKey())) {
-            mView.setError(KeyCreateView.STATUS_KEY_CONFIRM_NULL);
+        } else if (!key.equals(confirm)) {
+            mView.setError(KeyCreateView.STATUS_KEY_NOT_EQUAL_CONFIRM);
+            return false;
+        } else if (key.length() < 6) {
+            mView.setError(KeyCreateView.STATUS_KEY_LEN_LESS_THAN_SEX);
             return false;
         } else {
             return true;

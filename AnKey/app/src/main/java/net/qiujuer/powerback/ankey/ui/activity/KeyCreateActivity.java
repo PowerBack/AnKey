@@ -1,6 +1,8 @@
 package net.qiujuer.powerback.ankey.ui.activity;
 
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
 import android.view.View;
 
 import net.qiujuer.genius.ui.widget.EditText;
@@ -25,7 +27,11 @@ public class KeyCreateActivity extends SuperBackActivity implements KeyCreateVie
         findViewById(R.id.btn_submit).setOnClickListener(this);
         mKey = (EditText) findViewById(R.id.edit_key);
         mKeyConfirm = (EditText) findViewById(R.id.edit_key_confirm);
+
+        mKey.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+        mKeyConfirm.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
     }
+
 
     @Override
     public String getKey() {
