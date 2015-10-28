@@ -6,6 +6,8 @@ import net.qiujuer.genius.kit.util.HashKit;
 import net.qiujuer.powerback.ankey.model.xml.UserModel;
 import net.qiujuer.powerback.ankey.presenter.view.KeyCreateView;
 
+import java.util.UUID;
+
 /**
  * Created by qiujuer
  */
@@ -21,6 +23,7 @@ public class KeyCreatePresenter {
             String key = mView.getKeyConfirm();
             UserModel model = new UserModel();
             model.setKey(HashKit.getMD5String(key));
+            model.setSalt(UUID.randomUUID().toString());
             model.save();
 
             mView.setOk();
