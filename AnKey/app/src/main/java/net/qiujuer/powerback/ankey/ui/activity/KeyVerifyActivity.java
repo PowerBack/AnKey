@@ -57,9 +57,7 @@ public class KeyVerifyActivity extends SuperActivity implements KeyVerifyView, V
 
     @Override
     public void verifyError() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        showToast("Error");
     }
 
     @Override
