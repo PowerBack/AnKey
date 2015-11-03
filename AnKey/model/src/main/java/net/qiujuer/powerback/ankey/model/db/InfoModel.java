@@ -57,7 +57,7 @@ public class InfoModel extends Model {
     @Column(name = "Encryption")
     private int encryption;
 
-    InfoModel() {
+    public InfoModel() {
         super();
     }
 
@@ -187,7 +187,7 @@ public class InfoModel extends Model {
                 .executeSingle();
     }
 
-    public List<InfoModel> getAll() {
+    public static List<InfoModel> getAll() {
         return new Select()
                 .from(InfoModel.class)
                 .execute();
