@@ -1,3 +1,42 @@
 <resources>
     <string name="app_name">AnKey</string>
+
+    <string name="activity_title_create">Create</string>
+    <string name="activity_title_edit">Edit</string>
+    <string name="activity_title_detail">Detail</string>
+    <string name="activity_title_key_verify">@string/app_name</string>
+    <string name="activity_title_key_create">CreateKey</string>
+    <string name="activity_title_key_edit">EditKey</string>
+
+    <string name="action_key_add">Add</string>
+
+    <string name="label_key_enter">Enter key</string>
+    <string name="label_key_confirm">Confirm key</string>
+    <string name="label_key_old">Enter old key</string>
+    <string name="label_key_new">Enter new key</string>
+    <string name="label_null_data">None, \n  Please add it. </string>
+
+    <string name="btn_key_verify_submit">Go</string>
+    <string name="appTourSkipButton">跳过</string>
+    <string name="appTourDoneButton">完成</string>
+    <string name="introduce_skip">跳过</string>
+    <string name="introduce_done">开始体验</string>
+    <string name="introduce_friendly_title">友好</string>
+    <string name="introduce_friendly_content">整体设计按照MaterialDesigner的设计哲学，绚丽而又不失易用</string>
+    <string name="introduce_simple_title">简单</string>
+    <string name="introduce_safe_title">安全</string>
+    <string name="introduce_safe_content">应用中的重要数据，都会经过加密才会进行传输处理</string>
+    <string name="introduce_simple_content">所有的重要操作都被设计在最显著的地方，每一个按钮都出现在它该出现的地方</string>
+
+    //CreateActivity
+    <string name="label_description">Description</string>
+    <string name="label_username">Username</string>
+    <string name="label_password">Password</string>
+    <string name="label_site">Site</string>
+    <string name="label_email">Email</string>
+    <string name="label_qq">QQ</string>
+    <string name="label_call">Call</string>
+    <string name="btn_save">Save</string>
+
+
 </resources>

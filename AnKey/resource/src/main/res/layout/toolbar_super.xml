@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@id/toolbar"
+    style="@style/AppTheme.Base.ToolBar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/toolBar_height"
+    android:background="?attr/colorPrimary"
+    android:minHeight="@dimen/toolBar_height"
+    android:gravity="center"
+    app:maxButtonHeight="@dimen/toolBar_height" />

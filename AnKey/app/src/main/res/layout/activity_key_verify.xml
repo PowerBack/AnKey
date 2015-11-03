@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_dark"
+    android:gravity="center"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ui.activity.KeyVerifyActivity">
+
+    <net.qiujuer.genius.ui.widget.EditText
+        android:id="@+id/edit_key"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/label_key_enter"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white_alpha_224"
+        android:gravity="center"
+        android:textColorHint="@color/white"
+        android:textCursorDrawable="@null"
+        app:gHintTitle="slide"/>
+
+    <net.qiujuer.genius.ui.widget.Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_key"
+        android:layout_marginTop="@dimen/lay_16"
+        android:background="@null"
+        android:gravity="center"
+        android:text="@string/btn_key_verify_submit"
+        android:textColor="@color/white_alpha_224"
+        app:gTouchEffect="ripple" />
+
+</RelativeLayout>

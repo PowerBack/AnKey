@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".CreateActivity">
+
+    <net.qiujuer.genius.ui.widget.EditText
+        android:id="@+id/edit_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:hint="@string/label_description"
+        android:textColor="@color/white_alpha_224"
+        android:textCursorDrawable="@null" />
+
+    <net.qiujuer.genius.ui.widget.EditText
+        android:id="@+id/edit_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_description"
+        android:hint="@string/label_username"
+        android:textColor="@color/white_alpha_224"
+        android:textCursorDrawable="@null" />
+
+    <net.qiujuer.genius.ui.widget.EditText
+        android:id="@+id/edit_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_username"
+        android:hint="@string/label_password"
+        android:textColor="@color/white_alpha_224"
+        android:textCursorDrawable="@null" />
+
+    <net.qiujuer.genius.ui.widget.EditText
+        android:id="@+id/edit_site"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_password"
+        android:hint="@string/label_site"
+        android:textColor="@color/white_alpha_224"
+        android:textCursorDrawable="@null" />
+
+    <net.qiujuer.genius.ui.widget.EditText
+        android:id="@+id/edit_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_site"
+        android:hint="@string/label_email"
+        android:textColor="@color/white_alpha_224"
+        android:textCursorDrawable="@null" />
+
+    <net.qiujuer.genius.ui.widget.EditText
+        android:id="@+id/edit_qq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_email"
+        android:hint="@string/label_qq"
+        android:textColor="@color/white_alpha_224"
+        android:textCursorDrawable="@null" />
+
+    <net.qiujuer.genius.ui.widget.EditText
+        android:id="@+id/edit_call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_qq"
+        android:hint="@string/label_call"
+        android:textColor="@color/white_alpha_224"
+        android:textCursorDrawable="@null" />
+
+    <Button
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/btn_save" />
+</merge>
