@@ -20,6 +20,8 @@ public class KeyCreateActivity extends SuperBackActivity implements KeyCreateVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_key_create);
+        setStatusBarColorRes(R.color.colorAccent);
+        setTitleBackgroundColorRes(R.color.colorAccent);
 
         mPresenter = new KeyCreatePresenter(this);
 
