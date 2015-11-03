@@ -14,7 +14,7 @@
     <string name="label_key_confirm">Confirm key</string>
     <string name="label_key_old">Enter old key</string>
     <string name="label_key_new">Enter new key</string>
-    <string name="label_null_data">Not have data</string>
+    <string name="label_null_data">None, \n  Please add it. </string>
 
     <string name="btn_key_verify_submit">Go</string>
     <string name="appTourSkipButton">跳过</string>

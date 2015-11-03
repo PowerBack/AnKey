@@ -14,7 +14,8 @@ public class InfoListPresenter {
     }
 
     public void refresh() {
-
+        mView.hideNull();
+        mView.showLoading();
     }
 
     public void destroy() {

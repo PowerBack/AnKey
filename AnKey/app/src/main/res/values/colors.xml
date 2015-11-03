@@ -3,4 +3,9 @@
     <!--<color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>-->
+
+    <array name="loading_fg_color">
+        <item>@color/colorPrimary</item>
+        <item>@color/colorAccent</item>
+    </array>
 </resources>

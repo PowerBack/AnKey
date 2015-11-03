@@ -12,6 +12,7 @@ import net.qiujuer.powerback.ankey.presenter.view.InfoListView;
 import net.qiujuer.powerback.ankey.ui.adapter.callback.InfoListAdapterCallback;
 import net.qiujuer.powerback.ankey.ui.adapter.holder.InfoHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,6 +26,7 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoHolder> implements
     private List<InfoViewModel> mDataSet;
 
     public InfoListAdapter(InfoListAdapterCallback callback) {
+        mDataSet = new ArrayList<InfoViewModel>();
         mPresenter = new InfoListPresenter(this);
         mCallback = callback;
     }
@@ -54,36 +56,68 @@ public class InfoListAdapter extends RecyclerView.Adapter<InfoHolder> implements
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mDataSet.size();
     }
 
     @Override
     public List<InfoViewModel> getDataSet() {
-        return null;
+        return mDataSet;
     }
 
     @Override
     public void setDataSet(List<InfoViewModel> dataSet) {
-
+        if (dataSet != mDataSet) {
+            mDataSet.clear();
+            if (dataSet != null)
+                mDataSet.addAll(dataSet);
+        }
     }
 
     @Override
     public void showNull() {
-
+        InfoListAdapterCallback callback = mCallback;
+        if (callback != null) {
+            callback.showNull();
+        }
     }
 
     @Override
     public void hideNull() {
-
+        InfoListAdapterCallback callback = mCallback;
+        if (callback != null) {
+            callback.hideNull();
+        }
     }
 
     @Override
     public void showLoading() {
-
+        InfoListAdapterCallback callback = mCallback;
+        if (callback != null) {
+            callback.showLoading();
+        }
     }
 
     @Override
     public void hideLoading() {
+        InfoListAdapterCallback callback = mCallback;
+        if (callback != null) {
+            callback.hideLoading();
+        }
+    }
 
+    public void destroy() {
+        InfoListPresenter presenter = mPresenter;
+        if (presenter != null) {
+            mPresenter = null;
+            presenter.destroy();
+            mCallback = null;
+            mDataSet.clear();
+        }
+    }
+
+    public void refresh() {
+        InfoListPresenter presenter = mPresenter;
+        if (presenter != null)
+            presenter.refresh();
     }
 }

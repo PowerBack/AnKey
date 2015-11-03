@@ -6,10 +6,10 @@ import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import net.qiujuer.genius.ui.widget.FloatActionButton;
+import net.qiujuer.genius.ui.widget.Loading;
 import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.ui.SuperActivity;
 import net.qiujuer.powerback.ankey.ui.adapter.InfoListAdapter;
@@ -19,12 +19,20 @@ import net.qiujuer.powerback.ankey.widget.drawable.CrossLineShape;
 import java.util.UUID;
 
 public class MainActivity extends SuperActivity implements View.OnClickListener, InfoListAdapterCallback {
+    private View mStatus;
+    private Loading mLoading;
+    private RecyclerView mRecycler;
+    private InfoListAdapter mInfoListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setCenterTitle(true);
+
+        mStatus = findViewById(R.id.text_status);
+        mLoading = (Loading) findViewById(R.id.loading);
+        mRecycler = (RecyclerView) findViewById(R.id.recycler);
 
         initFloatActionButton();
         initRecyclerView();
@@ -50,12 +58,11 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
     }
 
     private void initRecyclerView() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
+        mRecycler.setLayoutManager(layoutManager);
 
-        InfoListAdapter adapter = new InfoListAdapter(this);
-        recyclerView.setAdapter(adapter);
+        mInfoListAdapter = new InfoListAdapter(this);
+        mRecycler.setAdapter(mInfoListAdapter);
     }
 
     @Override
@@ -64,8 +71,15 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
     }
 
     @Override
-    protected void onInflateMenu(Toolbar toolbar) {
+    protected void onDestroy() {
+        super.onDestroy();
+        mInfoListAdapter.destroy();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mInfoListAdapter.refresh();
     }
 
     @Override
@@ -83,21 +97,23 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
 
     @Override
     public void showLoading() {
-
+        mLoading.setVisibility(View.VISIBLE);
+        mLoading.start();
     }
 
     @Override
     public void hideLoading() {
-
+        mLoading.setVisibility(View.GONE);
+        mLoading.stop();
     }
 
     @Override
     public void showNull() {
-
+        mStatus.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideNull() {
-
+        mStatus.setVisibility(View.GONE);
     }
 }

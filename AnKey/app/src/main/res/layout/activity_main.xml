@@ -27,8 +27,18 @@
         android:gravity="center"
         android:paddingBottom="@dimen/lay_16"
         android:text="@string/label_null_data"
+        android:textSize="@dimen/font_16"
+        android:visibility="invisible" />
 
-        android:textSize="@dimen/font_16" />
+    <net.qiujuer.genius.ui.widget.Loading
+        android:id="@+id/loading"
+        android:layout_width="@dimen/size_28"
+        android:layout_height="@dimen/size_28"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:paddingBottom="@dimen/lay_16"
+        app:gAutoRun="false"
+        app:gForegroundColor="@array/loading_fg_color" />
 
     <net.qiujuer.genius.ui.widget.FloatActionButton
         android:id="@+id/action_add"
