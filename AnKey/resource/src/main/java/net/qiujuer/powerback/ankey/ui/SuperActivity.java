@@ -8,10 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -147,6 +149,34 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
         super.setTitle(sBuilder);
         if (mToolbar != null)
             mToolbar.setTitle(sBuilder);
+    }
+
+    public void setCenterTitle(boolean isCenter) {
+        int count = mToolbar.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View view = mToolbar.getChildAt(i);
+            if (view instanceof TextView) {
+                TextView tv = (TextView) view;
+
+                int gravity = Gravity.START | Gravity.CENTER_VERTICAL;
+                int width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                if (isCenter) {
+                    gravity = Gravity.CENTER;
+                    width = ViewGroup.LayoutParams.MATCH_PARENT;
+                }
+
+                ViewGroup.LayoutParams lp = tv.getLayoutParams();
+                if (lp == null)
+                    lp = new ViewGroup.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT);
+                else {
+                    lp.width = width;
+                    lp.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                }
+
+                tv.setGravity(gravity);
+                tv.setLayoutParams(lp);
+            }
+        }
     }
 
     @Override

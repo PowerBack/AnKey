@@ -7,6 +7,5 @@
     android:layout_height="@dimen/toolBar_height"
     android:background="?attr/colorPrimary"
     android:minHeight="@dimen/toolBar_height"
-    android:subtitle="dasddasdsad"
     android:gravity="center"
     app:maxButtonHeight="@dimen/toolBar_height" />
