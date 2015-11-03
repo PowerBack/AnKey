@@ -7,6 +7,7 @@ import net.qiujuer.powerback.ankey.model.view.InfoViewModel;
 import net.qiujuer.powerback.ankey.presenter.view.InfoListView;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by qiujuer
@@ -45,15 +46,31 @@ public class InfoListPresenter {
         if (models == null || models.size() == 0) {
             stopLoad(false);
         } else {
+            stopLoad(true);
             List<InfoViewModel> viewModels = mView.getDataSet();
             for (InfoModel model : models) {
-                InfoViewModel viewModel = new InfoViewModel();
-                viewModel.set(model);
-                viewModels.add(viewModel);
+                formatModel(viewModels, model);
             }
-            mView.setDataSet(viewModels);
-            stopLoad(true);
         }
+    }
+
+    private void formatModel(List<InfoViewModel> viewModels, InfoModel model) {
+        InfoViewModel sModel = searchViewModel(viewModels, model);
+        if (sModel == null) {
+            sModel = new InfoViewModel(model);
+            viewModels.add(sModel);
+        } else {
+            sModel.set(model);
+        }
+    }
+
+    private InfoViewModel searchViewModel(List<InfoViewModel> viewModels, InfoModel model) {
+        UUID id = model.getInfoId();
+        for (InfoViewModel viewModel : viewModels) {
+            if (viewModel.getId().equals(id))
+                return viewModel;
+        }
+        return null;
     }
 
     private void startLoad() {
@@ -70,7 +87,6 @@ public class InfoListPresenter {
                     mView.hideNull();
                 else
                     mView.showNull();
-                mView.notifyDataSetChanged();
             }
         });
     }

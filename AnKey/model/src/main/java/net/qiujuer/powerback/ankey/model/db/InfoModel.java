@@ -59,6 +59,7 @@ public class InfoModel extends Model {
 
     public InfoModel() {
         super();
+        infoId = UUID.randomUUID();
     }
 
     public void setCall(FieldModel call) {
