@@ -1,7 +1,5 @@
 package net.qiujuer.powerback.ankey.model.db;
 
-import android.os.SystemClock;
-
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
@@ -72,7 +70,7 @@ public class InfoModel extends Model implements ModelStatus {
     public InfoModel() {
         super();
         infoId = UUID.randomUUID();
-        lastDate = SystemClock.uptimeMillis();
+        lastDate = System.currentTimeMillis();
         createDate = new Date(lastDate);
         updateDate = createDate;
     }

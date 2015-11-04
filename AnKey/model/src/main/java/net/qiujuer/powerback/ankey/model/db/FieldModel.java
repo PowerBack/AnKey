@@ -1,7 +1,5 @@
 package net.qiujuer.powerback.ankey.model.db;
 
-import android.os.SystemClock;
-
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
@@ -17,7 +15,7 @@ import java.util.UUID;
  * on 15/10/23.
  */
 @Table(name = "Field")
-public class FieldModel extends Model implements ModelStatus{
+public class FieldModel extends Model implements ModelStatus {
     @Column(name = "FieldId")
     private UUID fieldId;
 
@@ -53,7 +51,7 @@ public class FieldModel extends Model implements ModelStatus{
     public FieldModel() {
         super();
         fieldId = UUID.randomUUID();
-        lastDate = SystemClock.uptimeMillis();
+        lastDate = System.currentTimeMillis();
         createDate = new Date(lastDate);
         updateDate = createDate;
     }
