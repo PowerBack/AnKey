@@ -1,10 +1,14 @@
 package net.qiujuer.powerback.ankey.model.db;
 
+import android.os.SystemClock;
+
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
+import com.google.gson.annotations.Expose;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,7 +17,7 @@ import java.util.UUID;
  * on 15/10/19.
  */
 @Table(name = "info")
-public class InfoModel extends Model {
+public class InfoModel extends Model implements ModelStatus {
 
     @Column(name = "InfoId")
     private UUID infoId;
@@ -49,24 +53,35 @@ public class InfoModel extends Model {
     private String tag;
 
     @Column(name = "CreateDate")
-    private String createDate;
+    private Date createDate;
 
     @Column(name = "UpdateDate")
-    private String updateDate;
+    private Date updateDate;
 
     @Column(name = "Encryption")
     private int encryption;
 
+    @Expose
+    @Column(name = "Status")
+    private transient int status;
+
+    @Expose
+    @Column(name = "LastDate")
+    private transient long lastDate;
+
     public InfoModel() {
         super();
         infoId = UUID.randomUUID();
+        lastDate = SystemClock.uptimeMillis();
+        createDate = new Date(lastDate);
+        updateDate = createDate;
     }
 
     public void setCall(FieldModel call) {
         this.call = call;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -106,7 +121,7 @@ public class InfoModel extends Model {
         this.tag = tag;
     }
 
-    public void setUpdateDate(String updateDate) {
+    public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -116,6 +131,14 @@ public class InfoModel extends Model {
 
     public void setUserName(FieldModel userName) {
         this.userName = userName;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setLastDate(long lastDate) {
+        this.lastDate = lastDate;
     }
 
     public FieldModel getCall() {
@@ -142,7 +165,7 @@ public class InfoModel extends Model {
         return site;
     }
 
-    public String getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
@@ -162,7 +185,7 @@ public class InfoModel extends Model {
         return tag;
     }
 
-    public String getUpdateDate() {
+    public Date getUpdateDate() {
         return updateDate;
     }
 
@@ -172,6 +195,14 @@ public class InfoModel extends Model {
 
     public UUID getUserId() {
         return userId;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public long getLastDate() {
+        return lastDate;
     }
 
     public static InfoModel getInfoModel(UUID uuid) {

@@ -1,10 +1,14 @@
 package net.qiujuer.powerback.ankey.model.db;
 
+import android.os.SystemClock;
+
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
+import com.google.gson.annotations.Expose;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,7 +17,7 @@ import java.util.UUID;
  * on 15/10/23.
  */
 @Table(name = "Field")
-public class FieldModel extends Model {
+public class FieldModel extends Model implements ModelStatus{
     @Column(name = "FieldId")
     private UUID fieldId;
 
@@ -30,23 +34,35 @@ public class FieldModel extends Model {
     private String tag;
 
     @Column(name = "CreateDate")
-    private String createDate;
+    private Date createDate;
 
     @Column(name = "UpdateDate")
-    private String updateDate;
+    private Date updateDate;
 
     @Column(name = "Encryption")
     private int encryption;
 
+    @Expose
+    @Column(name = "Status")
+    private transient int status;
+
+    @Expose
+    @Column(name = "LastDate")
+    private transient long lastDate;
+
     public FieldModel() {
         super();
+        fieldId = UUID.randomUUID();
+        lastDate = SystemClock.uptimeMillis();
+        createDate = new Date(lastDate);
+        updateDate = createDate;
     }
 
     public void setUserId(UUID userId) {
         this.userId = userId;
     }
 
-    public void setUpdateDate(String updateDate) {
+    public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -54,7 +70,7 @@ public class FieldModel extends Model {
         this.tag = tag;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -70,6 +86,14 @@ public class FieldModel extends Model {
         this.md5 = md5;
     }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setLastDate(long lastDate) {
+        this.lastDate = lastDate;
+    }
+
     public void setText(String text) {
         this.text = text;
     }
@@ -78,7 +102,7 @@ public class FieldModel extends Model {
         return userId;
     }
 
-    public String getUpdateDate() {
+    public Date getUpdateDate() {
         return updateDate;
     }
 
@@ -90,7 +114,7 @@ public class FieldModel extends Model {
         return encryption;
     }
 
-    public String getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
@@ -104,6 +128,14 @@ public class FieldModel extends Model {
 
     public UUID getFieldId() {
         return fieldId;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public long getLastDate() {
+        return lastDate;
     }
 
     public static FieldModel getFieldModel(UUID uuid) {
