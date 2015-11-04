@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="key.edit.default" parent="Genius.Widget.EditText">
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textColorHint">@drawable/ic_edit_hint</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="gLineColor">@drawable/ic_edit_line</item>
+        <item name="android:paddingLeft">@dimen/lay_16</item>
+        <item name="android:paddingRight">@dimen/lay_16</item>
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+</resources>

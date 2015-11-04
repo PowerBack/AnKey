@@ -28,7 +28,6 @@
     <string name="introduce_safe_content">应用中的重要数据，都会经过加密才会进行传输处理</string>
     <string name="introduce_simple_content">所有的重要操作都被设计在最显著的地方，每一个按钮都出现在它该出现的地方</string>
 
-    //CreateActivity
     <string name="label_description">Description</string>
     <string name="label_username">Username</string>
     <string name="label_password">Password</string>
@@ -36,6 +35,9 @@
     <string name="label_email">Email</string>
     <string name="label_qq">QQ</string>
     <string name="label_call">Call</string>
+    <string name="label_mare">Mare</string>
+    <string name="label_note_need">NOTE: The red dot for the required option.</string>
+
     <string name="btn_save">Save</string>
 
 
