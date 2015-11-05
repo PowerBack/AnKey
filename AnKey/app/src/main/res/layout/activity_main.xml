@@ -15,6 +15,7 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:overScrollMode="never"
+        android:padding="@dimen/lay_12"
         android:scrollbarSize="2dp"
         android:scrollbarThumbVertical="@color/black_alpha_128"
         android:scrollbars="vertical" />

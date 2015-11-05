@@ -24,7 +24,7 @@ class AESCipherHelper implements KeyTool {
             throw new NullPointerException("This key is null, you should create new KeyTool");
         }
         try {
-            AesCbcWithIntegrity.CipherTextIvMac cipherTextIvMac = AesCbcWithIntegrity.encrypt("some test", keys);
+            AesCbcWithIntegrity.CipherTextIvMac cipherTextIvMac = AesCbcWithIntegrity.encrypt(src, keys);
             //store or send to server
             return cipherTextIvMac.toString();
         } catch (UnsupportedEncodingException | GeneralSecurityException e) {

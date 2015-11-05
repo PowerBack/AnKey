@@ -46,19 +46,19 @@ public class InfoListPresenter {
             stopLoad(true);
             List<InfoViewModel> viewModels = mView.getDataSet();
             for (InfoModel model : models) {
-                formatModel(viewModels, model);
+                if (!formatModel(viewModels, model))
+                    break;
             }
         }
     }
 
-    private void formatModel(List<InfoViewModel> viewModels, InfoModel model) {
+    private boolean formatModel(List<InfoViewModel> viewModels, InfoModel model) {
         InfoViewModel sModel = searchViewModel(viewModels, model);
         if (sModel == null) {
-            sModel = new InfoViewModel(model);
+            sModel = new InfoViewModel(model.getInfoId());
             viewModels.add(sModel);
-        } else {
-            sModel.set(model);
         }
+        return decryptModel(model, sModel);
     }
 
     private InfoViewModel searchViewModel(List<InfoViewModel> viewModels, InfoModel model) {
@@ -88,6 +88,15 @@ public class InfoListPresenter {
         });
     }
 
+    private boolean decryptModel(InfoModel src, InfoViewModel result) {
+        try {
+            result.setDescription(AppPresenter.decrypt(src.getDescription()));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public void destroy() {
 
