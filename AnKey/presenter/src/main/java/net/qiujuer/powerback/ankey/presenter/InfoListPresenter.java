@@ -1,5 +1,7 @@
 package net.qiujuer.powerback.ankey.presenter;
 
+import android.util.Log;
+
 import net.qiujuer.genius.kit.util.Tools;
 import net.qiujuer.genius.kit.util.UiKit;
 import net.qiujuer.powerback.ankey.model.db.InfoModel;
@@ -29,7 +31,7 @@ public class InfoListPresenter {
         mThread = new Thread("InfoListPresenter-Thread") {
             @Override
             public void run() {
-                Tools.sleepIgnoreInterrupt(200);
+                Tools.sleepIgnoreInterrupt(1000);
                 loadData();
                 mThread = null;
             }
@@ -46,19 +48,61 @@ public class InfoListPresenter {
             stopLoad(true);
             List<InfoViewModel> viewModels = mView.getDataSet();
             for (InfoModel model : models) {
+                Tools.sleepIgnoreInterrupt(20);
                 if (!formatModel(viewModels, model))
                     break;
             }
         }
     }
 
+    private void notifyInsert(final int index) {
+        UiKit.runOnMainThreadAsync(new Runnable() {
+            @Override
+            public void run() {
+                mView.notifyItemChanged(index);
+            }
+        });
+    }
+
+    private void notifyChange(final int index) {
+        UiKit.runOnMainThreadAsync(new Runnable() {
+            @Override
+            public void run() {
+                mView.notifyItemChanged(index);
+            }
+        });
+    }
+
     private boolean formatModel(List<InfoViewModel> viewModels, InfoModel model) {
         InfoViewModel sModel = searchViewModel(viewModels, model);
+        boolean isCreate = false;
         if (sModel == null) {
             sModel = new InfoViewModel(model.getInfoId());
             viewModels.add(sModel);
+            isCreate = true;
         }
-        return decryptModel(model, sModel);
+        if (decryptModel(model, sModel)) {
+            int index = getModelIndex(viewModels, model);
+            Log.e(InfoListPresenter.class.getSimpleName(), viewModels.size() + " " + index + " " + isCreate);
+            if (index >= 0) {
+                if (isCreate)
+                    notifyInsert(index);
+                else
+                    notifyChange(index);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private int getModelIndex(List<InfoViewModel> viewModels, InfoModel model) {
+        int index = 0;
+        for (InfoViewModel i : viewModels) {
+            if (i.getId().equals(model.getInfoId()))
+                return index;
+            index++;
+        }
+        return -1;
     }
 
     private InfoViewModel searchViewModel(List<InfoViewModel> viewModels, InfoModel model) {
