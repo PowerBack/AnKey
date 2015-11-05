@@ -38,9 +38,6 @@ public class InfoListPresenter {
     }
 
     private void loadData() {
-        // note: this add test data
-        new InfoModel().save();
-
         // load data
         List<InfoModel> models = InfoModel.getAll();
         if (models == null || models.size() == 0) {

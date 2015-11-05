@@ -8,6 +8,7 @@ public interface KeyCreateView {
     int STATUS_KEY_CONFIRM_NULL = -2;
     int STATUS_KEY_NOT_EQUAL_CONFIRM = -3;
     int STATUS_KEY_LEN_LESS_THAN_SEX = -4;
+    int STATUS_KEY_IS_HAVE = -5;
 
     String getKey();
 

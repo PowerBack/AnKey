@@ -2,11 +2,7 @@ package net.qiujuer.powerback.ankey.presenter;
 
 import android.text.TextUtils;
 
-import net.qiujuer.genius.kit.util.HashKit;
-import net.qiujuer.powerback.ankey.model.xml.UserModel;
 import net.qiujuer.powerback.ankey.presenter.view.KeyCreateView;
-
-import java.util.UUID;
 
 /**
  * Created by qiujuer
@@ -21,13 +17,10 @@ public class KeyCreatePresenter {
     public void submit() {
         if (check()) {
             String key = mView.getKeyConfirm();
-            String salt = UUID.randomUUID().toString();
-            String keyHash = HashKit.getMD5String(HashKit.getMD5String(key));
-            UserModel model = new UserModel();
-            model.setSalt(salt);
-            model.setKey(keyHash);
-            model.save();
-            mView.setOk();
+            if (AppPresenter.createKey(key))
+                mView.setOk();
+            else
+                mView.setError(KeyCreateView.STATUS_KEY_IS_HAVE);
         }
     }
 

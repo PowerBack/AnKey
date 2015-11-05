@@ -46,7 +46,7 @@ public class KeyCreateActivity extends SuperBackActivity implements KeyCreateVie
 
     @Override
     public void setError(int status) {
-        showToast("Error");
+        showToast("Error: " + status);
     }
 
     @Override

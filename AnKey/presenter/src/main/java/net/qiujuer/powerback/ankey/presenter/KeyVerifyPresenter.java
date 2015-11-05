@@ -2,7 +2,6 @@ package net.qiujuer.powerback.ankey.presenter;
 
 import android.text.TextUtils;
 
-import net.qiujuer.genius.kit.util.HashKit;
 import net.qiujuer.powerback.ankey.model.xml.UserModel;
 import net.qiujuer.powerback.ankey.presenter.view.KeyVerifyView;
 
@@ -17,19 +16,9 @@ public class KeyVerifyPresenter {
         mView = view;
     }
 
-    private boolean verify(String key) {
-        UserModel model = new UserModel();
-        String keyHash = model.getKey();
-        if (keyHash == null)
-            return false;
-
-        key = HashKit.getMD5String(HashKit.getMD5String(key));
-        return key.equals(keyHash);
-    }
-
     public void verify() {
         String key = mView.getKey();
-        if (!TextUtils.isEmpty(key) && verify(key)) {
+        if (!TextUtils.isEmpty(key) && AppPresenter.setKey(key)) {
             mView.verifyOk();
         } else {
             mView.verifyError();

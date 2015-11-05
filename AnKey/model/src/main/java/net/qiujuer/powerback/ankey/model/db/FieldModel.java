@@ -16,11 +16,14 @@ import java.util.UUID;
  */
 @Table(name = "Field")
 public class FieldModel extends Model implements ModelStatus {
+    public static final int TAG_USERNAME = 10001;
+    public static final int TAG_EMAIL = 10002;
+    public static final int TAG_QQ = 10003;
+    public static final int TAG_CALL = 10004;
+    public static final int TAG_OTHER = 10005;
+
     @Column(name = "FieldId")
     private UUID fieldId;
-
-    @Column(name = "UserId")
-    public UUID userId;
 
     @Column(name = "Text")
     private String text;
@@ -29,7 +32,7 @@ public class FieldModel extends Model implements ModelStatus {
     private String md5;
 
     @Column(name = "Tag")
-    private String tag;
+    private int tag;
 
     @Column(name = "CreateDate")
     private Date createDate;
@@ -54,17 +57,19 @@ public class FieldModel extends Model implements ModelStatus {
         lastDate = System.currentTimeMillis();
         createDate = new Date(lastDate);
         updateDate = createDate;
+        encryption = KEY_TOOL_VERSION;
     }
 
-    public void setUserId(UUID userId) {
-        this.userId = userId;
+    public FieldModel(int tag) {
+        this();
+        this.tag = tag;
     }
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
-    public void setTag(String tag) {
+    public void setTag(int tag) {
         this.tag = tag;
     }
 
@@ -96,15 +101,11 @@ public class FieldModel extends Model implements ModelStatus {
         this.text = text;
     }
 
-    public UUID getUserId() {
-        return userId;
-    }
-
     public Date getUpdateDate() {
         return updateDate;
     }
 
-    public String getTag() {
+    public int getTag() {
         return tag;
     }
 
@@ -136,7 +137,11 @@ public class FieldModel extends Model implements ModelStatus {
         return lastDate;
     }
 
-    public static FieldModel getFieldModel(UUID uuid) {
+    public List<InfoModel> infoModels() {
+        return getMany(InfoModel.class, "UserName");
+    }
+
+    public static FieldModel get(UUID uuid) {
         return new Select()
                 .from(FieldModel.class)
                 .where("FiledId = ?", uuid.toString())
@@ -154,5 +159,20 @@ public class FieldModel extends Model implements ModelStatus {
         return new Select()
                 .from(FieldModel.class)
                 .execute();
+    }
+
+    public static FieldModel get(String md5) {
+        return new Select()
+                .from(FieldModel.class)
+                .where("MD5 = ?", md5)
+                .executeSingle();
+    }
+
+    public static FieldModel get(String md5, int tag) {
+        return new Select()
+                .from(FieldModel.class)
+                .where("MD5 = ?", md5)
+                .where("Tag = ?", tag)
+                .executeSingle();
     }
 }

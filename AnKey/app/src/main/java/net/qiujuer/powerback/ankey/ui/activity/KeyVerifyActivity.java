@@ -1,5 +1,6 @@
 package net.qiujuer.powerback.ankey.ui.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +16,11 @@ import net.qiujuer.powerback.ankey.ui.SuperActivity;
 public class KeyVerifyActivity extends SuperActivity implements KeyVerifyView, View.OnClickListener {
     private KeyVerifyPresenter mPresenter;
     private EditText mKey;
+
+    public static void show(Context context) {
+        Intent intent = new Intent(context, KeyVerifyActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

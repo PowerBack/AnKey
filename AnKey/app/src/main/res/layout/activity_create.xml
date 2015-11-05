@@ -125,19 +125,19 @@
             android:textCursorDrawable="@null" />
 
         <net.qiujuer.genius.ui.widget.EditText
-            android:id="@+id/edit_mare"
+            android:id="@+id/edit_remark"
             style="@style/key.edit.default"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/lay_16"
-            android:hint="@string/label_mare"
+            android:hint="@string/label_remark"
             android:singleLine="false"
             android:textColorHint="@drawable/ic_edit_hint"
             android:textCursorDrawable="@null" />
     </LinearLayout>
 
     <net.qiujuer.genius.ui.widget.FloatActionButton
-        android:id="@+id/action_add"
+        android:id="@+id/action_submit"
         android:layout_width="@dimen/size_56"
         android:layout_height="@dimen/size_56"
         android:layout_alignParentBottom="true"

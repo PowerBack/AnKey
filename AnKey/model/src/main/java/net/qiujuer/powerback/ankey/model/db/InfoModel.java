@@ -14,20 +14,20 @@ import java.util.UUID;
  * Created by qiujuer
  * on 15/10/19.
  */
-@Table(name = "info")
+@Table(name = "Info")
 public class InfoModel extends Model implements ModelStatus {
 
     @Column(name = "InfoId")
     private UUID infoId;
-
-    @Column(name = "UserId")
-    private UUID userId;
 
     @Column(name = "Description")
     private String description;
 
     @Column(name = "Site")
     public SiteModel site;
+
+    @Column(name = "Color")
+    public int color;
 
     @Column(name = "UserName")
     private FieldModel userName;
@@ -73,6 +73,7 @@ public class InfoModel extends Model implements ModelStatus {
         lastDate = System.currentTimeMillis();
         createDate = new Date(lastDate);
         updateDate = createDate;
+        encryption = KEY_TOOL_VERSION;
     }
 
     public void setCall(FieldModel call) {
@@ -115,16 +116,16 @@ public class InfoModel extends Model implements ModelStatus {
         this.site = site;
     }
 
+    public void setColor(int color) {
+        this.color = color;
+    }
+
     public void setTag(String tag) {
         this.tag = tag;
     }
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
-    }
-
-    public void setUserId(UUID userId) {
-        this.userId = userId;
     }
 
     public void setUserName(FieldModel userName) {
@@ -163,6 +164,10 @@ public class InfoModel extends Model implements ModelStatus {
         return site;
     }
 
+    public int getColor() {
+        return color;
+    }
+
     public Date getCreateDate() {
         return createDate;
     }
@@ -189,10 +194,6 @@ public class InfoModel extends Model implements ModelStatus {
 
     public UUID getInfoId() {
         return infoId;
-    }
-
-    public UUID getUserId() {
-        return userId;
     }
 
     public int getStatus() {

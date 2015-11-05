@@ -125,7 +125,7 @@ public class SiteModel extends Model implements ModelStatus {
         return lastDate;
     }
 
-    public static SiteModel getSiteModel(UUID uuid) {
+    public static SiteModel get(UUID uuid) {
         return new Select()
                 .from(SiteModel.class)
                 .where("SiteId = ?", uuid.toString())
@@ -136,6 +136,13 @@ public class SiteModel extends Model implements ModelStatus {
         return new Select()
                 .from(SiteModel.class)
                 .where("id = ?", id)
+                .executeSingle();
+    }
+
+    public static SiteModel get(String md5) {
+        return new Select()
+                .from(SiteModel.class)
+                .where("MD5 = ?", md5)
                 .executeSingle();
     }
 

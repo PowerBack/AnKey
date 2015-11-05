@@ -1,15 +1,16 @@
 package net.qiujuer.powerback.ankey.ui.activity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import net.qiujuer.genius.ui.widget.EditText;
+import net.qiujuer.genius.ui.widget.FloatActionButton;
 import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.presenter.CreatePresenter;
 import net.qiujuer.powerback.ankey.presenter.view.CreateView;
 import net.qiujuer.powerback.ankey.ui.SuperBackActivity;
 
-public class CreateActivity extends SuperBackActivity implements CreateView {
-
+public class CreateActivity extends SuperBackActivity implements CreateView, View.OnClickListener {
     private CreatePresenter mPresenter;
 
     @Override
@@ -20,47 +21,88 @@ public class CreateActivity extends SuperBackActivity implements CreateView {
         setTitleBackgroundColorRes(R.color.colorAccent);
 
         mPresenter = new CreatePresenter(this);
+
+        initFloatActionButton();
+
+    }
+
+    private void initFloatActionButton() {
+        FloatActionButton actionButton = (FloatActionButton) findViewById(R.id.action_submit);
+        actionButton.setOnClickListener(this);
+    }
+
+    private String getEnterText(int id) {
+        EditText text = ((EditText) findViewById(id));
+        if (text != null)
+            return text.getText().toString();
+        else
+            return null;
     }
 
     @Override
     public String getDescription() {
-        return getDate(R.id.edit_description);
+        return getEnterText(R.id.edit_description);
     }
 
     @Override
     public String getUsername() {
-        return getDate(R.id.edit_username);
+        return getEnterText(R.id.edit_username);
     }
 
     @Override
     public String getPassword() {
-        return getDate(R.id.edit_password);
+        return getEnterText(R.id.edit_password);
     }
 
     @Override
     public String getSite() {
-        return getDate(R.id.edit_site);
+        return getEnterText(R.id.edit_site);
     }
 
     @Override
     public String getEmail() {
-        return getDate(R.id.edit_email);
+        return getEnterText(R.id.edit_email);
     }
 
     @Override
     public String getQQ() {
-        return getDate(R.id.edit_qq);
+        return getEnterText(R.id.edit_qq);
     }
 
     @Override
     public String getCall() {
-        return getDate(R.id.edit_call);
+        return getEnterText(R.id.edit_call);
     }
 
-    private String getDate(int id) {
-        String date = ((EditText) findViewById(id)).getText().toString();
-        if (date.equals("")) {
-            return "no";
-        } else return date;
+    @Override
+    public String getRemarks() {
+        return getEnterText(R.id.edit_remark);
+    }
+
+    @Override
+    public int getColor() {
+        return 0;
+    }
+
+    @Override
+    public void needKey() {
+        KeyVerifyActivity.show(this);
+    }
+
+    @Override
+    public void setError(int error) {
+        showToast("Error: " + error);
+    }
+
+    @Override
+    public void setOk() {
+        finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.action_submit) {
+            mPresenter.submit();
+        }
     }
 }

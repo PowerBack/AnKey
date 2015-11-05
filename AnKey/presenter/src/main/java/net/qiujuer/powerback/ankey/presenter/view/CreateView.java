@@ -5,12 +5,15 @@ package net.qiujuer.powerback.ankey.presenter.view;
  * on 15/10/22.
  */
 public interface CreateView {
+    int ERROR_NULL_DES = 1;
+    int ERROR_NULL_PASSWORD = 2;
+    int ERROR_UNKNOWN = 3;
 
     String getDescription();
 
-    String getUsername();
-
     String getPassword();
+
+    String getUsername();
 
     String getSite();
 
@@ -19,4 +22,14 @@ public interface CreateView {
     String getQQ();
 
     String getCall();
+
+    String getRemarks();
+
+    int getColor();
+
+    void needKey();
+
+    void setError(int error);
+
+    void setOk();
 }
