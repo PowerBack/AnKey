@@ -223,4 +223,12 @@ public class InfoModel extends Model implements ModelStatus {
                 .from(InfoModel.class)
                 .execute();
     }
+
+    public static List<InfoModel> getAll(long date) {
+        return new Select()
+                .from(InfoModel.class)
+                .where("LastDate > ?", date)
+                .orderBy("LastDate DESC")
+                .execute();
+    }
 }

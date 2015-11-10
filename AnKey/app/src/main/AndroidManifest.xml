@@ -26,7 +26,8 @@
         <activity
             android:name=".ui.activity.CreateActivity"
             android:label="@string/activity_title_create"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".ui.activity.EditActivity"
             android:label="@string/activity_title_edit"

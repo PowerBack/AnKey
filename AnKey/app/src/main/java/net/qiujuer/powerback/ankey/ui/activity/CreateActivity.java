@@ -1,5 +1,6 @@
 package net.qiujuer.powerback.ankey.ui.activity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 
@@ -9,6 +10,7 @@ import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.presenter.CreatePresenter;
 import net.qiujuer.powerback.ankey.presenter.view.CreateView;
 import net.qiujuer.powerback.ankey.ui.SuperBackActivity;
+import net.qiujuer.powerback.ankey.widget.drawable.IconDrawable;
 
 public class CreateActivity extends SuperBackActivity implements CreateView, View.OnClickListener {
     private CreatePresenter mPresenter;
@@ -28,6 +30,8 @@ public class CreateActivity extends SuperBackActivity implements CreateView, Vie
 
     private void initFloatActionButton() {
         FloatActionButton actionButton = (FloatActionButton) findViewById(R.id.action_submit);
+        Drawable drawable = IconDrawable.getOkDrawable(getResources());
+        actionButton.setImageDrawable(drawable);
         actionButton.setOnClickListener(this);
     }
 

@@ -2,15 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/dark_dark"
-    android:gravity="center"
+    android:layout_alignParentBottom="true"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ui.activity.KeyVerifyActivity">
+
 
     <net.qiujuer.genius.ui.widget.EditText
         android:id="@+id/edit_key"
@@ -26,13 +27,13 @@
 
     <net.qiujuer.genius.ui.widget.Button
         android:id="@+id/btn_submit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edit_key"
-        android:layout_marginTop="@dimen/lay_16"
+        android:layout_width="128dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="@dimen/lay_16"
         android:background="@null"
         android:gravity="center"
         android:text="@string/btn_key_verify_submit"
+        android:layout_alignParentBottom="true"
         android:textColor="@color/white_alpha_224"
         app:gTouchEffect="ripple" />
 

@@ -1,8 +1,7 @@
 package net.qiujuer.powerback.ankey.ui.activity;
 
 import android.content.Intent;
-import android.graphics.Paint;
-import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -14,7 +13,7 @@ import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.ui.SuperActivity;
 import net.qiujuer.powerback.ankey.ui.adapter.InfoListAdapter;
 import net.qiujuer.powerback.ankey.ui.adapter.callback.InfoListAdapterCallback;
-import net.qiujuer.powerback.ankey.widget.drawable.CrossLineShape;
+import net.qiujuer.powerback.ankey.widget.drawable.IconDrawable;
 
 import java.util.UUID;
 
@@ -40,19 +39,8 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
     }
 
     private void initFloatActionButton() {
-        final float density = getResources().getDisplayMetrics().density;
         FloatActionButton addButton = (FloatActionButton) findViewById(R.id.action_add);
-        CrossLineShape shape = new CrossLineShape();
-        ShapeDrawable drawable = new ShapeDrawable(shape);
-        Paint paint = drawable.getPaint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setAntiAlias(true);
-        paint.setDither(true);
-        paint.setColor(0xc0ffffff);
-        paint.setStrokeWidth(2 * density);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        drawable.setIntrinsicWidth(100);
-        drawable.setIntrinsicHeight(100);
+        Drawable drawable = IconDrawable.getCreateDrawable(getResources());
         addButton.setImageDrawable(drawable);
         addButton.setOnClickListener(this);
     }

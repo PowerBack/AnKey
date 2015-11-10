@@ -1,8 +1,5 @@
 package net.qiujuer.powerback.ankey.presenter;
 
-import android.util.Log;
-
-import net.qiujuer.genius.kit.util.Tools;
 import net.qiujuer.genius.kit.util.UiKit;
 import net.qiujuer.powerback.ankey.model.db.InfoModel;
 import net.qiujuer.powerback.ankey.model.view.InfoViewModel;
@@ -18,6 +15,7 @@ import java.util.UUID;
 public class InfoListPresenter {
     private InfoListView mView;
     private Thread mThread;
+    private long mDate = 0;
 
     public InfoListPresenter(InfoListView view) {
         mView = view;
@@ -31,7 +29,6 @@ public class InfoListPresenter {
         mThread = new Thread("InfoListPresenter-Thread") {
             @Override
             public void run() {
-                Tools.sleepIgnoreInterrupt(1000);
                 loadData();
                 mThread = null;
             }
@@ -41,68 +38,59 @@ public class InfoListPresenter {
 
     private void loadData() {
         // load data
-        List<InfoModel> models = InfoModel.getAll();
+        List<InfoModel> models = InfoModel.getAll(mDate);
         if (models == null || models.size() == 0) {
-            stopLoad(false);
+            List<InfoViewModel> viewModels = mView.getDataSet();
+            stopLoad(viewModels.size() > 0);
         } else {
             stopLoad(true);
+            mDate = models.get(0).getLastDate();
             List<InfoViewModel> viewModels = mView.getDataSet();
             for (InfoModel model : models) {
-                Tools.sleepIgnoreInterrupt(20);
                 if (!formatModel(viewModels, model))
                     break;
             }
         }
     }
 
-    private void notifyInsert(final int index) {
-        UiKit.runOnMainThreadAsync(new Runnable() {
-            @Override
-            public void run() {
-                mView.notifyItemChanged(index);
-            }
-        });
-    }
-
-    private void notifyChange(final int index) {
-        UiKit.runOnMainThreadAsync(new Runnable() {
-            @Override
-            public void run() {
-                mView.notifyItemChanged(index);
-            }
-        });
-    }
-
     private boolean formatModel(List<InfoViewModel> viewModels, InfoModel model) {
-        InfoViewModel sModel = searchViewModel(viewModels, model);
-        boolean isCreate = false;
-        if (sModel == null) {
-            sModel = new InfoViewModel(model.getInfoId());
-            viewModels.add(sModel);
-            isCreate = true;
-        }
-        if (decryptModel(model, sModel)) {
-            int index = getModelIndex(viewModels, model);
-            Log.e(InfoListPresenter.class.getSimpleName(), viewModels.size() + " " + index + " " + isCreate);
-            if (index >= 0) {
-                if (isCreate)
-                    notifyInsert(index);
-                else
-                    notifyChange(index);
+        InfoViewModel vModel = searchViewModel(viewModels, model);
+        if (vModel == null) {
+            vModel = new InfoViewModel(model);
+            if (decryptModel(model, vModel)) {
+                int index = getInsertIndex(viewModels, vModel);
+                viewModels.add(index, vModel);
+                notifyInsert(index);
+                return true;
             }
-            return true;
+        } else {
+            if (decryptModel(model, vModel)) {
+                int index = getChangeIndex(viewModels, model);
+                notifyChange(index);
+                return true;
+            }
         }
         return false;
     }
 
-    private int getModelIndex(List<InfoViewModel> viewModels, InfoModel model) {
+    private int getInsertIndex(List<InfoViewModel> viewModels, InfoViewModel vModel) {
+        int index = 0;
+        for (InfoViewModel viewModel : viewModels) {
+            if (vModel.getLastDate() >= viewModel.getLastDate())
+                break;
+            index++;
+        }
+        return index;
+    }
+
+    private int getChangeIndex(List<InfoViewModel> viewModels, InfoModel model) {
         int index = 0;
         for (InfoViewModel i : viewModels) {
             if (i.getId().equals(model.getInfoId()))
-                return index;
+                break;
             index++;
         }
-        return -1;
+        return index;
     }
 
     private InfoViewModel searchViewModel(List<InfoViewModel> viewModels, InfoModel model) {
@@ -112,6 +100,39 @@ public class InfoListPresenter {
                 return viewModel;
         }
         return null;
+    }
+
+    private boolean decryptModel(InfoModel src, InfoViewModel result) {
+        try {
+            result.setLastDate(src.getLastDate());
+            result.setDescription(AppPresenter.decrypt(src.getDescription()));
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private void notifyInsert(final int index) {
+        if (index < 0)
+            return;
+        UiKit.runOnMainThreadAsync(new Runnable() {
+            @Override
+            public void run() {
+                mView.notifyItemChanged(index);
+            }
+        });
+    }
+
+    private void notifyChange(final int index) {
+        if (index < 0)
+            return;
+        UiKit.runOnMainThreadAsync(new Runnable() {
+            @Override
+            public void run() {
+                mView.notifyItemChanged(index);
+            }
+        });
     }
 
     private void startLoad() {
@@ -130,16 +151,6 @@ public class InfoListPresenter {
                     mView.showNull();
             }
         });
-    }
-
-    private boolean decryptModel(InfoModel src, InfoViewModel result) {
-        try {
-            result.setDescription(AppPresenter.decrypt(src.getDescription()));
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
     }
 
     public void destroy() {

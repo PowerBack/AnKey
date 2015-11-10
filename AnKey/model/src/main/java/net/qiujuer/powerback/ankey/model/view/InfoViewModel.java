@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.text.TextUtils;
 
 import net.qiujuer.genius.res.Resource;
+import net.qiujuer.powerback.ankey.model.db.InfoModel;
 
 import java.util.UUID;
 
@@ -15,13 +16,15 @@ public class InfoViewModel {
     private UUID id;
     private String description;
     private int color;
+    private long lastDate;
 
     public InfoViewModel() {
 
     }
 
-    public InfoViewModel(UUID id) {
-        this.id = id;
+    public InfoViewModel(InfoModel model) {
+        this.id = model.getInfoId();
+        this.lastDate = model.getLastDate();
     }
 
     public UUID getId() {
@@ -52,5 +55,17 @@ public class InfoViewModel {
         if (index < colorArray.length)
             bgColor = colorArray[index];
         return bgColor;
+    }
+
+    public long getLastDate() {
+        return lastDate;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public void setLastDate(long lastDate) {
+        this.lastDate = lastDate;
     }
 }
