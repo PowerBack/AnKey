@@ -1,17 +1,17 @@
 package net.qiujuer.powerback.ankey.ui.activity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 
+import net.qiujuer.genius.ui.Ui;
 import net.qiujuer.genius.ui.widget.EditText;
 import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.presenter.KeyCreatePresenter;
 import net.qiujuer.powerback.ankey.presenter.view.KeyCreateView;
 import net.qiujuer.powerback.ankey.ui.SuperBackActivity;
-import net.qiujuer.powerback.ankey.util.AnKeyTransformationMethod;
 
 public class KeyCreateActivity extends SuperBackActivity implements KeyCreateView, View.OnClickListener {
-
     private KeyCreatePresenter mPresenter;
     private EditText mKey;
     private EditText mKeyConfirm;
@@ -29,8 +29,11 @@ public class KeyCreateActivity extends SuperBackActivity implements KeyCreateVie
         mKey = (EditText) findViewById(R.id.edit_key);
         mKeyConfirm = (EditText) findViewById(R.id.edit_key_confirm);
 
-        mKey.setTransformationMethod(AnKeyTransformationMethod.getInstance());
-        mKeyConfirm.setTransformationMethod(AnKeyTransformationMethod.getInstance());
+        Typeface typeface = Ui.getFont(this, "fonts/FZLanTingHeiS-L-GB-Regular.TTF");
+        mKey.setTypeface(typeface);
+        mKeyConfirm.setTypeface(typeface);
+        //mKey.setTransformationMethod(AnKeyTransformationMethod.getInstance());
+        //mKeyConfirm.setTransformationMethod(AnKeyTransformationMethod.getInstance());
     }
 
 

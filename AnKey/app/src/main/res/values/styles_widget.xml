@@ -5,11 +5,20 @@
         <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:textColorHint">@drawable/ic_edit_hint</item>
         <item name="android:textCursorDrawable">@null</item>
-        <item name="gLineColor">@drawable/ic_edit_line</item>
         <item name="android:paddingLeft">@dimen/lay_16</item>
         <item name="android:paddingRight">@dimen/lay_16</item>
         <item name="android:textSize">@dimen/font_14</item>
         <item name="android:singleLine">true</item>
+        <item name="gLineColor">@drawable/ic_edit_line</item>
     </style>
 
+    <style name="key.btn.red" parent="Genius.Widget.Button">
+        <item name="android:background">@drawable/ic_btn_bg_red</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/white_alpha_224</item>
+        <item name="android:textSize">@dimen/font_16</item>
+        <item name="gTouchCornerRadius">@dimen/lay_4</item>
+        <item name="gTouchEffect">ripple</item>
+    </style>
 </resources>
