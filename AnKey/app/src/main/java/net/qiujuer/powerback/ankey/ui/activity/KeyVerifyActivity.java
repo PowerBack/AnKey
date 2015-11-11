@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
-import net.qiujuer.genius.ui.widget.EditText;
 import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.presenter.KeyVerifyPresenter;
 import net.qiujuer.powerback.ankey.presenter.view.KeyVerifyView;
@@ -26,6 +26,7 @@ public class KeyVerifyActivity extends SuperActivity implements KeyVerifyView, V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_key_verify);
+        setCenterTitle(true);
 
         mPresenter = new KeyVerifyPresenter(this);
 
@@ -39,14 +40,8 @@ public class KeyVerifyActivity extends SuperActivity implements KeyVerifyView, V
     }
 
     @Override
-    protected void initToolBar() {
-        super.initToolBar();
-        mToolbar.setNavigationIcon(R.mipmap.ic_launcher);
-    }
-
-    @Override
     protected void onInflateMenu(Toolbar toolbar) {
-        toolbar.inflateMenu(R.menu.menu_key_verify);
+        //toolbar.inflateMenu(R.menu.menu_key_verify);
     }
 
     @Override
