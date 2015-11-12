@@ -1,9 +1,11 @@
 package net.qiujuer.powerback.ankey.ui;
 
+import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableStringBuilder;
@@ -226,5 +228,75 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
 
     public void showToast(int strRes) {
         Toast.makeText(this, strRes, Toast.LENGTH_SHORT).show();
+    }
+
+    public AlertDialog showDialog(String msg) {
+        return showDialog(null, msg);
+    }
+
+    public AlertDialog showDialog(String title, String msg) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Theme_Dialog);
+        if (title != null)
+            builder.setTitle(title);
+        if (msg != null)
+            builder.setMessage(msg);
+        builder.setNegativeButton(R.string.label_dialog_negative, null);
+        builder.setPositiveButton(R.string.label_dialog_positive, null);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setGravity(Gravity.TOP);
+        return alertDialog;
+    }
+
+
+    public AlertDialog showDialog(View content) {
+        return showDialog(0, content);
+    }
+
+    public AlertDialog showDialog(int title, View content) {
+        return showDialog(title, content, null, null);
+    }
+
+    public AlertDialog showDialog(int title, View content,
+                                  DialogInterface.OnClickListener negativeButtonListener,
+                                  DialogInterface.OnClickListener positiveButtonListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Theme_Dialog);
+        if (title != 0)
+            builder.setTitle(title);
+        if (content != null)
+            builder.setView(content);
+        builder.setNegativeButton(R.string.label_dialog_negative, negativeButtonListener);
+        builder.setPositiveButton(R.string.label_dialog_positive, positiveButtonListener);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setGravity(Gravity.TOP);
+        return alertDialog;
+    }
+
+    public AlertDialog showDialog(String title, View content,
+                                  String negativeButtonStr,
+                                  String positiveButtonStr,
+                                  DialogInterface.OnClickListener negativeButtonListener,
+                                  DialogInterface.OnClickListener positiveButtonListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Theme_Dialog);
+        if (title != null)
+            builder.setTitle(title);
+        if (content != null)
+            builder.setView(content);
+        builder.setNegativeButton(negativeButtonStr, negativeButtonListener);
+        builder.setPositiveButton(positiveButtonStr, positiveButtonListener);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setGravity(Gravity.TOP);
+        return alertDialog;
+    }
+
+    public AlertDialog showDialog(int title, View content, DialogInterface.OnClickListener positiveButtonListener) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Theme_Dialog);
+        if (title != 0)
+            builder.setTitle(title);
+        if (content != null)
+            builder.setView(content);
+        builder.setPositiveButton(R.string.label_dialog_positive, positiveButtonListener);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setGravity(Gravity.TOP);
+        return alertDialog;
     }
 }

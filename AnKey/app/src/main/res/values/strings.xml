@@ -25,6 +25,7 @@
     <string name="label_call">Call</string>
     <string name="label_remark">Remarks</string>
     <string name="label_note_need">NOTE: The red dot for the required option.</string>
+    <string name="label_note_key_create">NOTE: To encrypt your data, please enter a key.</string>
 
     <string name="appTourSkipButton">跳过</string>
     <string name="appTourDoneButton">完成</string>

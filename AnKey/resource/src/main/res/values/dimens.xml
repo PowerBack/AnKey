@@ -5,4 +5,6 @@
     <dimen name="toolBar_height">48dp</dimen>
     <dimen name="toolBar_height_min">44dp</dimen>
     <dimen name="toolBar_height_max">56dp</dimen>
+
+    <dimen name="dialog_margin_top">25dp</dimen>
 </resources>

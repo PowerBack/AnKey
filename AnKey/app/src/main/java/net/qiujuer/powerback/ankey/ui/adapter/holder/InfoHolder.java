@@ -22,6 +22,7 @@ public class InfoHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(InfoViewModel model) {
+        itemView.setTag(model.getId());
         mDes.setText(model.getDescription());
         mColor.setBackgroundColor(model.getColor());
     }

@@ -25,4 +25,6 @@
     <color name="blood_primary">#d94130</color>
     <!--<color name="blood_primary">#c41f26</color>-->
     <color name="blood_light">#f2b6ae</color>
+
+    <color name="dialog_window_background">#fcf5f5f5</color>
 </resources>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Resource</string>
+    <string name="label_dialog_negative">Cancel</string>
+    <string name="label_dialog_positive">OK</string>
 </resources>
