@@ -13,6 +13,7 @@ import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.ui.SuperActivity;
 import net.qiujuer.powerback.ankey.ui.adapter.InfoListAdapter;
 import net.qiujuer.powerback.ankey.ui.adapter.callback.InfoListAdapterCallback;
+import net.qiujuer.powerback.ankey.widget.decoration.EdgeItemDecoration;
 import net.qiujuer.powerback.ankey.widget.drawable.IconDrawable;
 
 import java.util.UUID;
@@ -51,6 +52,8 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
 
         mInfoListAdapter = new InfoListAdapter(this);
         mRecycler.setAdapter(mInfoListAdapter);
+
+        mRecycler.addItemDecoration(new EdgeItemDecoration(getResources(), 16, 16, 16, 16, 8));
     }
 
     @Override

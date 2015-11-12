@@ -1,5 +1,8 @@
 package net.qiujuer.powerback.ankey.presenter;
 
+import android.util.Log;
+
+import net.qiujuer.genius.kit.util.Tools;
 import net.qiujuer.genius.kit.util.UiKit;
 import net.qiujuer.powerback.ankey.model.db.InfoModel;
 import net.qiujuer.powerback.ankey.model.view.InfoViewModel;
@@ -61,6 +64,7 @@ public class InfoListPresenter {
                 int index = getInsertIndex(viewModels, vModel);
                 viewModels.add(index, vModel);
                 notifyInsert(index);
+                Tools.sleepIgnoreInterrupt(30);
                 return true;
             }
         } else {
@@ -116,10 +120,11 @@ public class InfoListPresenter {
     private void notifyInsert(final int index) {
         if (index < 0)
             return;
-        UiKit.runOnMainThreadAsync(new Runnable() {
+        UiKit.runOnMainThreadSync(new Runnable() {
             @Override
             public void run() {
-                mView.notifyItemChanged(index);
+                Log.e("InfoListPresenter", "notifyInsert: " + index + " " + mView.getDataSet().size());
+                mView.notifyItemInserted(index);
             }
         });
     }
@@ -127,7 +132,7 @@ public class InfoListPresenter {
     private void notifyChange(final int index) {
         if (index < 0)
             return;
-        UiKit.runOnMainThreadAsync(new Runnable() {
+        UiKit.runOnMainThreadSync(new Runnable() {
             @Override
             public void run() {
                 mView.notifyItemChanged(index);

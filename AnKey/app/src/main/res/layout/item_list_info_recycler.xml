@@ -3,12 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/lay_4"
-    android:layout_marginLeft="@dimen/lay_4"
-    android:layout_marginRight="@dimen/lay_4"
-    android:layout_marginTop="@dimen/lay_4"
-    app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="5dp"
+    app:cardBackgroundColor="@color/yellow_500"
+    app:cardCornerRadius="0dp"
     app:contentPadding="@dimen/lay_8">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
