@@ -10,7 +10,7 @@ import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.presenter.CreatePresenter;
 import net.qiujuer.powerback.ankey.presenter.view.CreateView;
 import net.qiujuer.powerback.ankey.ui.SuperBackActivity;
-import net.qiujuer.powerback.ankey.widget.drawable.IconDrawable;
+import net.qiujuer.powerback.ankey.widget.drawable.Drawables;
 
 public class CreateActivity extends SuperBackActivity implements CreateView, View.OnClickListener {
     private CreatePresenter mPresenter;
@@ -30,7 +30,7 @@ public class CreateActivity extends SuperBackActivity implements CreateView, Vie
 
     private void initFloatActionButton() {
         FloatActionButton actionButton = (FloatActionButton) findViewById(R.id.action_submit);
-        Drawable drawable = IconDrawable.getOkDrawable(getResources());
+        Drawable drawable = Drawables.getOkDrawable(getResources());
         actionButton.setImageDrawable(drawable);
         actionButton.setOnClickListener(this);
     }

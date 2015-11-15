@@ -14,7 +14,7 @@ import net.qiujuer.powerback.ankey.ui.SuperActivity;
 import net.qiujuer.powerback.ankey.ui.adapter.InfoListAdapter;
 import net.qiujuer.powerback.ankey.ui.adapter.callback.InfoListAdapterCallback;
 import net.qiujuer.powerback.ankey.widget.decoration.EdgeItemDecoration;
-import net.qiujuer.powerback.ankey.widget.drawable.IconDrawable;
+import net.qiujuer.powerback.ankey.widget.drawable.Drawables;
 
 import java.util.UUID;
 
@@ -41,7 +41,7 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
 
     private void initFloatActionButton() {
         FloatActionButton addButton = (FloatActionButton) findViewById(R.id.action_add);
-        Drawable drawable = IconDrawable.getCreateDrawable(getResources());
+        Drawable drawable = Drawables.getCreateDrawable(getResources());
         addButton.setImageDrawable(drawable);
         addButton.setOnClickListener(this);
     }

@@ -9,6 +9,6 @@
     <style name="Theme.Dialog.Base" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowBackground">@drawable/ic_dialog_background_light</item>
+        <item name="android:windowBackground">@null</item>
     </style>
 </resources>

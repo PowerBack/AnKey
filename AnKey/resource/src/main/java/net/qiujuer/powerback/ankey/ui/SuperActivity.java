@@ -2,9 +2,7 @@ package net.qiujuer.powerback.ankey.ui;
 
 import android.content.DialogInterface;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.InsetDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
@@ -17,7 +15,6 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +24,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import net.qiujuer.powerback.ankey.SuperApplication;
 import net.qiujuer.powerback.ankey.reflect.StatusBarProxy;
 import net.qiujuer.powerback.ankey.resource.R;
-import net.qiujuer.powerback.ankey.widget.drawable.ShadowDrawable;
+import net.qiujuer.powerback.ankey.widget.drawable.Drawables;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyTypefaceSpan;
 import uk.co.chrisjenx.calligraphy.TypefaceUtils;
@@ -249,16 +246,8 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
         builder.setPositiveButton(R.string.label_dialog_positive, null);
         AlertDialog alertDialog = builder.create();
         alertDialog.getWindow().setGravity(Gravity.TOP);
-        InsetDrawable drawable = new InsetDrawable(new ColorDrawable(getResources().getColor(R.color.cyan_500)), 0, 200, 0, 0);
-
-
-        Drawable drawable1 = new ShadowDrawable();
-
-        alertDialog.getWindow().setBackgroundDrawable(drawable1);
-
-//        alertDialog.getWindow().setFlags(
-//                WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-
+        Drawable drawable = Drawables.getShadowDrawable(getResources(), getResources().getColor(R.color.orange_700));
+        alertDialog.getWindow().setBackgroundDrawable(drawable);
         return alertDialog;
     }
 

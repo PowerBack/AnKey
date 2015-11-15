@@ -5,11 +5,14 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+
+import net.qiujuer.genius.ui.Ui;
 
 /**
  * Created by qiujuer
@@ -17,45 +20,135 @@ import android.graphics.drawable.Drawable;
  */
 public class ShadowDrawable extends Drawable {
     private Paint mPaint;
+    private Rect mPadding = new Rect(0, 25, 0, 0);
+    private int mColor;
+    private int mShadowLen = 10;
 
-    public ShadowDrawable() {
+    public ShadowDrawable(int color, int shadowLen) {
+        mColor = color;
+        mShadowLen = shadowLen;
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setStrokeWidth(4);
-        mPaint.setColor(0xff345678);
-        mPaint.setShadowLayer(5, 3, 6, 0xff000000);
-        mPaint.setAntiAlias(true);//去除锯齿。
-        mPaint.setShadowLayer(5f, 5.0f, 5.0f, Color.BLACK); //设置阴影层，这是关键。
-        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        mPaint.setAntiAlias(true);
+        mPaint.setDither(true);
+        mPaint.setStrokeWidth(1);
+
+        //mPaint.setStrokeJoin(Paint.Join.ROUND);
+        //mPaint.setStrokeCap(Paint.Cap.ROUND);
+
+        initShader();
+    }
+
+    public void setColor(int color) {
+        mColor = color;
+        initShader();
+    }
+
+    public void setShadowLen(int len) {
+        mShadowLen = len;
+        initShader();
+    }
+
+    private void initShader() {
+        Shader shader = new LinearGradient(0, 0, 0, mShadowLen, 0xffbbbbbb, 0xfefefefe, Shader.TileMode.REPEAT);
+        mPaint.setColor(mColor);
+        //mPaint.setShader(shader);
+    }
+
+    public Paint getPaint() {
+        return mPaint;
     }
 
     @Override
     public void draw(Canvas canvas) {
         Rect rect = getBounds();
-        canvas.drawColor(0xffffffff);
+
+        // draw the src/dst example into our offscreen bitmap
+        int sc = canvas.saveLayer(rect.left, rect.top, rect.right, rect.bottom, null,
+                Canvas.MATRIX_SAVE_FLAG |
+                        Canvas.CLIP_SAVE_FLAG |
+                        Canvas.HAS_ALPHA_LAYER_SAVE_FLAG |
+                        Canvas.FULL_COLOR_LAYER_SAVE_FLAG |
+                        Canvas.CLIP_TO_LAYER_SAVE_FLAG);
+        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        mPaint.setColor(Color.TRANSPARENT);
+        canvas.drawRect(rect.left, rect.top, rect.right, rect.bottom, mPaint);
+        mPaint.setXfermode(null);
+        canvas.restoreToCount(sc);
 
 
-        Shader mShader = new LinearGradient(0, 0, 0, 10, 0xffbbbbbb, 0xfffefefe, Shader.TileMode.REPEAT);
-        // 新建一个线性渐变，前两个参数是渐变开始的点坐标，第三四个参数是渐变结束的点的坐标。
-        // 连接这2个点就拉出一条渐变线了，玩过PS的都懂。然后那个数组是渐变的颜色。
-        // 下一个参数是渐变颜色的分布，如果为空，每个颜色就是均匀分布的。最后是模式，这里设置的是循环渐变
+        int bottom = rect.bottom - 1;
 
-        mPaint.setShader(mShader);
-        mPaint.setColor(Color.WHITE);
-        canvas.drawRect(rect.left, rect.bottom - 11, rect.right, rect.bottom - 1, mPaint);
+        mPaint.setColor(mColor);
+        canvas.drawRect(rect.left, rect.top, rect.right, bottom - mShadowLen, mPaint);
+
+        drawBottomShadow(canvas, rect.left, rect.right, bottom - mShadowLen, bottom - 1, 1);
+    }
+
+    private void drawBottomShadow(Canvas canvas, float startX, float endX, float startY, float endY, float precision) {
+        final float h = endY - startY;
+        for (float a = startY; a <= endY; a += precision) {
+            float fraction = (a - startY) / h;
+            int color = getColor(0x99000000, Color.TRANSPARENT, fraction);
+            mPaint.setColor(color);
+            canvas.drawRect(startX, a, endX, a + precision, mPaint);
+        }
+    }
+
+    private int getColor(int startColor, int endColor, float fraction) {
+        // Color
+        int startA = (startColor >> 24) & 0xff;
+        int startR = (startColor >> 16) & 0xff;
+        int startG = (startColor >> 8) & 0xff;
+        int startB = startColor & 0xff;
+
+        int endA = (endColor >> 24) & 0xff;
+        int endR = (endColor >> 16) & 0xff;
+        int endG = (endColor >> 8) & 0xff;
+        int endB = endColor & 0xff;
+
+        return (startA + (int) (fraction * (endA - startA))) << 24 |
+                (startR + (int) (fraction * (endR - startR))) << 16 |
+                (startG + (int) (fraction * (endG - startG))) << 8 |
+                (startB + (int) (fraction * (endB - startB)));
     }
 
     @Override
     public void setAlpha(int alpha) {
-
+        Ui.changeColorAlpha(mColor, alpha);
     }
 
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
+        final Paint paint = mPaint;
+        if (paint != null && paint.getColorFilter() != colorFilter) {
+            paint.setColorFilter(colorFilter);
+            invalidateSelf();
+        }
+    }
 
+    public void setPadding(Rect padding) {
+        this.mPadding.set(padding);
+    }
+
+    @Override
+    public boolean getPadding(Rect padding) {
+        padding.set(mPadding);
+        return true;
     }
 
     @Override
     public int getOpacity() {
-        return 0;
+        final Paint paint = mPaint;
+        if (paint.getXfermode() == null) {
+            final int alpha = Color.alpha(mColor);
+            if (alpha == 0) {
+                return PixelFormat.TRANSPARENT;
+            }
+            if (alpha == 255) {
+                return PixelFormat.OPAQUE;
+            }
+        }
+        // not sure, so be safe
+        return PixelFormat.TRANSLUCENT;
     }
 }
