@@ -84,6 +84,7 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
     @Override
     public void onItemSelected(UUID id) {
         showDialog("Test").show();
+        EditActivity.show(this, id);
     }
 
     @Override

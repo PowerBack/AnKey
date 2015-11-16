@@ -32,4 +32,8 @@ public interface CreateView {
     void setError(int error);
 
     void setOk();
+
+    void showLoading();
+
+    void hideLoading();
 }

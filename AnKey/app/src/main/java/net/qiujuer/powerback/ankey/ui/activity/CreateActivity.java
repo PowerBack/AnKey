@@ -22,10 +22,13 @@ public class CreateActivity extends SuperBackActivity implements CreateView, Vie
         setStatusBarColorRes(R.color.colorAccent);
         setTitleBackgroundColorRes(R.color.colorAccent);
 
-        mPresenter = new CreatePresenter(this);
-
         initFloatActionButton();
 
+        initPresenter();
+    }
+
+    protected void initPresenter() {
+        mPresenter = new CreatePresenter(this);
     }
 
     private void initFloatActionButton() {
@@ -104,7 +107,20 @@ public class CreateActivity extends SuperBackActivity implements CreateView, Vie
     }
 
     @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
     public void onClick(View v) {
+        CreatePresenter presenter = mPresenter;
+        if (presenter == null)
+            return;
         if (v.getId() == R.id.action_submit) {
             mPresenter.submit();
         }
