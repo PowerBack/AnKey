@@ -2,12 +2,14 @@ package net.qiujuer.powerback.ankey.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import net.qiujuer.genius.ui.Ui;
 import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.presenter.KeyVerifyPresenter;
 import net.qiujuer.powerback.ankey.presenter.view.KeyVerifyView;
@@ -31,6 +33,8 @@ public class KeyVerifyActivity extends SuperActivity implements KeyVerifyView, V
         mPresenter = new KeyVerifyPresenter(this);
 
         mKey = (EditText) findViewById(R.id.edit_key);
+        Typeface typeface = Ui.getFont(this, "FZLanTingHeiS-L-GB-Regular.TTF");
+        mKey.setTypeface(typeface);
         findViewById(R.id.btn_submit).setOnClickListener(this);
     }
 

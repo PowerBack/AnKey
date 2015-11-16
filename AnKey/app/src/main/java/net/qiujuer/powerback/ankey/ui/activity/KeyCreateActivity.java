@@ -29,7 +29,7 @@ public class KeyCreateActivity extends SuperBackActivity implements KeyCreateVie
         mKey = (EditText) findViewById(R.id.edit_key);
         mKeyConfirm = (EditText) findViewById(R.id.edit_key_confirm);
 
-        Typeface typeface = Ui.getFont(this, "fonts/FZLanTingHeiS-L-GB-Regular.TTF");
+        Typeface typeface = Ui.getFont(this, "FZLanTingHeiS-L-GB-Regular.TTF");
         mKey.setTypeface(typeface);
         mKeyConfirm.setTypeface(typeface);
         //mKey.setTransformationMethod(AnKeyTransformationMethod.getInstance());
