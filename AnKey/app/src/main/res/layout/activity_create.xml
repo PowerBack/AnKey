@@ -153,4 +153,19 @@
         app:gBackgroundColor="@color/colorAccent"
         app:gTouchColor="@color/black_alpha_64"
         tools:ignore="RtlHardcoded" />
+
+    <FrameLayout
+        android:id="@+id/lay_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_alpha_48"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <net.qiujuer.genius.ui.widget.Loading
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
 </merge>

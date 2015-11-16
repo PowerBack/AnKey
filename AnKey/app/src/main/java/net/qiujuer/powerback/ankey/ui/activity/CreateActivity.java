@@ -6,6 +6,7 @@ import android.view.View;
 
 import net.qiujuer.genius.ui.widget.EditText;
 import net.qiujuer.genius.ui.widget.FloatActionButton;
+import net.qiujuer.genius.ui.widget.Loading;
 import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.presenter.CreatePresenter;
 import net.qiujuer.powerback.ankey.presenter.view.CreateView;
@@ -108,12 +109,16 @@ public class CreateActivity extends SuperBackActivity implements CreateView, Vie
 
     @Override
     public void showLoading() {
-
+        findViewById(R.id.lay_loading).setVisibility(View.VISIBLE);
+        Loading loading = (Loading) findViewById(R.id.loading);
+        loading.start();
     }
 
     @Override
     public void hideLoading() {
-
+        findViewById(R.id.lay_loading).setVisibility(View.GONE);
+        Loading loading = (Loading) findViewById(R.id.loading);
+        loading.stop();
     }
 
     @Override

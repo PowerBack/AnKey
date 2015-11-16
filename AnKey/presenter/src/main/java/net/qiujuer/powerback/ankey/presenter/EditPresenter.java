@@ -42,15 +42,15 @@ public class EditPresenter {
             UiKit.runOnMainThreadAsync(new Runnable() {
                 @Override
                 public void run() {
-                    mView.setDescription(decryptModel.getDescription());
-                    mView.setPassword(decryptModel.getPassword());
                     mView.setColor(decryptModel.getColor());
                     mView.setUsername(decryptModel.getUserName());
                     mView.setEmail(decryptModel.getEmail());
-                    mView.setCall(decryptModel.getCall());
-                    mView.setQQ(decryptModel.getQQ());
-                    mView.setRemarks(decryptModel.getRemark());
                     mView.setSite(decryptModel.getSite());
+                    mView.setQQ(decryptModel.getQQ());
+                    mView.setCall(decryptModel.getCall());
+                    mView.setRemarks(decryptModel.getRemark());
+                    mView.setDescription(decryptModel.getDescription());
+                    mView.setPassword(decryptModel.getPassword());
                 }
             });
         }

@@ -65,8 +65,9 @@ public class EditActivity extends CreateActivity implements EditView {
             return;
         EditText text = ((EditText) findViewById(id));
         if (text != null) {
-            text.setText(value);
             text.requestFocus();
+            text.setText(value);
+
             Editable editable = text.getText();
             Selection.setSelection(editable, editable.length());
         }
