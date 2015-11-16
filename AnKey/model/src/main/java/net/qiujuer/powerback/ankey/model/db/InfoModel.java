@@ -204,7 +204,7 @@ public class InfoModel extends Model implements ModelStatus {
         return lastDate;
     }
 
-    public static InfoModel getInfoModel(UUID uuid) {
+    public static InfoModel get(UUID uuid) {
         return new Select()
                 .from(InfoModel.class)
                 .where("InfoId = ?", uuid.toString())
