@@ -94,6 +94,11 @@ public class AppPresenter {
     }
 
     public static String encrypt(String src) throws NullPointerException {
+        // Check the string is empty
+        if (TextUtils.isEmpty(src))
+            return null;
+
+        // If tool is null , will throw NullPointerException
         KeyTool tool = KEY_TOOL;
         if (tool == null)
             throw new NullPointerException("The app key tool is null, you should call setKey()");
@@ -103,6 +108,11 @@ public class AppPresenter {
     }
 
     public static String decrypt(String encrypted) throws NullPointerException {
+        // Check the string is empty
+        if (TextUtils.isEmpty(encrypted))
+            return null;
+
+        // If tool is null , will throw NullPointerException
         KeyTool tool = KEY_TOOL;
         if (tool == null)
             throw new NullPointerException("The app key tool is null, you should call setKey()");
