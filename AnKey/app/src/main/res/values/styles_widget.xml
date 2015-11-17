@@ -21,4 +21,12 @@
         <item name="gTouchCornerRadius">@dimen/lay_4</item>
         <item name="gTouchEffect">ripple</item>
     </style>
+
+    <style name="key.text.default" parent="Genius.Widget.TextView">
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:paddingLeft">@dimen/lay_16</item>
+        <item name="android:paddingRight">@dimen/lay_16</item>
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:singleLine">true</item>
+    </style>
 </resources>

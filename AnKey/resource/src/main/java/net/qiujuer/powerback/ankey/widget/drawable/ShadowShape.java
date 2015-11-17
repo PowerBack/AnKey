@@ -20,7 +20,7 @@ public class ShadowShape extends Shape {
     @Override
     public void draw(Canvas canvas, Paint paint) {
         float w = getWidth();
-        float h = getHeight();
+        float h = getHeight() - 1;
 
         float sh = h - mShadowLen;
 

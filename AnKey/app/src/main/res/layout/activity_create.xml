@@ -32,8 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="@dimen/font_16"
-            android:paddingRight="@dimen/font_16">
+            android:paddingLeft="@dimen/lay_16"
+            android:paddingRight="@dimen/lay_16">
 
             <FrameLayout
                 android:layout_width="match_parent"

@@ -3,6 +3,7 @@ package net.qiujuer.powerback.ankey.ui.activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
@@ -82,9 +83,17 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
     }
 
     @Override
-    public void onItemSelected(UUID id) {
-        //showDialog("Test").show();
-        EditActivity.show(this, id);
+    public void onItemSelected(final UUID id) {
+        View view = View.inflate(this, R.layout.lay_detail, null);
+        final AlertDialog dialog = showDialog(view);
+        view.findViewById(R.id.text_description).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                EditActivity.show(MainActivity.this, id);
+            }
+        });
+        dialog.show();
     }
 
     @Override

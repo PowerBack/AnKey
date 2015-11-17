@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -244,10 +245,25 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
             builder.setMessage(msg);
         builder.setNegativeButton(R.string.label_dialog_negative, null);
         builder.setPositiveButton(R.string.label_dialog_positive, null);
+        return builderAlertDialog(builder);
+    }
+
+    private AlertDialog builderAlertDialog(AlertDialog.Builder builder) {
         AlertDialog alertDialog = builder.create();
-        alertDialog.getWindow().setGravity(Gravity.TOP);
-        Drawable drawable = Drawables.getShadowDrawable(getResources(), getResources().getColor(R.color.orange_700));
-        alertDialog.getWindow().setBackgroundDrawable(drawable);
+
+        Drawable drawable = Drawables.getShadowDrawable(getResources(), getResources().getColor(R.color.white_alpha_240));
+        Window window = alertDialog.getWindow();
+        window.setBackgroundDrawable(drawable);
+        window.setGravity(Gravity.TOP);
+
+        int b = (int) (getResources().getDisplayMetrics().density * 4);
+        View view = window.getDecorView();
+        view.setPadding(view.getPaddingLeft(),
+                view.getPaddingTop(),
+                view.getPaddingRight(),
+                view.getPaddingBottom() > b ? view.getPaddingBottom() : b);
+
+
         return alertDialog;
     }
 
@@ -268,11 +284,12 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
             builder.setTitle(title);
         if (content != null)
             builder.setView(content);
-        builder.setNegativeButton(R.string.label_dialog_negative, negativeButtonListener);
-        builder.setPositiveButton(R.string.label_dialog_positive, positiveButtonListener);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.getWindow().setGravity(Gravity.TOP);
-        return alertDialog;
+        if (null != negativeButtonListener)
+            builder.setNegativeButton(R.string.label_dialog_negative, negativeButtonListener);
+        if (null != positiveButtonListener)
+            builder.setPositiveButton(R.string.label_dialog_positive, positiveButtonListener);
+
+        return builderAlertDialog(builder);
     }
 
     public AlertDialog showDialog(String title, View content,
@@ -287,9 +304,7 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
             builder.setView(content);
         builder.setNegativeButton(negativeButtonStr, negativeButtonListener);
         builder.setPositiveButton(positiveButtonStr, positiveButtonListener);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.getWindow().setGravity(Gravity.TOP);
-        return alertDialog;
+        return builderAlertDialog(builder);
     }
 
     public AlertDialog showDialog(int title, View content, DialogInterface.OnClickListener positiveButtonListener) {
@@ -299,8 +314,6 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
         if (content != null)
             builder.setView(content);
         builder.setPositiveButton(R.string.label_dialog_positive, positiveButtonListener);
-        AlertDialog alertDialog = builder.create();
-        alertDialog.getWindow().setGravity(Gravity.TOP);
-        return alertDialog;
+        return builderAlertDialog(builder);
     }
 }

@@ -33,7 +33,6 @@ public class EditActivity extends CreateActivity implements EditView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
 
         if (initId())
             mPresenter.load();
