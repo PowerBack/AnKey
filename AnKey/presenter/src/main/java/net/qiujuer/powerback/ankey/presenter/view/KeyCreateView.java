@@ -3,7 +3,7 @@ package net.qiujuer.powerback.ankey.presenter.view;
 /**
  * Created by qiujuer
  */
-public interface KeyCreateView {
+public interface KeyCreateView extends BaseVerifyView {
     int STATUS_KEY_NULL = -1;
     int STATUS_KEY_CONFIRM_NULL = -2;
     int STATUS_KEY_NOT_EQUAL_CONFIRM = -3;
@@ -14,7 +14,4 @@ public interface KeyCreateView {
 
     String getKeyConfirm();
 
-    void setError(int status);
-
-    void setOk();
 }

@@ -132,4 +132,9 @@ public class EditActivity extends CreateActivity implements EditView {
     public UUID getInfoId() {
         return mId;
     }
+
+    @Override
+    public Context getContext() {
+        return this;
+    }
 }

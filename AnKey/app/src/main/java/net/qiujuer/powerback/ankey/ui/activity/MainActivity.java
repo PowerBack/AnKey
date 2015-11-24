@@ -14,6 +14,7 @@ import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.ui.SuperActivity;
 import net.qiujuer.powerback.ankey.ui.adapter.InfoListAdapter;
 import net.qiujuer.powerback.ankey.ui.adapter.callback.InfoListAdapterCallback;
+import net.qiujuer.powerback.ankey.ui.view.DetailView;
 import net.qiujuer.powerback.ankey.widget.decoration.EdgeItemDecoration;
 import net.qiujuer.powerback.ankey.widget.drawable.Drawables;
 
@@ -84,15 +85,18 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
 
     @Override
     public void onItemSelected(final UUID id) {
-        View view = View.inflate(this, R.layout.lay_detail, null);
-        final AlertDialog dialog = showDialog(view);
-        view.findViewById(R.id.text_description).setOnClickListener(new View.OnClickListener() {
+        DetailView view = (DetailView) View.inflate(this, R.layout.lay_detail, null);
+        view.setInfoId(id);
+
+        final AlertDialog dialog = createDialog(view);
+        view.setOnEditListener(new DetailView.OnEditClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(DetailView view) {
                 dialog.dismiss();
-                EditActivity.show(MainActivity.this, id);
+                EditActivity.show(MainActivity.this, view.getInfoId());
             }
         });
+
         dialog.show();
     }
 

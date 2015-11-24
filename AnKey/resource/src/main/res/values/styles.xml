@@ -59,7 +59,7 @@
     <style name="AppTheme.Base.ToolBar.TitleTextAppearance" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
 
     <style name="Theme.Dialog.Base" parent="Theme.AppCompat.Light.Dialog">
-        <item name="android:windowBackground">@null</item>
+        <item name="android:windowBackground">@color/white_alpha_240</item>
     </style>
 
     <style name="Theme.Dialog" parent="Theme.Dialog.Base">
@@ -72,7 +72,7 @@
         <item name="android:activityCloseExitAnimation">@anim/anim_in_slide_right</item>
         <item name="android:windowAnimationStyle">@style/AppTheme.WindowAnimationStyle.Dialog</item>
 
-        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
         <item name="android:textColorPrimary">@color/colorAccent</item>
 
     </style>

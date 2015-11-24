@@ -34,25 +34,30 @@ public class EditPresenter {
     }
 
     private void loadData() {
-        InfoModel model = InfoModel.get(mView.getInfoId());
-        if (model == null) {
-            finish();
-        } else {
-            final InfoDecryptModel decryptModel = InfoModelTool.decryptModel(model);
-            UiKit.runOnMainThreadAsync(new Runnable() {
-                @Override
-                public void run() {
-                    mView.setColor(decryptModel.getColor());
-                    mView.setUsername(decryptModel.getUserName());
-                    mView.setEmail(decryptModel.getEmail());
-                    mView.setSite(decryptModel.getSite());
-                    mView.setQQ(decryptModel.getQQ());
-                    mView.setCall(decryptModel.getCall());
-                    mView.setRemarks(decryptModel.getRemark());
-                    mView.setDescription(decryptModel.getDescription());
-                    mView.setPassword(decryptModel.getPassword());
-                }
-            });
+        try {
+            InfoModel model = InfoModel.get(mView.getInfoId());
+            if (model == null) {
+                finish();
+            } else {
+                final InfoDecryptModel decryptModel = InfoModelTool.decryptModel(model);
+                UiKit.runOnMainThreadAsync(new Runnable() {
+                    @Override
+                    public void run() {
+                        mView.setColor(decryptModel.getColor());
+                        mView.setUsername(decryptModel.getUserName());
+                        mView.setEmail(decryptModel.getEmail());
+                        mView.setSite(decryptModel.getSite());
+                        mView.setQQ(decryptModel.getQQ());
+                        mView.setCall(decryptModel.getCall());
+                        mView.setRemarks(decryptModel.getRemark());
+                        mView.setDescription(decryptModel.getDescription());
+                        mView.setPassword(decryptModel.getPassword());
+                    }
+                });
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            needKey();
         }
     }
 

@@ -58,6 +58,11 @@ public class KeyCreateActivity extends SuperBackActivity implements KeyCreateVie
     }
 
     @Override
+    public void needKey() {
+
+    }
+
+    @Override
     public void onClick(View v) {
         mPresenter.submit();
     }

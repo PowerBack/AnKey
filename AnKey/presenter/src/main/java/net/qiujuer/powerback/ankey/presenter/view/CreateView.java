@@ -4,7 +4,7 @@ package net.qiujuer.powerback.ankey.presenter.view;
  * Created by qiujuer
  * on 15/10/22.
  */
-public interface CreateView {
+public interface CreateView extends BaseLoadingView, BaseVerifyView {
     int ERROR_NULL_DES = 1;
     int ERROR_NULL_PASSWORD = 2;
     int ERROR_UNKNOWN = 3;
@@ -26,14 +26,4 @@ public interface CreateView {
     String getRemarks();
 
     int getColor();
-
-    void needKey();
-
-    void setError(int error);
-
-    void setOk();
-
-    void showLoading();
-
-    void hideLoading();
 }

@@ -15,6 +15,7 @@
     <string name="label_key_old">Enter old key</string>
     <string name="label_key_new">Enter new key</string>
     <string name="label_null_data">None, \n  Please add it. </string>
+    <string name="label_copy_ok">Have copied the Password.</string>
 
     <string name="label_description">Description</string>
     <string name="label_username">Username</string>
