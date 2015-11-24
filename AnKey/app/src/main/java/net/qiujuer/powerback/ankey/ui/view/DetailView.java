@@ -1,13 +1,16 @@
 package net.qiujuer.powerback.ankey.ui.view;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.qiujuer.genius.ui.Ui;
 import net.qiujuer.genius.ui.widget.Loading;
 import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.presenter.DetailPresenter;
@@ -52,6 +55,7 @@ public class DetailView extends LinearLayout implements net.qiujuer.powerback.an
 
         findViewById(R.id.img_edit).setOnClickListener(this);
         findViewById(R.id.img_copy).setOnClickListener(this);
+        findViewById(R.id.text_password).setOnClickListener(this);
 
         mPresenter = new DetailPresenter(this);
     }
@@ -167,7 +171,34 @@ public class DetailView extends LinearLayout implements net.qiujuer.powerback.an
         } else if (v.getId() == R.id.img_copy) {
             mPresenter.copy();
             Toast.makeText(getContext(), R.string.label_copy_ok, Toast.LENGTH_SHORT).show();
+        } else if (v.getId() == R.id.text_password) {
+            TextView textView = ((TextView) v);
+            if (isPasswordInputType(textView.getInputType())) {
+                textView.setInputType(EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                Typeface typeface = Ui.getFont(getContext(), "FZLanTingHeiS-L-GB-Regular.TTF");
+                textView.setTypeface(typeface);
+            } else
+                textView.setInputType(EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_VARIATION_PASSWORD);
+
         }
+    }
+
+    private static boolean isPasswordInputType(int inputType) {
+        final int variation =
+                inputType & (EditorInfo.TYPE_MASK_CLASS | EditorInfo.TYPE_MASK_VARIATION);
+        return variation
+                == (EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_VARIATION_PASSWORD)
+                || variation
+                == (EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_VARIATION_WEB_PASSWORD)
+                || variation
+                == (EditorInfo.TYPE_CLASS_NUMBER | EditorInfo.TYPE_NUMBER_VARIATION_PASSWORD);
+    }
+
+    private static boolean isVisiblePasswordInputType(int inputType) {
+        final int variation =
+                inputType & (EditorInfo.TYPE_MASK_CLASS | EditorInfo.TYPE_MASK_VARIATION);
+        return variation
+                == (EditorInfo.TYPE_CLASS_TEXT | EditorInfo.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
     }
 
     public interface OnEditClickListener {
