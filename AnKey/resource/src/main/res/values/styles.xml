@@ -29,7 +29,7 @@
         <!--<item name="android:textColorPrimary">@color/abc_primary_text_material_dark</item>-->
         <!--<item name="android:textColorPrimaryInverse">@color/abc_primary_text_material_light</item>-->
         <!--<item name="android:textColorPrimaryDisableOnly">-->
-            <!--@color/abc_primary_text_disable_only_material_dark-->
+        <!--@color/abc_primary_text_disable_only_material_dark-->
         <!--</item>-->
         <!--<item name="android:textColorSecondary">@color/abc_secondary_text_material_dark</item>-->
         <!--<item name="android:textColorSecondaryInverse">@color/abc_secondary_text_material_light-->
@@ -56,7 +56,30 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="AppTheme.Base.ToolBar.TitleTextAppearance" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
+    <style name="AppTheme.Base.ToolBar.TitleTextAppearance" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />
+
+    <style name="Theme.Dialog.Base" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@color/white_alpha_240</item>
+    </style>
+
+    <style name="Theme.Dialog" parent="Theme.Dialog.Base">
+        <item name="windowMinWidthMajor">100%</item>
+        <item name="windowMinWidthMinor">100%</item>
+
+        <item name="android:activityOpenEnterAnimation">@anim/anim_in_slide_left</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_in_slide_right</item>
+        <item name="android:activityCloseEnterAnimation">@anim/anim_in_slide_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/anim_in_slide_right</item>
+        <item name="android:windowAnimationStyle">@style/AppTheme.WindowAnimationStyle.Dialog</item>
+
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+
+    </style>
+
+    <style name="AppTheme.WindowAnimationStyle.Dialog" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_dialog_exit</item>
     </style>
 
 </resources>

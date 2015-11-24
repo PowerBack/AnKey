@@ -6,8 +6,5 @@ import net.qiujuer.powerback.ankey.model.view.InfoViewModel;
  * Created by qiujuer
  * on 15/10/29.
  */
-public interface InfoListView extends BaseAdapterView<InfoViewModel> {
-    void showLoading();
-
-    void hideLoading();
+public interface InfoListView extends BaseAdapterView<InfoViewModel>, BaseLoadingView {
 }

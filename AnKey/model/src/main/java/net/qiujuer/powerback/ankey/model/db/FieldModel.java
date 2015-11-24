@@ -4,7 +4,9 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
+import com.google.gson.annotations.Expose;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,12 +15,15 @@ import java.util.UUID;
  * on 15/10/23.
  */
 @Table(name = "Field")
-public class FieldModel extends Model {
+public class FieldModel extends Model implements ModelStatus {
+    public static final int TAG_USERNAME = 10001;
+    public static final int TAG_EMAIL = 10002;
+    public static final int TAG_QQ = 10003;
+    public static final int TAG_CALL = 10004;
+    public static final int TAG_OTHER = 10005;
+
     @Column(name = "FieldId")
     private UUID fieldId;
-
-    @Column(name = "UserId")
-    public UUID userId;
 
     @Column(name = "Text")
     private String text;
@@ -27,34 +32,48 @@ public class FieldModel extends Model {
     private String md5;
 
     @Column(name = "Tag")
-    private String tag;
+    private int tag;
 
     @Column(name = "CreateDate")
-    private String createDate;
+    private Date createDate;
 
     @Column(name = "UpdateDate")
-    private String updateDate;
+    private Date updateDate;
 
     @Column(name = "Encryption")
     private int encryption;
 
+    @Expose
+    @Column(name = "Status")
+    private transient int status;
+
+    @Expose
+    @Column(name = "LastDate")
+    private transient long lastDate;
+
     public FieldModel() {
         super();
+        fieldId = UUID.randomUUID();
+        lastDate = System.currentTimeMillis();
+        createDate = new Date(lastDate);
+        updateDate = createDate;
+        encryption = KEY_TOOL_VERSION;
     }
 
-    public void setUserId(UUID userId) {
-        this.userId = userId;
-    }
-
-    public void setUpdateDate(String updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public void setTag(String tag) {
+    public FieldModel(int tag) {
+        this();
         this.tag = tag;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public void setTag(int tag) {
+        this.tag = tag;
+    }
+
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -70,19 +89,23 @@ public class FieldModel extends Model {
         this.md5 = md5;
     }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setLastDate(long lastDate) {
+        this.lastDate = lastDate;
+    }
+
     public void setText(String text) {
         this.text = text;
     }
 
-    public UUID getUserId() {
-        return userId;
-    }
-
-    public String getUpdateDate() {
+    public Date getUpdateDate() {
         return updateDate;
     }
 
-    public String getTag() {
+    public int getTag() {
         return tag;
     }
 
@@ -90,7 +113,7 @@ public class FieldModel extends Model {
         return encryption;
     }
 
-    public String getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
@@ -106,7 +129,19 @@ public class FieldModel extends Model {
         return fieldId;
     }
 
-    public static FieldModel getFieldModel(UUID uuid) {
+    public int getStatus() {
+        return status;
+    }
+
+    public long getLastDate() {
+        return lastDate;
+    }
+
+    public List<InfoModel> infoModels() {
+        return getMany(InfoModel.class, "UserName");
+    }
+
+    public static FieldModel get(UUID uuid) {
         return new Select()
                 .from(FieldModel.class)
                 .where("FiledId = ?", uuid.toString())
@@ -124,5 +159,20 @@ public class FieldModel extends Model {
         return new Select()
                 .from(FieldModel.class)
                 .execute();
+    }
+
+    public static FieldModel get(String md5) {
+        return new Select()
+                .from(FieldModel.class)
+                .where("MD5 = ?", md5)
+                .executeSingle();
+    }
+
+    public static FieldModel get(String md5, int tag) {
+        return new Select()
+                .from(FieldModel.class)
+                .where("MD5 = ?", md5)
+                .where("Tag = ?", tag)
+                .executeSingle();
     }
 }

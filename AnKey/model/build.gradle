@@ -20,17 +20,18 @@ android {
 
 dependencies {
     /*
-        repositories {
-            mavenCentral()
-            maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        }
-        compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
-        */
+                repositories {
+                    mavenCentral()
+                    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+                }
+                compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+                */
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.mcxiaoke.volley:library:1.0.16'
     compile 'net.qiujuer.genius:kit:1.0.0'
+    compile 'net.qiujuer.genius:res:1.0.0'
     compile project(':tool')
 }

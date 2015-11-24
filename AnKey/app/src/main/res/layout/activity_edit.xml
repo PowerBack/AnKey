@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,4 +10,154 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="net.qiujuer.powerback.ankey.ui.activity.EditActivity">
 
+    <net.qiujuer.genius.ui.widget.TextView
+        android:id="@+id/text_description"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/lay_8"
+        android:layout_marginLeft="@dimen/font_16"
+        android:layout_marginRight="@dimen/font_16"
+        android:layout_marginTop="@dimen/lay_16"
+        android:paddingLeft="@dimen/lay_8"
+        android:paddingRight="@dimen/lay_8"
+        android:text="@string/label_note_need"
+        android:textColor="@color/textColorPrimary"
+        app:gBorder="left"
+        app:gBorderColor="@color/colorAccent"
+        app:gBorderSize="3dp" />
+
+    <FrameLayout
+        android:id="@+id/lay_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_description"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="4dp"
+            android:layout_height="4dp"
+            android:layout_marginLeft="@dimen/lay_4"
+            android:layout_marginRight="@dimen/lay_4"
+            android:layout_marginTop="@dimen/lay_24"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_indicator_dot_red" />
+
+        <net.qiujuer.genius.ui.widget.TextView
+
+            android:id="@+id/text_password"
+            style="@style/key.edit.default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/label_password"
+            android:textColorHint="@drawable/ic_edit_hint"
+            android:textCursorDrawable="@null" />
+    </FrameLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lay_password"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/font_16"
+            android:paddingRight="@dimen/font_16">
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="4dp"
+                    android:layout_height="4dp"
+                    android:layout_marginLeft="@dimen/lay_4"
+                    android:layout_marginRight="@dimen/lay_4"
+                    android:layout_marginTop="@dimen/lay_24"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_indicator_dot_red" />
+
+                <net.qiujuer.genius.ui.widget.EditText
+                    android:id="@+id/edit_password"
+                    style="@style/key.edit.default"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/label_password"
+                    android:textColorHint="@drawable/ic_edit_hint"
+                    android:textCursorDrawable="@null" />
+            </FrameLayout>
+
+            <net.qiujuer.genius.ui.widget.TextView
+                android:id="@+id/edit_username"
+                style="@style/key.edit.default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_username"
+                android:textColorHint="@drawable/ic_edit_hint"
+                android:textCursorDrawable="@null" />
+
+            <net.qiujuer.genius.ui.widget.EditText
+                android:id="@+id/edit_username"
+                style="@style/key.edit.default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_username"
+                android:textColorHint="@drawable/ic_edit_hint"
+                android:textCursorDrawable="@null" />
+
+
+            <net.qiujuer.genius.ui.widget.EditText
+                android:id="@+id/edit_site"
+                style="@style/key.edit.default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_site"
+                android:textColorHint="@drawable/ic_edit_hint"
+                android:textCursorDrawable="@null" />
+
+            <net.qiujuer.genius.ui.widget.EditText
+                android:id="@+id/edit_email"
+                style="@style/key.edit.default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_email"
+                android:textColorHint="@drawable/ic_edit_hint"
+                android:textCursorDrawable="@null" />
+
+            <net.qiujuer.genius.ui.widget.EditText
+                android:id="@+id/edit_qq"
+                style="@style/key.edit.default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_qq"
+                android:textColorHint="@drawable/ic_edit_hint"
+                android:textCursorDrawable="@null" />
+
+            <net.qiujuer.genius.ui.widget.EditText
+                android:id="@+id/edit_call"
+                style="@style/key.edit.default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_call"
+                android:textColorHint="@drawable/ic_edit_hint"
+                android:textCursorDrawable="@null" />
+
+            <net.qiujuer.genius.ui.widget.EditText
+                android:id="@+id/edit_remark"
+                style="@style/key.edit.default"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/lay_16"
+                android:hint="@string/label_remark"
+                android:singleLine="false"
+                android:textColorHint="@drawable/ic_edit_hint"
+                android:textCursorDrawable="@null" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

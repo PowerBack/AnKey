@@ -4,7 +4,9 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
+import com.google.gson.annotations.Expose;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,20 +14,20 @@ import java.util.UUID;
  * Created by qiujuer
  * on 15/10/19.
  */
-@Table(name = "info")
-public class InfoModel extends Model {
+@Table(name = "Info")
+public class InfoModel extends Model implements ModelStatus {
 
     @Column(name = "InfoId")
     private UUID infoId;
-
-    @Column(name = "UserId")
-    private UUID userId;
 
     @Column(name = "Description")
     private String description;
 
     @Column(name = "Site")
     public SiteModel site;
+
+    @Column(name = "Color")
+    public int color;
 
     @Column(name = "UserName")
     private FieldModel userName;
@@ -49,23 +51,36 @@ public class InfoModel extends Model {
     private String tag;
 
     @Column(name = "CreateDate")
-    private String createDate;
+    private Date createDate;
 
     @Column(name = "UpdateDate")
-    private String updateDate;
+    private Date updateDate;
 
     @Column(name = "Encryption")
     private int encryption;
 
-    InfoModel() {
+    @Expose
+    @Column(name = "Status")
+    private transient int status;
+
+    @Expose
+    @Column(name = "LastDate")
+    private transient long lastDate;
+
+    public InfoModel() {
         super();
+        infoId = UUID.randomUUID();
+        lastDate = System.currentTimeMillis();
+        createDate = new Date(lastDate);
+        updateDate = createDate;
+        encryption = KEY_TOOL_VERSION;
     }
 
     public void setCall(FieldModel call) {
         this.call = call;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -101,20 +116,28 @@ public class InfoModel extends Model {
         this.site = site;
     }
 
+    public void setColor(int color) {
+        this.color = color;
+    }
+
     public void setTag(String tag) {
         this.tag = tag;
     }
 
-    public void setUpdateDate(String updateDate) {
+    public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
-    }
-
-    public void setUserId(UUID userId) {
-        this.userId = userId;
     }
 
     public void setUserName(FieldModel userName) {
         this.userName = userName;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setLastDate(long lastDate) {
+        this.lastDate = lastDate;
     }
 
     public FieldModel getCall() {
@@ -141,7 +164,11 @@ public class InfoModel extends Model {
         return site;
     }
 
-    public String getCreateDate() {
+    public int getColor() {
+        return color;
+    }
+
+    public Date getCreateDate() {
         return createDate;
     }
 
@@ -161,7 +188,7 @@ public class InfoModel extends Model {
         return tag;
     }
 
-    public String getUpdateDate() {
+    public Date getUpdateDate() {
         return updateDate;
     }
 
@@ -169,11 +196,15 @@ public class InfoModel extends Model {
         return infoId;
     }
 
-    public UUID getUserId() {
-        return userId;
+    public int getStatus() {
+        return status;
     }
 
-    public static InfoModel getInfoModel(UUID uuid) {
+    public long getLastDate() {
+        return lastDate;
+    }
+
+    public static InfoModel get(UUID uuid) {
         return new Select()
                 .from(InfoModel.class)
                 .where("InfoId = ?", uuid.toString())
@@ -187,9 +218,17 @@ public class InfoModel extends Model {
                 .executeSingle();
     }
 
-    public List<InfoModel> getAll() {
+    public static List<InfoModel> getAll() {
         return new Select()
                 .from(InfoModel.class)
+                .execute();
+    }
+
+    public static List<InfoModel> getAll(long date) {
+        return new Select()
+                .from(InfoModel.class)
+                .where("LastDate > ?", date)
+                .orderBy("LastDate DESC")
                 .execute();
     }
 }

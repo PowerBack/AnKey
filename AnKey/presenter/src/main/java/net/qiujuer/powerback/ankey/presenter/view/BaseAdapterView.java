@@ -7,13 +7,23 @@ import java.util.List;
  * on 15/10/29.
  */
 public interface BaseAdapterView<T> {
+    void showNull();
+
+    void hideNull();
+
     List<T> getDataSet();
 
     void setDataSet(List<T> dataSet);
 
     void notifyDataSetChanged();
 
-    void showNull();
+    void notifyItemChanged(int position);
 
-    void hideNull();
+    void notifyItemChanged(int position, Object payload);
+
+    void notifyItemInserted(int position);
+
+    void notifyItemRemoved(int position);
+
+    void notifyItemMoved(int fromPosition, int toPosition);
 }

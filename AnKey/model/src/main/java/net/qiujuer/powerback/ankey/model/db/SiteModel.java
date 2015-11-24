@@ -4,7 +4,9 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
+import com.google.gson.annotations.Expose;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,9 +15,9 @@ import java.util.UUID;
  * on 15/10/24.
  */
 @Table(name = "Site")
-public class SiteModel extends Model {
+public class SiteModel extends Model implements ModelStatus {
     @Column(name = "SiteId")
-    private String siteId;
+    private UUID siteId;
 
     @Column(name = "Name")
     private String name;
@@ -30,16 +32,28 @@ public class SiteModel extends Model {
     private IconModel icon;
 
     @Column(name = "CreateDate")
-    private String createDate;
+    private Date createDate;
 
     @Column(name = "UpdateDate")
-    private String updateDate;
+    private Date updateDate;
+
+    @Expose
+    @Column(name = "Status")
+    private transient int status;
+
+    @Expose
+    @Column(name = "LastDate")
+    private transient long lastDate;
 
     public SiteModel() {
         super();
+        siteId = UUID.randomUUID();
+        lastDate = System.currentTimeMillis();
+        createDate = new Date(lastDate);
+        updateDate = createDate;
     }
 
-    public void setUpdateDate(String updateDate) {
+    public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
 
@@ -47,7 +61,7 @@ public class SiteModel extends Model {
         this.name = name;
     }
 
-    public void setCreateDate(String createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
@@ -59,7 +73,7 @@ public class SiteModel extends Model {
         this.md5 = md5;
     }
 
-    public void setSiteId(String siteId) {
+    public void setSiteId(UUID siteId) {
         this.siteId = siteId;
     }
 
@@ -67,11 +81,19 @@ public class SiteModel extends Model {
         this.url = url;
     }
 
-    public String getUpdateDate() {
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public void setLastDate(long lastDate) {
+        this.lastDate = lastDate;
+    }
+
+    public Date getUpdateDate() {
         return updateDate;
     }
 
-    public String getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
@@ -87,7 +109,7 @@ public class SiteModel extends Model {
         return icon;
     }
 
-    public String getSiteId() {
+    public UUID getSiteId() {
         return siteId;
     }
 
@@ -95,7 +117,15 @@ public class SiteModel extends Model {
         return url;
     }
 
-    public static SiteModel getSiteModel(UUID uuid) {
+    public int getStatus() {
+        return status;
+    }
+
+    public long getLastDate() {
+        return lastDate;
+    }
+
+    public static SiteModel get(UUID uuid) {
         return new Select()
                 .from(SiteModel.class)
                 .where("SiteId = ?", uuid.toString())
@@ -106,6 +136,13 @@ public class SiteModel extends Model {
         return new Select()
                 .from(SiteModel.class)
                 .where("id = ?", id)
+                .executeSingle();
+    }
+
+    public static SiteModel get(String md5) {
+        return new Select()
+                .from(SiteModel.class)
+                .where("MD5 = ?", md5)
                 .executeSingle();
     }
 

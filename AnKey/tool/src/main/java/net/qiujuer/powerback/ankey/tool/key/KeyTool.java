@@ -8,4 +8,6 @@ public interface KeyTool {
     String encrypt(String src);
 
     String decrypt(String encrypted);
+
+    void destroyKey();
 }

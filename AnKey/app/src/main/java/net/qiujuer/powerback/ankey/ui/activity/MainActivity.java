@@ -1,9 +1,9 @@
 package net.qiujuer.powerback.ankey.ui.activity;
 
 import android.content.Intent;
-import android.graphics.Paint;
-import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
@@ -14,7 +14,9 @@ import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.ui.SuperActivity;
 import net.qiujuer.powerback.ankey.ui.adapter.InfoListAdapter;
 import net.qiujuer.powerback.ankey.ui.adapter.callback.InfoListAdapterCallback;
-import net.qiujuer.powerback.ankey.widget.drawable.CrossLineShape;
+import net.qiujuer.powerback.ankey.ui.view.DetailView;
+import net.qiujuer.powerback.ankey.widget.decoration.EdgeItemDecoration;
+import net.qiujuer.powerback.ankey.widget.drawable.Drawables;
 
 import java.util.UUID;
 
@@ -40,19 +42,8 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
     }
 
     private void initFloatActionButton() {
-        final float density = getResources().getDisplayMetrics().density;
         FloatActionButton addButton = (FloatActionButton) findViewById(R.id.action_add);
-        CrossLineShape shape = new CrossLineShape();
-        ShapeDrawable drawable = new ShapeDrawable(shape);
-        Paint paint = drawable.getPaint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setAntiAlias(true);
-        paint.setDither(true);
-        paint.setColor(0xc0ffffff);
-        paint.setStrokeWidth(2 * density);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        drawable.setIntrinsicWidth(100);
-        drawable.setIntrinsicHeight(100);
+        Drawable drawable = Drawables.getCreateDrawable(getResources());
         addButton.setImageDrawable(drawable);
         addButton.setOnClickListener(this);
     }
@@ -63,6 +54,8 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
 
         mInfoListAdapter = new InfoListAdapter(this);
         mRecycler.setAdapter(mInfoListAdapter);
+
+        mRecycler.addItemDecoration(new EdgeItemDecoration(getResources(), 16, 16, 16, 16, 8));
     }
 
     @Override
@@ -91,8 +84,20 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
     }
 
     @Override
-    public void onItemSelected(UUID id) {
+    public void onItemSelected(final UUID id) {
+        DetailView view = (DetailView) View.inflate(this, R.layout.lay_detail, null);
+        view.setInfoId(id);
 
+        final AlertDialog dialog = createDialog(view);
+        view.setOnEditListener(new DetailView.OnEditClickListener() {
+            @Override
+            public void onClick(DetailView view) {
+                dialog.dismiss();
+                EditActivity.show(MainActivity.this, view.getInfoId());
+            }
+        });
+
+        dialog.show();
     }
 
     @Override
