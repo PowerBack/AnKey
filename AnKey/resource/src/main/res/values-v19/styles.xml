@@ -4,6 +4,8 @@
     <style name="AppTheme.AppCompat" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowAnimationStyle">@style/AppTheme.WindowAnimationStyle.Activity
+        </item>
     </style>
 
     <style name="Theme.Dialog.Base" parent="Theme.AppCompat.Light.Dialog">

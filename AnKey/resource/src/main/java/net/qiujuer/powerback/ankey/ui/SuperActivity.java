@@ -1,6 +1,7 @@
 package net.qiujuer.powerback.ankey.ui;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,6 +43,18 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
 
         initRoot();
         initToolBar();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.anim_activity_enter, R.anim.anim_activity_exit);
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode, Bundle options) {
+        super.startActivityForResult(intent, requestCode, options);
+        overridePendingTransition(R.anim.anim_activity_enter, R.anim.anim_activity_exit);
     }
 
     private void initTintManager() {
