@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="config_actionbarAnimationTime">200</integer>
+    <integer name="config_activityDefaultDur">220</integer>
+    <integer name="config_activityShortDur">150</integer>
+    <integer name="config_appAnimTime">400</integer>
+    <integer name="config_buttonFadeTime">166</integer>
+    <integer name="config_editNewAnimTime">350</integer>
+    <integer name="config_extra_appAnimTime">360</integer>
+    <integer name="config_fragmentAlphaAnimTime">100</integer>
+    <integer name="config_fragmentAnimTime">300</integer>
+    <integer name="config_fragmentFadeDur">300</integer>
+    <integer name="config_lockNumAnimTime">200</integer>
+    <integer name="config_lockPointAnimTime">70</integer>
+    <integer name="config_taskAnimTime">500</integer>
+    <integer name="config_wallpaperAnimTime">350</integer>
+    <integer name="config_wallpaperCloseExitAlphaAnimTime">300</integer>
+    <integer name="config_wallpaperCloseExitScaleAnimTime">650</integer>
+    <integer name="fade_duration">200</integer>
+</resources>
