@@ -41,6 +41,8 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
         super.onCreate(savedInstanceState);
         super.setContentView(getRootContentView());
 
+        hideSmartBar();
+
         initRoot();
         initToolBar();
     }
@@ -77,6 +79,16 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
         tintManager.setStatusBarTintEnabled(true);
         tintManager.setStatusBarTintResource(R.color.dark_dark);
         mBarTintManager = tintManager;
+    }
+
+    private void hideSmartBar() {
+        try {
+            if (getWindow().getDecorView() != null) {
+                getWindow().getDecorView().setSystemUiVisibility(2050);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initRoot() {
