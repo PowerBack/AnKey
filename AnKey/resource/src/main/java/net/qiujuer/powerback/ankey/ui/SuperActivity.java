@@ -147,9 +147,19 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
             mBarTintManager.setStatusBarTintResource(res);
     }
 
+    public void setStatusBarColor(int color) {
+        if (mBarTintManager != null)
+            mBarTintManager.setStatusBarTintColor(color);
+    }
+
     public void setTitleBackgroundColorRes(int res) {
         if (mToolbar != null)
             mToolbar.setBackgroundResource(res);
+    }
+
+    public void setTitleBackgroundColor(int color) {
+        if (mToolbar != null)
+            mToolbar.setBackgroundColor(color);
     }
 
     @Override

@@ -1,66 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rl_introduce_layout"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/introViewPager"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@+id/controlsRelativeLayout"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/separatorView" />
 
     <View
         android:id="@+id/separatorView"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_above="@+id/controlsRelativeLayout"
-        android:background="@color/dark_light" />
+        android:background="@color/white_alpha_224" />
 
     <RelativeLayout
         android:id="@+id/controlsRelativeLayout"
-        android:layout_width="fill_parent"
-        android:layout_height="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_56"
         android:layout_alignParentBottom="true">
 
-        <Button
+        <net.qiujuer.genius.ui.widget.Button
             android:id="@+id/skipIntroButton"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:layout_marginLeft="7dp"
-            android:textColor="@color/white"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="@string/appTourSkipButton" />
+            android:layout_width="@dimen/size_72"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/lay_16"
+            android:layout_marginRight="@dimen/lay_16"
+            android:background="@null"
+            android:text="@string/appTourSkipButton"
+            android:textColor="@color/white_alpha_240"
+            android:textSize="@dimen/font_14"
+            apps:gTouchEffect="press" />
 
-        <ImageButton
+        <net.qiujuer.genius.ui.widget.Button
             android:id="@+id/nextSlideImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:minWidth="90dp"
+            android:layout_width="@dimen/size_72"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="7dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:src="@drawable/ic_next_white_24dp"/>
+            android:layout_marginLeft="@dimen/lay_16"
+            android:layout_marginRight="@dimen/lay_16"
+            android:background="@drawable/ic_next_white_24dp"
+            apps:gTouchEffect="press" />
 
-        <Button
+        <net.qiujuer.genius.ui.widget.Button
             android:id="@+id/doneSlideButton"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="@dimen/size_72"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="7dp"
-            android:background="?android:attr/selectableItemBackground"
+            android:layout_marginLeft="@dimen/lay_16"
+            android:layout_marginRight="@dimen/lay_16"
+            android:background="@null"
             android:text="@string/appTourDoneButton"
-            android:textColor="@color/white"
-            android:visibility="invisible" />
+            android:textColor="@color/white_alpha_240"
+            android:textSize="@dimen/font_14"
+            android:visibility="invisible"
+            apps:gTouchEffect="press" />
 
         <LinearLayout
             android:id="@+id/viewPagerCountDots"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/skipIntroButton"
             android:layout_toLeftOf="@+id/nextSlideImageButton"
