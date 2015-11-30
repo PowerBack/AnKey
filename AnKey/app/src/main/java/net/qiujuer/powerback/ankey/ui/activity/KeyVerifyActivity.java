@@ -2,7 +2,6 @@ package net.qiujuer.powerback.ankey.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -16,11 +15,19 @@ import net.qiujuer.powerback.ankey.presenter.view.KeyVerifyView;
 import net.qiujuer.powerback.ankey.ui.SuperActivity;
 
 public class KeyVerifyActivity extends SuperActivity implements KeyVerifyView, View.OnClickListener {
+    private final static String KEY_CLX = "clx";
     private KeyVerifyPresenter mPresenter;
     private EditText mKey;
+    private Class<?> mClx;
 
     public static void show(Context context) {
+        show(context, null);
+    }
+
+    public static void show(Context context, Class<?> clx) {
         Intent intent = new Intent(context, KeyVerifyActivity.class);
+        if (clx != null)
+            intent.putExtra(KEY_CLX, clx);
         context.startActivity(intent);
     }
 
@@ -30,11 +37,20 @@ public class KeyVerifyActivity extends SuperActivity implements KeyVerifyView, V
         setContentView(R.layout.activity_key_verify);
         setCenterTitle(true);
 
-        mPresenter = new KeyVerifyPresenter(this);
+        initBound();
+        initUi();
 
+        mPresenter = new KeyVerifyPresenter(this);
+    }
+
+    private void initBound() {
+        Intent intent = getIntent();
+        mClx = (Class<?>) intent.getSerializableExtra(KEY_CLX);
+    }
+
+    private void initUi() {
         mKey = (EditText) findViewById(R.id.edit_key);
-        Typeface typeface = Ui.getFont(this, "FZLanTingHeiS-L-GB-Regular.TTF");
-        mKey.setTypeface(typeface);
+        mKey.setTypeface(Ui.getFont(this, "FZLanTingHeiS-L-GB-Regular.TTF"));
         findViewById(R.id.btn_submit).setOnClickListener(this);
     }
 
@@ -55,8 +71,10 @@ public class KeyVerifyActivity extends SuperActivity implements KeyVerifyView, V
 
     @Override
     public void verifyOk() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        if (mClx != null) {
+            Intent intent = new Intent(this, mClx);
+            startActivity(intent);
+        }
         finish();
     }
 
