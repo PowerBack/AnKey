@@ -1,6 +1,7 @@
 package net.qiujuer.powerback.ankey.ui.fragment;
 
 import android.animation.ArgbEvaluator;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
@@ -23,6 +24,8 @@ import android.widget.TextView;
 
 import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.ui.SuperFragment;
+import net.qiujuer.powerback.ankey.widget.drawable.DirectArrowDrawable;
+import net.qiujuer.powerback.ankey.widget.drawable.Drawables;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +89,10 @@ public class IntroduceFragment extends SuperFragment {
         doneSlideButton = (Button) view.findViewById(R.id.doneSlideButton);
         separatorView = view.findViewById(R.id.separatorView);
         dotsLayout = (LinearLayout) view.findViewById(R.id.viewPagerCountDots);
+        nextSlideImageButton.setBackgroundDrawable(Drawables.getDirectDrawable(getResources(),
+                90,
+                DirectArrowDrawable.DIRECT_RIGHT,
+                new Rect(24, 18, 24, 18)));
     }
 
     private void fillViewPage() {

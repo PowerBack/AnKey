@@ -3,6 +3,7 @@ package net.qiujuer.powerback.ankey.widget.drawable;
 import android.content.res.Resources;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -17,36 +18,46 @@ import net.qiujuer.powerback.ankey.widget.drawable.shape.ShadowShape;
  * on 15/11/9.
  */
 public class Drawables {
-    public static Drawable getCreateDrawable(Resources resources) {
+    private static ShapeDrawable createShapeDrawable(Resources resources, Shape shape, int color, int size, int lineSize) {
         final float density = resources.getDisplayMetrics().density;
-        Shape shape = new CrossLineShape();
         ShapeDrawable drawable = new ShapeDrawable(shape);
         Paint paint = drawable.getPaint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setAntiAlias(true);
         paint.setDither(true);
-        paint.setColor(0xfffbfbfb);
-        paint.setStrokeWidth(2 * density);
+        paint.setColor(color);
+        paint.setStrokeWidth(lineSize * density);
         paint.setStrokeCap(Paint.Cap.ROUND);
-        drawable.setIntrinsicWidth((int) (36 * density));
-        drawable.setIntrinsicHeight((int) (36 * density));
+        drawable.setIntrinsicWidth((int) (size * density));
+        drawable.setIntrinsicHeight((int) (size * density));
         return drawable;
     }
 
+    private static Rect convertDPToPX(Rect rect, float density) {
+        if (rect != null) {
+            rect.left *= density;
+            rect.top *= density;
+            rect.right *= density;
+            rect.bottom *= density;
+        }
+        return rect;
+    }
+
+    public static Drawable getCreateDrawable(Resources resources) {
+        Shape shape = new CrossLineShape();
+        return createShapeDrawable(resources, shape, 0xfffbfbfb, 36, 2);
+    }
+
     public static Drawable getOkDrawable(Resources resources) {
-        final float density = resources.getDisplayMetrics().density;
         Shape shape = new OkLineShape();
-        ShapeDrawable drawable = new ShapeDrawable(shape);
-        Paint paint = drawable.getPaint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setAntiAlias(true);
-        paint.setDither(true);
-        paint.setColor(0xfffbfbfb);
-        paint.setStrokeWidth(2 * density);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        drawable.setIntrinsicWidth((int) (36 * density));
-        drawable.setIntrinsicHeight((int) (36 * density));
-        return drawable;
+        return createShapeDrawable(resources, shape, 0xfffbfbfb, 36, 2);
+    }
+
+    public static Drawable getDirectDrawable(Resources resources, int angle, int direct, Rect padding) {
+        final float density = resources.getDisplayMetrics().density;
+        DirectArrowDrawable directArrowDrawable = new DirectArrowDrawable(angle, direct, density * 2, 0xfffbfbfb);
+        directArrowDrawable.setPadding(convertDPToPX(padding, density));
+        return directArrowDrawable;
     }
 
     public static Drawable getShadowDrawable(Resources resources, int color) {

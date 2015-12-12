@@ -44,7 +44,6 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="@dimen/lay_16"
             android:layout_marginRight="@dimen/lay_16"
-            android:background="@drawable/ic_next_white_24dp"
             apps:gTouchEffect="press" />
 
         <net.qiujuer.genius.ui.widget.Button
@@ -68,9 +67,9 @@
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/skipIntroButton"
-            android:layout_toLeftOf="@+id/nextSlideImageButton"
+            android:layout_toLeftOf="@id/nextSlideImageButton"
             android:layout_toRightOf="@+id/skipIntroButton"
-            android:layout_toStartOf="@+id/nextSlideImageButton"
+            android:layout_toStartOf="@id/nextSlideImageButton"
             android:gravity="center"
             android:orientation="horizontal" />
 
