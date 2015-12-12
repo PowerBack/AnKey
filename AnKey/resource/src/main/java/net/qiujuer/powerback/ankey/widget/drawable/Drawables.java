@@ -8,6 +8,10 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.Shape;
 
+import net.qiujuer.powerback.ankey.widget.drawable.shape.CrossLineShape;
+import net.qiujuer.powerback.ankey.widget.drawable.shape.OkLineShape;
+import net.qiujuer.powerback.ankey.widget.drawable.shape.ShadowShape;
+
 /**
  * Created by qiujuer
  * on 15/11/9.
