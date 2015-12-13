@@ -71,7 +71,7 @@
 
         <item name="android:windowAnimationStyle">@style/AppTheme.WindowAnimationStyle.Dialog</item>
 
-        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
         <item name="android:textColorPrimary">@color/colorAccent</item>
 
     </style>

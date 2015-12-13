@@ -20,7 +20,6 @@ import net.qiujuer.powerback.ankey.util.FormatUtil;
 public class SplashActivity extends SuperActivity implements SplashView, IntroduceFragment.OnStatusChangeListener {
     private static final int KEY_DELAY_TIME = 2000;
     private SplashPresenter mSplashPresenter;
-
     private IntroduceFragment mIntroduceFragment;
 
     @Override

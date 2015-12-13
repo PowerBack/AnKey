@@ -20,7 +20,7 @@ public class SplashPresenter {
         if(AppPresenter.isFirstUse()){
             mSplashView.showIntroduceView();
         }else{
-            mSplashView.showIntroduceView();
+            mSplashView.gotoKeyVerifyView();
         }
     }
 }
