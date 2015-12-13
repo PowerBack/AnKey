@@ -11,6 +11,7 @@ import android.view.View;
 import net.qiujuer.genius.ui.widget.FloatActionButton;
 import net.qiujuer.genius.ui.widget.Loading;
 import net.qiujuer.powerback.ankey.R;
+import net.qiujuer.powerback.ankey.presenter.AppPresenter;
 import net.qiujuer.powerback.ankey.ui.SuperActivity;
 import net.qiujuer.powerback.ankey.ui.adapter.InfoListAdapter;
 import net.qiujuer.powerback.ankey.ui.adapter.callback.InfoListAdapterCallback;
@@ -72,7 +73,11 @@ public class MainActivity extends SuperActivity implements View.OnClickListener,
     @Override
     protected void onResume() {
         super.onResume();
-        mInfoListAdapter.refresh();
+        if (AppPresenter.validKey()) {
+            mInfoListAdapter.refresh();
+        } else {
+            KeyVerifyActivity.show(this);
+        }
     }
 
     @Override

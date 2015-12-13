@@ -24,6 +24,7 @@ import java.util.UUID;
 public class AppPresenter {
     private static final Object SERVICE_LOCK = new Object();
     private static KeyTool KEY_TOOL;
+    private static boolean ALLOW_D_KEY = true;
 
 
     public static void setApplication(Application application) {
@@ -127,5 +128,18 @@ public class AppPresenter {
             KEY_TOOL = null;
             tool.destroyKey();
         }
+    }
+
+    public static boolean validKey() {
+        return KEY_TOOL != null;
+    }
+
+
+    public static boolean allowDestroyKey() {
+        return ALLOW_D_KEY;
+    }
+
+    public static void setAllowDestroyKey(boolean allowDestroyKey) {
+        ALLOW_D_KEY = allowDestroyKey;
     }
 }

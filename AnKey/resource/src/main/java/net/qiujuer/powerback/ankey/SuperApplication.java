@@ -15,9 +15,9 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
  * Created by qiujuer
  * on 15/10/21.
  */
-public class SuperApplication extends android.app.Application {
+public abstract class SuperApplication extends android.app.Application {
     private AtomicInteger mForegroundCount = new AtomicInteger();
-    private List<Activity> mActivities = new ArrayList<Activity>();
+    protected List<Activity> mActivities = new ArrayList<Activity>();
 
     @Override
     public void onCreate() {
@@ -44,13 +44,9 @@ public class SuperApplication extends android.app.Application {
         }
     }
 
-    public void clearKey() {
+    public abstract void clearKey();
 
-    }
-
-    public void cancelClearKey() {
-
-    }
+    public abstract void cancelClearKey();
 
     public static void addActivity(Activity activity) {
         SuperApplication application = (SuperApplication) activity.getApplication();
@@ -62,6 +58,8 @@ public class SuperApplication extends android.app.Application {
         SuperApplication application = (SuperApplication) activity.getApplication();
         application.remove(activity);
         SuperApplication.log(activity.getClass().getName() + "-onDestroy");
+        if (application.mActivities.size() == 0)
+            application.cancelClearKey();
     }
 
     public static void onStart(Activity activity) {
@@ -92,8 +90,8 @@ public class SuperApplication extends android.app.Application {
         log(activity.getClass().getName() + "-onResume");
     }
 
-    public static void log(String str) {
-        Log.e("ACTIVITY-STATUS", str);
+    protected static void log(String str) {
+        Log.d("ACTIVITY-STATUS", str);
     }
 
 }
