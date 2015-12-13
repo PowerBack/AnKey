@@ -245,12 +245,6 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        SuperApplication.removeActivity(this);
-    }
-
-    @Override
     public boolean onMenuItemClick(MenuItem item) {
         return false;
     }
@@ -373,5 +367,41 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
             loading.stop();
             mLoadingDialog.dismiss();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SuperApplication.removeActivity(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SuperApplication.onPause(this);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        SuperApplication.onRestart(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SuperApplication.onResume(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SuperApplication.onStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SuperApplication.onStop(this);
     }
 }
