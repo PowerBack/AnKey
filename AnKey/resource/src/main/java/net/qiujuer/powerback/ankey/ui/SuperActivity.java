@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -313,8 +314,11 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Theme_Dialog);
         if (title != 0)
             builder.setTitle(title);
-        if (content != null)
-            builder.setView(content);
+        if (content != null) {
+            LinearLayout view = (LinearLayout) View.inflate(this, R.layout.lay_dialog, null);
+            view.addView(content, 0);
+            builder.setView(view);
+        }
         if (null != negativeButtonListener)
             builder.setNegativeButton(R.string.label_dialog_negative, negativeButtonListener);
         if (null != positiveButtonListener)
