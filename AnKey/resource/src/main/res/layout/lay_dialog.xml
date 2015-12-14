@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/lay_loading"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <net.qiujuer.powerback.ankey.widget.ShadowLine
+    <View
         android:layout_width="match_parent"
-        android:layout_height="5dp"
-        app:shadowColor="@color/black_alpha_224" />
+        android:layout_height="4dp"
+        android:background="@drawable/ic_dialog_shadow_bg" />
 </LinearLayout>

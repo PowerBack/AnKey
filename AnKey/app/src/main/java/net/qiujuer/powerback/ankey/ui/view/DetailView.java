@@ -141,12 +141,12 @@ public class DetailView extends LinearLayout implements net.qiujuer.powerback.an
 
     @Override
     public void hideLoading() {
-//        setEnabled(true);
-//        Loading loading = (Loading) findViewById(R.id.loading);
-//        loading.stop();
-//        findViewById(R.id.lay_loading).setVisibility(GONE);
-//        findViewById(R.id.lay_title).setVisibility(VISIBLE);
-//        findViewById(R.id.lay_scroll).setVisibility(VISIBLE);
+        setEnabled(true);
+        Loading loading = (Loading) findViewById(R.id.loading);
+        loading.stop();
+        findViewById(R.id.lay_loading).setVisibility(GONE);
+        findViewById(R.id.lay_title).setVisibility(VISIBLE);
+        findViewById(R.id.lay_scroll).setVisibility(VISIBLE);
     }
 
     @Override

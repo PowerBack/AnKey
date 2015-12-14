@@ -8,5 +8,4 @@
         <padding android:top="25dp" />
         <solid android:color="@color/dialog_window_background" />
     </shape>
-
 </inset>
