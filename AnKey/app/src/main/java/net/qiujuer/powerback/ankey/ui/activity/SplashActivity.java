@@ -1,6 +1,5 @@
 package net.qiujuer.powerback.ankey.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -18,20 +17,15 @@ import net.qiujuer.powerback.ankey.util.FormatUtil;
  * splash view and introduce view
  * Created by GuDong on 10/25/15 14:23.
  */
-public class SplashActivity extends SuperActivity implements SplashView {
+public class SplashActivity extends SuperActivity implements SplashView, IntroduceFragment.OnStatusChangeListener {
     private static final int KEY_DELAY_TIME = 2000;
     private SplashPresenter mSplashPresenter;
-
     private IntroduceFragment mIntroduceFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // make view full screen
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
         setContentView(R.layout.activity_splash);
-
         mSplashPresenter = new SplashPresenter(this);
 
         initView();
@@ -53,13 +47,14 @@ public class SplashActivity extends SuperActivity implements SplashView {
     @Override
     public void showIntroduceView() {
         mIntroduceFragment = new IntroduceFragment();
+        mIntroduceFragment.setOnStatusChangeListener(this);
 
         // add list fragment list to introduce view
         addSlideListToIntroduceView(mIntroduceFragment);
 
         // add IntroduceFragment to main layout with anim
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out);
+        transaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
         transaction.replace(R.id.fl_container, mIntroduceFragment, "introduce");
         transaction.commit();
 
@@ -74,8 +69,8 @@ public class SplashActivity extends SuperActivity implements SplashView {
 
     private void addSlideListToIntroduceView(IntroduceFragment introduceFragment) {
         // will be added fragment which used to show our app
-        MaterialSlide slideOne = MaterialSlide.newInstance(R.drawable.introduc_friend,getString(R.string.introduce_friendly_title),getString(R.string.introduce_friendly_content), R.color.snow_light,R.color.snow_primary);
-        MaterialSlide slideTwo = MaterialSlide.newInstance(R.drawable.introduc_simple,getString(R.string.introduce_simple_title),getString(R.string.introduce_simple_content),R.color.snow_light,R.color.snow_primary);
+        MaterialSlide slideOne = MaterialSlide.newInstance(R.drawable.introduc_friend, getString(R.string.introduce_friendly_title), getString(R.string.introduce_friendly_content), R.color.snow_light, R.color.snow_primary);
+        MaterialSlide slideTwo = MaterialSlide.newInstance(R.drawable.introduc_simple, getString(R.string.introduce_simple_title), getString(R.string.introduce_simple_content), R.color.snow_light, R.color.snow_primary);
         MaterialSlide slideThree = MaterialSlide.newInstance(R.drawable.introduc_safe, getString(R.string.introduce_safe_title), getString(R.string.introduce_safe_content), R.color.snow_light, R.color.snow_primary);
 
         //fragment background color
@@ -89,7 +84,7 @@ public class SplashActivity extends SuperActivity implements SplashView {
         introduceFragment.addSlideWithColor(slideThree, colorThree);
     }
 
-    private void setUpIntroduceView(IntroduceFragment introduceFragment){
+    private void setUpIntroduceView(IntroduceFragment introduceFragment) {
 
         introduceFragment.setSkipText(getString(R.string.introduce_skip));
         introduceFragment.setDoneText(getString(R.string.introduce_done));
@@ -114,8 +109,12 @@ public class SplashActivity extends SuperActivity implements SplashView {
 
     @Override
     public void gotoKeyVerifyView() {
-        Intent intent = new Intent(SplashActivity.this, KeyVerifyActivity.class);
-        startActivity(intent);
+        KeyVerifyActivity.show(this, MainActivity.class);
         finish();
+    }
+
+    @Override
+    public void onColorChange(int color) {
+        setStatusBarColor(color);
     }
 }

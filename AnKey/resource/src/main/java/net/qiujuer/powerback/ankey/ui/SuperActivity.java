@@ -1,6 +1,7 @@
 package net.qiujuer.powerback.ankey.ui;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,8 +42,22 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
         super.onCreate(savedInstanceState);
         super.setContentView(getRootContentView());
 
+        hideSmartBar();
+
         initRoot();
         initToolBar();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        //overridePendingTransition(R.anim.anim_activity_enter, R.anim.anim_activity_exit);
+    }
+
+    @Override
+    public void startActivityForResult(Intent intent, int requestCode, Bundle options) {
+        super.startActivityForResult(intent, requestCode, options);
+        //overridePendingTransition(R.anim.anim_activity_enter, R.anim.anim_activity_exit);
     }
 
     private void initTintManager() {
@@ -64,6 +80,16 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
         tintManager.setStatusBarTintEnabled(true);
         tintManager.setStatusBarTintResource(R.color.dark_dark);
         mBarTintManager = tintManager;
+    }
+
+    private void hideSmartBar() {
+        try {
+            if (getWindow().getDecorView() != null) {
+                getWindow().getDecorView().setSystemUiVisibility(2050);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void initRoot() {
@@ -122,9 +148,19 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
             mBarTintManager.setStatusBarTintResource(res);
     }
 
+    public void setStatusBarColor(int color) {
+        if (mBarTintManager != null)
+            mBarTintManager.setStatusBarTintColor(color);
+    }
+
     public void setTitleBackgroundColorRes(int res) {
         if (mToolbar != null)
             mToolbar.setBackgroundResource(res);
+    }
+
+    public void setTitleBackgroundColor(int color) {
+        if (mToolbar != null)
+            mToolbar.setBackgroundColor(color);
     }
 
     @Override
@@ -210,12 +246,6 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        SuperApplication.removeActivity(this);
-    }
-
-    @Override
     public boolean onMenuItemClick(MenuItem item) {
         return false;
     }
@@ -284,8 +314,11 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.Theme_Dialog);
         if (title != 0)
             builder.setTitle(title);
-        if (content != null)
-            builder.setView(content);
+        if (content != null) {
+            LinearLayout view = (LinearLayout) View.inflate(this, R.layout.lay_dialog, null);
+            view.addView(content, 0);
+            builder.setView(view);
+        }
         if (null != negativeButtonListener)
             builder.setNegativeButton(R.string.label_dialog_negative, negativeButtonListener);
         if (null != positiveButtonListener)
@@ -338,5 +371,41 @@ public class SuperActivity extends AppCompatActivity implements Toolbar.OnMenuIt
             loading.stop();
             mLoadingDialog.dismiss();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SuperApplication.removeActivity(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        SuperApplication.onPause(this);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        SuperApplication.onRestart(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SuperApplication.onResume(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SuperApplication.onStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SuperApplication.onStop(this);
     }
 }

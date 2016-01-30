@@ -1,6 +1,7 @@
 package net.qiujuer.powerback.ankey.ui.fragment;
 
 import android.animation.ArgbEvaluator;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
@@ -17,13 +18,14 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.ui.SuperFragment;
+import net.qiujuer.powerback.ankey.widget.drawable.DirectArrowDrawable;
+import net.qiujuer.powerback.ankey.widget.drawable.Drawables;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,7 @@ import java.util.Vector;
  * Introduce view
  * Created by GuDong on 10/25/15 22:15.
  */
-public class IntroduceFragment extends SuperFragment{
+public class IntroduceFragment extends SuperFragment {
     private final ArgbEvaluator argbEvaluator = new ArgbEvaluator();
     private final List<Fragment> fragments = new Vector<>();
     private final ArrayList<Integer> colors = new ArrayList<>();
@@ -41,7 +43,7 @@ public class IntroduceFragment extends SuperFragment{
     private RelativeLayout controlsRelativeLayout;
     private Button skipIntroButton;
     private Button doneSlideButton;
-    private ImageButton nextSlideImageButton;
+    private Button nextSlideImageButton;
     private View separatorView;
     private LinearLayout dotsLayout;
     private TextView[] dots;
@@ -59,10 +61,20 @@ public class IntroduceFragment extends SuperFragment{
     private int activeDotColor;
     private int inactiveDocsColor;
 
+    private OnStatusChangeListener mListener;
+
+    public interface OnStatusChangeListener {
+        void onColorChange(int color);
+    }
+
+    public void setOnStatusChangeListener(OnStatusChangeListener listener) {
+        this.mListener = listener;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_introduce,null);
+        View view = inflater.inflate(R.layout.fragment_introduce, null);
         initView(view);
         fillViewPage();
         addListener();
@@ -73,14 +85,18 @@ public class IntroduceFragment extends SuperFragment{
         introViewPager = (ViewPager) view.findViewById(R.id.introViewPager);
         controlsRelativeLayout = (RelativeLayout) view.findViewById(R.id.controlsRelativeLayout);
         skipIntroButton = (Button) view.findViewById(R.id.skipIntroButton);
-        nextSlideImageButton = (ImageButton) view.findViewById(R.id.nextSlideImageButton);
+        nextSlideImageButton = (Button) view.findViewById(R.id.nextSlideImageButton);
         doneSlideButton = (Button) view.findViewById(R.id.doneSlideButton);
         separatorView = view.findViewById(R.id.separatorView);
         dotsLayout = (LinearLayout) view.findViewById(R.id.viewPagerCountDots);
+        nextSlideImageButton.setBackgroundDrawable(Drawables.getDirectDrawable(getResources(),
+                90,
+                DirectArrowDrawable.DIRECT_RIGHT,
+                new Rect(24, 18, 24, 18)));
     }
 
-    private void fillViewPage(){
-        if(fragments.isEmpty()){
+    private void fillViewPage() {
+        if (fragments.isEmpty()) {
             throw new IllegalStateException("the fragments is empty , please add slide fragment by use addSlideWithColor() method before add IntroduceFragment to FragmentTransaction. ");
         }
 
@@ -109,7 +125,16 @@ public class IntroduceFragment extends SuperFragment{
         introViewPager.setAdapter(pagerAdapter);
     }
 
-    private void addListener(){
+    private void onColorChange(int color) {
+        introViewPager.setBackgroundColor(color);
+        controlsRelativeLayout.setBackgroundColor(color);
+
+        OnStatusChangeListener listener = mListener;
+        if (listener != null)
+            listener.onColorChange(color);
+    }
+
+    private void addListener() {
         skipIntroButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,12 +166,10 @@ public class IntroduceFragment extends SuperFragment{
                 if (position < (pagerAdapter.getCount() - 1) && position < (colors.size() - 1)) {
                     int color = (Integer)
                             argbEvaluator.evaluate(positionOffset, colors.get(position), colors.get(position + 1));
-                    introViewPager.setBackgroundColor(color);
-                    controlsRelativeLayout.setBackgroundColor(color);
+                    onColorChange(color);
                 } else {
                     int color = colors.get(colors.size() - 1);
-                    introViewPager.setBackgroundColor(color);
-                    controlsRelativeLayout.setBackgroundColor(color);
+                    onColorChange(color);
                 }
             }
 
@@ -205,6 +228,7 @@ public class IntroduceFragment extends SuperFragment{
 
     /**
      * Add a slide to the intro
+     *
      * @param fragment Fragment of the slide to be added
      * @param color    Background color of the fragment
      */
@@ -215,6 +239,7 @@ public class IntroduceFragment extends SuperFragment{
 
     /**
      * set action listener on click
+     *
      * @param introduceAction a implement of callback
      */
     public void setIntroduceAction(IIntroduceAction introduceAction) {
@@ -398,7 +423,7 @@ public class IntroduceFragment extends SuperFragment{
         }
     }
 
-    public interface IIntroduceAction{
+    public interface IIntroduceAction {
         /**
          * Perform action when skip button is pressed
          */

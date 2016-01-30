@@ -14,6 +14,7 @@ import net.qiujuer.genius.ui.Ui;
 import net.qiujuer.genius.ui.widget.Loading;
 import net.qiujuer.powerback.ankey.R;
 import net.qiujuer.powerback.ankey.presenter.DetailPresenter;
+import net.qiujuer.powerback.ankey.ui.activity.KeyVerifyActivity;
 
 import java.util.UUID;
 
@@ -160,7 +161,7 @@ public class DetailView extends LinearLayout implements net.qiujuer.powerback.an
 
     @Override
     public void needKey() {
-
+        KeyVerifyActivity.show(this.getContext());
     }
 
     @Override

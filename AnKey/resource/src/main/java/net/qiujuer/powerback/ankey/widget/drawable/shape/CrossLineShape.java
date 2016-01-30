@@ -1,4 +1,4 @@
-package net.qiujuer.powerback.ankey.widget.drawable;
+package net.qiujuer.powerback.ankey.widget.drawable.shape;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
