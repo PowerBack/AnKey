@@ -32,4 +32,7 @@ dependencies {
     compile "com.github.Raizlabs.DBFlow:dbflow:$rootProject.ext.dbflowVersion"
     // sql-cipher database encyrption (optional)
     compile "com.github.Raizlabs.DBFlow:dbflow-sqlcipher:$rootProject.ext.dbflowVersion"
+
+    // Genius-Android-Kit-Handler
+    compile "net.qiujuer.genius:kit-handler:$rootProject.ext.geniusVersion"
 }

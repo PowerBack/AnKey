@@ -43,5 +43,6 @@ ext {
     geniusVersion = '2.0.0-beta4'
     daggerVersion = '2.2'
     gsonVersion = '2.2'
-    retrofitVersion = '2.0.2'
+    systembartintVersion = '1.0.4'
+    calligraphyVersion = '2.2.0'
 }
