@@ -28,10 +28,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
-/**
- * Created by qiujuer
- * on 16/5/16.
- */
 public abstract class Application extends android.app.Application {
     private AtomicInteger mForegroundCount = new AtomicInteger();
     protected List<Activity> mActivities = new ArrayList<Activity>();
@@ -61,9 +57,13 @@ public abstract class Application extends android.app.Application {
         }
     }
 
-    public abstract void clearKey();
+    protected int onForeground(Activity activity) {
+        return mForegroundCount.incrementAndGet();
+    }
 
-    public abstract void cancelClearKey();
+    protected int onBackground(Activity activity) {
+        return mForegroundCount.decrementAndGet();
+    }
 
     public static void addActivity(Activity activity) {
         Application application = (Application) activity.getApplication();
@@ -75,24 +75,18 @@ public abstract class Application extends android.app.Application {
         Application application = (Application) activity.getApplication();
         application.remove(activity);
         Application.log(activity.getClass().getName() + "-onDestroy");
-        if (application.mActivities.size() == 0)
-            application.cancelClearKey();
     }
 
     public static void onStart(Activity activity) {
         Application application = (Application) activity.getApplication();
-        application.cancelClearKey();
-        int count = application.mForegroundCount.incrementAndGet();
+        int count = application.onForeground(activity);
         log(activity.getClass().getName() + "-onStart:" + count);
     }
 
     public static void onStop(Activity activity) {
         Application application = (Application) activity.getApplication();
-        int count = application.mForegroundCount.decrementAndGet();
+        int count = application.onBackground(activity);
         log(activity.getClass().getName() + "-onStop:" + count);
-        if (count == 0) {
-            application.clearKey();
-        }
     }
 
     public static void onPause(Activity activity) {

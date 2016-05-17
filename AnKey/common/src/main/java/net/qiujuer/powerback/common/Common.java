@@ -18,5 +18,40 @@
 package net.qiujuer.powerback.common;
 
 
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+
+import net.qiujuer.powerback.common.app.Application;
+import net.qiujuer.powerback.common.utils.Log;
+
 public class Common {
+    private static boolean DEBUG = true;
+    private static Application APP = null;
+
+    public static void init(Application application) {
+        APP = application;
+        if (APP == null)
+            return;
+        try {
+            ApplicationInfo appInfo = APP.getPackageManager()
+                    .getApplicationInfo(APP.getPackageName(), PackageManager.GET_META_DATA);
+            DEBUG = appInfo.metaData.getBoolean("APP_IS_DEBUG", true);
+            if (DEBUG)
+                Log.LEVEL = Log.LEVEL_ALL;
+            else
+                Log.LEVEL = Log.LEVEL_NONE;
+
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            Log.e(Common.class.getName(), "init error");
+        }
+    }
+
+    public static boolean isDebug() {
+        return DEBUG;
+    }
+
+    public static Application getApp() {
+        return APP;
+    }
 }

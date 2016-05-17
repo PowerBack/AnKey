@@ -4,7 +4,20 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true">
+        <!--same config values-->
+        <meta-data
+            android:name="APP_IS_DEBUG"
+            android:value="${APP_IS_DEBUG}" />
 
+
+        <activity
+            android:name="net.qiujuer.powerback.common.app.Activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base" />
+        <activity
+            android:name="net.qiujuer.powerback.common.app.BackActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Base" />
     </application>
 
 </manifest>

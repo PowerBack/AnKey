@@ -16,6 +16,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        all {
+            manifestPlaceholders = [APP_IS_DEBUG: MANITFEST_APP_IS_DEBUG]
+        }
     }
 }
 
