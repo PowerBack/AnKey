@@ -20,7 +20,7 @@ package net.qiujuer.powerback.ankey;
 import android.app.Activity;
 
 import net.qiujuer.powerback.common.app.Application;
-import net.qiujuer.powerback.factory.presenter.AppPresenter;
+import net.qiujuer.powerback.factory.presenter.app.AppPresenter;
 
 
 public class AnKeyApplication extends Application {

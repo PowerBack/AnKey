@@ -25,7 +25,7 @@ import java.util.UUID;
  * Created by qiujuer
  * on 16/5/18.
  */
-public class UserBean {
+public class UserBean extends XmlModel {
     private UUID id = BaseBean.EMPTY_ID;
     private String name;
     // check is login

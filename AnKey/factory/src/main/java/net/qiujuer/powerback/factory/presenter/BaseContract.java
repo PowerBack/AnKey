@@ -33,8 +33,15 @@ public interface BaseContract {
         void destroy();
     }
 
-    interface View<T extends Presenter> {
-        void setPresenter(T presenter);
+    interface View<P extends Presenter> {
+        void setPresenter(P presenter);
+    }
+
+    interface PassphraseView<P extends Presenter> extends View<P> {
+        void gotoObtainPassphrase();
+    }
+
+    interface LoadView<P extends Presenter> extends View<P> {
 
         void showError(@StringRes int str);
 

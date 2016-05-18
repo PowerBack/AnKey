@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.qiujuer.powerback.factory.presenter;
+package net.qiujuer.powerback.factory.presenter.app;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -28,6 +28,7 @@ import net.qiujuer.genius.kit.handler.runable.Action;
 import net.qiujuer.powerback.common.Common;
 import net.qiujuer.powerback.common.app.Application;
 import net.qiujuer.powerback.common.utils.Log;
+import net.qiujuer.powerback.factory.model.xml.SettingBean;
 import net.qiujuer.powerback.sign.SignTool;
 
 /**
@@ -39,9 +40,22 @@ public class AppPresenter {
     private static SignTool SIGNER;
     private static boolean SIGNER_ALLOW_DESTROY = true;
 
-
     public static void init(Application application) {
         Common.init(application);
+    }
+
+    public static void load(final Action action){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                action.call();
+            }
+        }).start();
     }
 
     public static void dispose() {
@@ -57,7 +71,8 @@ public class AppPresenter {
     }
 
     public static boolean isFirstUse() {
-        return false;
+        SettingBean model = new SettingBean();
+        return model.isFirstUse();
     }
 
     public static boolean isHaveNetwork() {

@@ -21,19 +21,19 @@ package net.qiujuer.powerback.factory.presenter;
  * Created by qiujuer
  * on 16/5/16.
  */
-public abstract class BasePresenter<T extends BaseContract.View> implements BaseContract.Presenter {
-    T mView;
+public abstract class BasePresenter<V extends BaseContract.View> implements BaseContract.Presenter {
+    V mView;
 
-    protected BasePresenter(T view) {
+    protected BasePresenter(V view) {
         setView(view);
     }
 
-    protected void setView(T view) {
+    protected void setView(V view) {
         mView = view;
     }
 
-    protected T getView() {
-        return (T) mView;
+    protected V getView() {
+        return (V) mView;
     }
 
     @Override

@@ -1,9 +1,36 @@
 <resources>
 
-    <style name="AppTheme.AppCompat" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.AppCompat" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowAnimationStyle">@style/AppTheme.WindowAnimationStyle.Activity
         </item>
+
+        <!-- In this custom widget style -->
+        <item name="gTextViewStyle">@style/Genius.Widget.TextView</item>
+        <item name="gButtonStyle">@style/Genius.Widget.Button</item>
+        <item name="gFloatActionButtonStyle">@style/Genius.Widget.FloatActionButton</item>
+        <item name="gSeekBarStyle">@style/Genius.Widget.SeekBar</item>
+        <item name="gCheckBoxStyle">@style/Genius.Widget.CompoundButton.CheckBox</item>
+        <item name="gEditTextStyle">@style/Genius.Widget.EditText</item>
+        <item name="gLoadingStyle">@style/Genius.Widget.Loading</item>
+
     </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="AppTheme.Base">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!-- Base application theme. -->
     <style name="AppTheme.Base" parent="AppTheme.AppCompat">

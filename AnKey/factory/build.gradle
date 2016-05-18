@@ -25,6 +25,7 @@ dependencies {
     testCompile "junit:junit:$rootProject.ext.junitVersion"
     compile project(':sign')
     compile project(':common')
+    compile project(':lang')
 
     // DBFlow config
     apt "com.github.Raizlabs.DBFlow:dbflow-processor:$rootProject.ext.dbflowVersion"
