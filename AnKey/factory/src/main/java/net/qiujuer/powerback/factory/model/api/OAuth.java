@@ -15,29 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.qiujuer.powerback.factory.data;
+package net.qiujuer.powerback.factory.model.api;
 
 /**
  * Created by qiujuer
- * on 16/5/16.
+ * on 16/5/18.
  */
-public class DataSource {
-    /**
-     * Data callback use to Presenter~DataSource
-     *
-     * @param <Data> AnyCallback
-     */
-    public interface Callback<Data> {
-        /**
-         * Call the data on request success
-         *
-         * @param data {@link Data}
-         */
-        void onDataLoaded(Data data);
+public class OAuth {
 
-        /**
-         * Notify error on request failed
-         */
-        void onDataNotAvailable();
-    }
 }

@@ -15,34 +15,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.qiujuer.powerback.factory.presenter;
+package net.qiujuer.powerback.factory.model.db;
+
+import com.raizlabs.android.dbflow.annotation.Column;
+
+import net.qiujuer.powerback.factory.model.BaseBean;
+
+import java.util.UUID;
 
 /**
  * Created by qiujuer
- * on 16/5/16.
+ * on 16/5/18.
  */
-public abstract class BasePresenter<T extends BaseContract.View> implements BaseContract.Presenter {
-    T mView;
+public class CategoryBean extends BaseBean {
+    @Column(name = "Id")
+    private UUID id = EMPTY_ID;
 
-    protected BasePresenter(T view) {
-        setView(view);
+    @Column(name = "Name")
+    private String name;
+
+    @Column(name = "Iamge")
+    private String image;
+
+    public UUID getId() {
+        return id;
     }
 
-    protected void setView(T view) {
-        mView = view;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
-    protected T getView() {
-        return (T) mView;
+    public String getImage() {
+        return image;
     }
 
-    @Override
-    public void start() {
-        // do..
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    @Override
-    public void destroy() {
-        mView = null;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

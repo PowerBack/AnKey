@@ -15,34 +15,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.qiujuer.powerback.factory.presenter;
+package net.qiujuer.powerback.factory.model.api;
 
 /**
  * Created by qiujuer
- * on 16/5/16.
+ * on 16/5/18.
  */
-public abstract class BasePresenter<T extends BaseContract.View> implements BaseContract.Presenter {
-    T mView;
+public class RegisterBean {
+    private String userName;
+    private String password;
+    private String email;
+    private String call;
 
-    protected BasePresenter(T view) {
-        setView(view);
+    public String getCall() {
+        return call;
     }
 
-    protected void setView(T view) {
-        mView = view;
+    public void setCall(String call) {
+        this.call = call;
     }
 
-    protected T getView() {
-        return (T) mView;
+    public String getEmail() {
+        return email;
     }
 
-    @Override
-    public void start() {
-        // do..
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    @Override
-    public void destroy() {
-        mView = null;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
