@@ -15,28 +15,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.qiujuer.powerback.factory.presenter.app;
+package net.qiujuer.powerback.ankey.utils;
 
-import net.qiujuer.powerback.factory.presenter.BaseContract;
+import android.support.v4.view.ViewPager;
 
 /**
- * Created by qiujuer
- * on 16/5/18.
+ * ViewPager {@link ViewPagerOnPageChangeListener}
+ * In this you can only override one or more.
  */
-public interface SplashContract {
-    interface Presenter extends BaseContract.Presenter {
+
+public class ViewPagerOnPageChangeListener implements ViewPager.OnPageChangeListener {
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
     }
 
-    interface View extends BaseContract.View<Presenter> {
-        /**
-         * Show introduce view for user guide
-         */
-        void showIntroduceView();
+    @Override
+    public void onPageSelected(int position) {
 
-        /**
-         * Show the main view
-         */
-        void gotoMainView();
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }

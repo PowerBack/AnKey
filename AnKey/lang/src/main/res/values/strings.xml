@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AnKey</string>
+
+    <string name="frag_introduce_friendly">Friendly</string>
+    <string name="frag_introduce_simple">Simple</string>
+    <string name="frag_introduce_safe">And Safe</string>
 </resources>

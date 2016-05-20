@@ -54,7 +54,7 @@ public class SplashPresenter extends BasePresenter<SplashContract.View> implemen
                 if (AppPresenter.isFirstUse()) {
                     view.showIntroduceView();
                 } else {
-                    view.gotoObtainPassphrase();
+                    view.gotoMainView();
                 }
             }
         });

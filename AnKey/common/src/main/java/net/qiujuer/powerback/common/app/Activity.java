@@ -47,6 +47,7 @@ import net.qiujuer.powerback.common.reflect.StatusBarProxy;
 import uk.co.chrisjenx.calligraphy.CalligraphyTypefaceSpan;
 import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
+@SuppressWarnings("WeakerAccess")
 public class Activity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {
     protected Toolbar mToolbar;
     protected RelativeLayout mRoot;
@@ -98,6 +99,9 @@ public class Activity extends AppCompatActivity implements Toolbar.OnMenuItemCli
         mBarTintManager = tintManager;
     }
 
+    /**
+     * This is hide meizu smart bar
+     */
     private void hideSmartBar() {
         try {
             if (getWindow().getDecorView() != null) {

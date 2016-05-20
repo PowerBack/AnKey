@@ -72,7 +72,7 @@ public class AppPresenter {
 
     public static boolean isFirstUse() {
         SettingBean model = new SettingBean();
-        return model.isFirstUse();
+        return model.isFirstUse()||true;
     }
 
     public static boolean isHaveNetwork() {

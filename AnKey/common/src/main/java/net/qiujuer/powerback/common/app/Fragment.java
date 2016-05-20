@@ -18,16 +18,50 @@
 package net.qiujuer.powerback.common.app;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 /**
  * now it is a empty fragment
  * Created by GuDong on 10/25/15 22:17.
  */
-public class Fragment extends android.support.v4.app.Fragment {
+@SuppressWarnings("WeakerAccess")
+public abstract class Fragment extends android.support.v4.app.Fragment {
+    protected View mRoot;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initBundle(getArguments());
     }
 
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mRoot = inflater.inflate(getLayoutId(), container, false);
+        initView(mRoot);
+        return mRoot;
+    }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initData();
+    }
+
+    protected abstract int getLayoutId();
+
+    protected void initBundle(Bundle arguments) {
+
+    }
+
+    protected void initView(View view) {
+
+    }
+
+    protected void initData() {
+
+    }
 }
