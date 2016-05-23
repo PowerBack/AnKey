@@ -24,6 +24,7 @@ import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.qiujuer.powerback.ankey.R;
@@ -69,16 +70,22 @@ public class IntroduceFragment extends net.qiujuer.powerback.common.app.Fragment
     protected void initView(View view) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View item = inflater.inflate(R.layout.frag_introduce_item, null);
+        ((ImageView) item.findViewById(R.id.iv_icon)).
+                setImageResource(R.drawable.ic_introduce_friendly);
         ((TextView) item.findViewById(R.id.tv_value)).
                 setText(formatText(R.string.frag_introduce_friendly));
         mViews.add(item);
 
         item = inflater.inflate(R.layout.frag_introduce_item, null);
+        ((ImageView) item.findViewById(R.id.iv_icon)).
+                setImageResource(R.drawable.ic_introduce_sample);
         ((TextView) item.findViewById(R.id.tv_value)).
                 setText(formatText(R.string.frag_introduce_simple));
         mViews.add(item);
 
         item = inflater.inflate(R.layout.frag_introduce_item, null);
+        ((ImageView) item.findViewById(R.id.iv_icon)).
+                setImageResource(R.drawable.ic_introduce_safe);
         ((TextView) item.findViewById(R.id.tv_value)).
                 setText(formatText(R.string.frag_introduce_safe));
         mViews.add(item);
