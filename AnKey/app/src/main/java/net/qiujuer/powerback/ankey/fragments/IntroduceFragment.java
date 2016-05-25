@@ -17,6 +17,7 @@
  */
 package net.qiujuer.powerback.ankey.fragments;
 
+import android.graphics.Color;
 import android.support.annotation.StringRes;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -68,6 +69,9 @@ public class IntroduceFragment extends net.qiujuer.powerback.common.app.Fragment
 
     @Override
     protected void initView(View view) {
+        mColorNormal = getResources().getColor(R.color.colorPrimary);
+        mColorActive = getResources().getColor(R.color.colorAccent);
+
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View item = inflater.inflate(R.layout.frag_introduce_item, null);
         ((ImageView) item.findViewById(R.id.iv_icon)).
@@ -114,7 +118,32 @@ public class IntroduceFragment extends net.qiujuer.powerback.common.app.Fragment
                         break;
                 }
             }
+
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                final float count = (mViews.size() - 1);
+                float size = position + positionOffset;
+                onProgressChange(size / count);
+            }
         });
+    }
+
+    private int mColorNormal;
+    private int mColorActive;
+
+    private void onProgressChange(float factor) {
+        int color = blendColors(mColorActive, mColorNormal, factor);
+        mRoot.setBackgroundColor(color);
+        mIntroduceAction.onColorChange(color);
+    }
+
+    private static int blendColors(int color1, int color2, float factor) {
+        final float inverseFactor = 1f - factor;
+        float a = (Color.alpha(color1) * factor) + (Color.alpha(color2) * inverseFactor);
+        float r = (Color.red(color1) * factor) + (Color.red(color2) * inverseFactor);
+        float g = (Color.green(color1) * factor) + (Color.green(color2) * inverseFactor);
+        float b = (Color.blue(color1) * factor) + (Color.blue(color2) * inverseFactor);
+        return Color.argb((int) a, (int) r, (int) g, (int) b);
     }
 
     private class IntroduceAdapter extends PagerAdapter {
