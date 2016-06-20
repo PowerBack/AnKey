@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0'
+        classpath 'com.android.tools.build:gradle:2.2.0-alpha3'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -37,13 +37,13 @@ ext {
     versionName = '2.0.0-beta1'
 
     // App dependencies
-    supportLibraryVersion = '23.4.0'
-    supportConstraintVersion = '1.0.0-alpha1'
+    supportLibraryVersion = '24.0.0'
+    supportConstraintVersion = '1.0.0-alpha3'
     junitVersion = '4.12'
-    dbflowVersion = '3.0.0-beta6'
+    dbflowVersion = '3.0.1'
     geniusVersion = '2.0.0-beta4'
     daggerVersion = '2.2'
-    gsonVersion = '2.2'
+    gsonVersion = '2.7'
     systembartintVersion = '1.0.4'
     calligraphyVersion = '2.2.0'
 }
